@@ -9,6 +9,12 @@ public class Cell {
 		this.mp = mp;
 	}
 	
+	
+	/**
+	 * Decrease one life.
+	 *
+	 * @return      if the cell has died
+	 */
 	public boolean loseLp(){
 		/*
 		boolean dead = false;
@@ -23,19 +29,39 @@ public class Cell {
 		return (this.lp == 0);
 	}
 	
+	/**
+	 * Decrease one maturity point
+	 *
+	 * @return      if the cell is mature
+	 */
 	public boolean maturate(){
 		this.mp--;
 		return (this.mp == 0);
 	}
 	
+	/**
+	 * lp getter
+	 *
+	 * @return      the life points
+	 */
 	public int getLp(){
 		return lp;
 	}
 	
+	/**
+	 * mp getter
+	 *
+	 * @return      the maturity points
+	 */
 	public int getMp(){
 		return mp;
 	}
 	
+	/**
+	 * String representation of the cell
+	 *
+	 * @return      a string representing the cell
+	 */
 	public String toString() {
 		return (new Integer(getLp())).toString() + "-" + (new Integer(getMp())).toString();
 	}
