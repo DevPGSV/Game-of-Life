@@ -3,10 +3,20 @@ package esRuedaPGSV.GameOfLife;
 public class Cell {
 	private int lp;
 	private int mp;
+	private boolean movable;
 	
 	public Cell(int lp, int mp){
 		this.lp = lp;
 		this.mp = mp;
+		this.movable = true;
+	}
+	
+	public boolean isMovable() {
+		return this.movable;
+	}
+	
+	public void setMovable(boolean movable) {
+		this.movable = movable;
 	}
 	
 	
