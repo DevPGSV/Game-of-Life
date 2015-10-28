@@ -18,7 +18,9 @@ public class Controller {
 	public void executeSimulation(){
 		boolean keepLoop = true;
 		String command = "";
+		System.out.println(this.world);
 		while (keepLoop) {
+			System.out.print("Command: ");
 			command = in.nextLine(); //read input
 			//command = "step";
 			if (command.equalsIgnoreCase("step")) {
