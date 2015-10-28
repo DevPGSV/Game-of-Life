@@ -4,7 +4,7 @@ public class World {
 	private Surface surface;
 	
 	public World(){
-		this.surface = new Surface(4, 3);
+		this.surface = new Surface(Values.BOARD_ROWS, Values.BOARD_COLS);
 	}
 	
 	/**
@@ -12,7 +12,8 @@ public class World {
 	 *
 	 */
 	public void evolve(){
-		System.out.println("Evolve");
+		//System.out.println("Evolve");
+		surface.evolve();
 	}
 	
 	/**
