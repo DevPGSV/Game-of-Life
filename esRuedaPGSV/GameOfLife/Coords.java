@@ -9,6 +9,11 @@ public class Coords {
 		this.column = column;
 	}
 	
+	public Coords(Coords coords){
+		this.row = coords.getRow();
+		this.column = coords.getColumn();
+	}
+	
 	public int getRow(){
 		return row;
 	}
@@ -24,6 +29,10 @@ public class Coords {
 	
 	public void setColumn(int column){
 		this.column = column;
+	}
+	
+	public String toString() {
+		return "(" + getRow() + ", " + getColumn() + ")";
 	}
 	
 }
