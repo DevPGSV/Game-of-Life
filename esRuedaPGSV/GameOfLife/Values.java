@@ -7,4 +7,6 @@ public class Values {
 	public static final int BOARD_ROWS = 4;
 	public static final int BOARD_COLS = 4;
 	
+	public static boolean DEBUG = false;
+	
 }

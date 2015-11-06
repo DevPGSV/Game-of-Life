@@ -3,21 +3,13 @@ package esRuedaPGSV.GameOfLife;
 public class Cell {
 	private int lp;
 	private int mp;
-	private boolean movable;
 	
 	public Cell(int lp, int mp){
 		this.lp = lp;
 		this.mp = mp;
-		this.movable = true;
+
 	}
 	
-	public boolean isMovable() {
-		return this.movable;
-	}
-	
-	public void setMovable(boolean movable) {
-		this.movable = movable;
-	}
 	
 	
 	/**
@@ -25,7 +17,8 @@ public class Cell {
 	 *
 	 * @return      if the cell has died
 	 */
-	public boolean loseLp(){
+	
+	public void loseLp(){
 		/*
 		boolean dead = false;
 		this.lp= this.lp - 1;
@@ -34,9 +27,7 @@ public class Cell {
 		}
 		return dead;
 		*/
-		
 		this.lp--;
-		return (this.lp == 0);
 	}
 	
 	/**
@@ -44,9 +35,8 @@ public class Cell {
 	 *
 	 * @return      if the cell is mature
 	 */
-	public boolean maturate(){
+	public void maturate(){
 		this.mp--;
-		return (this.mp == 0);
 	}
 	
 	/**

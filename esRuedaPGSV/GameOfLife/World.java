@@ -27,6 +27,13 @@ public class World {
 		return false;
 	}
 	
+	public void initWorld() {
+		surface.initBoard();
+	}
+	public void cleanWorld() {
+		surface.cleanBoard();
+	}
+	
 	/**
 	 * Creates a new cell at the specified coordinates
 	 * 
