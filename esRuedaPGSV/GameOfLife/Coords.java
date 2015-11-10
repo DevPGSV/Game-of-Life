@@ -5,6 +5,10 @@ public class Coords {
 	private int column;
 	private boolean nullCoords;
 	
+	/**
+	 * Coords default constructor.
+	 * <i>nullCoords = true;</i>
+	 */
 	public Coords(){
 		this.row = 0;
 		this.column = 0;
