@@ -123,10 +123,6 @@ public class Surface {
 	public Coords moveCell(Coords coords){
 		List<Coords> freeSpots = getAvailablePositions(coords);
 		
-		//System.out.println(freeSpots.size());
-		//System.out.println(freeSpots);
-		
-		
 		if (freeSpots.isEmpty()) { // If no available positions
 			surface[coords.getRow()][coords.getColumn()].loseLp();
 			return new Coords();
@@ -169,24 +165,26 @@ public class Surface {
 		HashSet<Coords> movedCells = new HashSet<Coords>();
 		Coords newCoords;
 		for (int i = 0; i < rows; i++){
-			for (int j = 0; j < columns; j++){
-				if (surface[i][j] != null) {
-					if (!movedCells.contains(new Coords(i, j))) {
-						if(surface[i][j].getLp() == 0){
+			for (int j = 0; j < columns; j++){ // For every position
+				if (surface[i][j] != null) { // If there is a cell (if the position is not empty)
+					if (!movedCells.contains(new Coords(i, j))) { // If cell is not one moved to this position in this evolution step
+						
+						if(surface[i][j].getLp() == 0){ // Kill the cell if its lp is 0
 							System.out.println("[ DIE ] (" + i + ", " + j + ")");
 							surface[i][j] = null;
-						}else if(surface[i][j].getMp() == 0){
+							
+						}else if(surface[i][j].getMp() == 0){ // Complete its maturation if its mp is 0
 							newCoords = cellMaturation(new Coords(i, j));
-							//newCoords = moveCell(new Coords(i, j));
-							if (!newCoords.isNullCoords()) {
+							if (!newCoords.isNullCoords()) { // If the cell could reproduce...
 								System.out.println("[MATUR] (" + i + ", " + j + ") to " + newCoords);
 								movedCells.add(new Coords(i, j));
 								movedCells.add(newCoords);
 							}
-						}else {
+							
+						}else { // Try to move the cell
 							surface[i][j].maturate();
 							newCoords = moveCell(new Coords(i, j));
-							if (!newCoords.isNullCoords()) {
+							if (!newCoords.isNullCoords()) { // If the cell could move...
 								System.out.println("[MOVED] (" + i + ", " + j + ") to " + newCoords);
 								movedCells.add(newCoords);
 							}

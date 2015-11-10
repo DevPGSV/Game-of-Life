@@ -7,6 +7,7 @@ public class Controller {
 	private Scanner in;
 	
 	/**
+	 * Controller constructor
 	 * 
 	 * @param world world to be used by the controller
 	 * @param in input for commands (ie. std input)
@@ -14,7 +15,6 @@ public class Controller {
 	public Controller(World world, Scanner in){
 		this.world = world;
 		this.in = in;
-		
 	}
 	
 	/**
