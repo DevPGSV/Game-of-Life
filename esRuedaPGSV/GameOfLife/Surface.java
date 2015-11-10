@@ -40,19 +40,16 @@ public class Surface {
 	public void initBoard() {
 		cleanBoard();
 		Random rand = new Random();
-		if (!Values.DEBUG) {
-			for (int i = 0; i < rows; i++){
-				for (int j = 0; j < columns; j++){
-					if ((rand.nextInt() % 2) == 0) {
-						surface[i][j] = new Cell(Values.MAX_LP, Values.MAX_MP);
-					}
+
+		for (int i = 0; i < rows; i++){
+			for (int j = 0; j < columns; j++){
+				if ((rand.nextInt() % 2) == 0) {
+					surface[i][j] = new Cell(Values.MAX_LP, Values.MAX_MP);
 				}
 			}
-		} else {
-			surface[rand.nextInt(rows)][rand.nextInt(columns)] = new Cell(Values.MAX_LP, Values.MAX_MP);
 		}
 	}
-	
+
 	/**
 	 * Creates a new cell at the specified coordinates
 	 * 
@@ -60,12 +57,15 @@ public class Surface {
 	 * @return      if it was possible to create the cell at the given coordinates
 	 */
 	public boolean createCell(Coords coords) {
-		if (surface[coords.getRow()][coords.getColumn()] == null) {
-			surface[coords.getRow()][coords.getColumn()] = new Cell(Values.MAX_LP, Values.MAX_MP);
-			return true;
-		} else {
-			return false;
+		if((coords.getRow() >= 0) && (coords.getRow() < this.rows)) {
+			if((coords.getColumn() >= 0) && (coords.getColumn() < this.columns)) {
+				if (surface[coords.getRow()][coords.getColumn()] == null) {
+					surface[coords.getRow()][coords.getColumn()] = new Cell(Values.MAX_LP, Values.MAX_MP);
+					return true;
+				}
+			}
 		}
+		return false;
 	}
 	
 	/**
@@ -75,12 +75,15 @@ public class Surface {
 	 * @return      if it was possible to delete the cell at the given coordinates
 	 */
 	public boolean deleteCell(Coords coords) {
-		if (surface[coords.getRow()][coords.getColumn()] != null) {
-			surface[coords.getRow()][coords.getColumn()] = null;
-			return true;
-		} else {
-			return false;
+		if((coords.getRow() >= 0) && (coords.getRow() < this.rows)) {
+			if((coords.getColumn() >= 0) && (coords.getColumn() < this.columns)) {
+				if (surface[coords.getRow()][coords.getColumn()] != null) {
+					surface[coords.getRow()][coords.getColumn()] = null;
+					return true;
+				}
+			}
 		}
+		return false;
 	}
 	
 	private List<Coords> getAvailablePositions(Coords coords){
@@ -127,7 +130,6 @@ public class Surface {
 			Coords chosenCoords = freeSpots.get(rand.nextInt(freeSpots.size()));
 			surface[chosenCoords.getRow()][chosenCoords.getColumn()] = surface[coords.getRow()][coords.getColumn()];
 			surface[coords.getRow()][coords.getColumn()] = null;
-			surface[chosenCoords.getRow()][chosenCoords.getColumn()].maturate();
 			return chosenCoords;
 		}
 		
@@ -162,18 +164,21 @@ public class Surface {
 				if (surface[i][j] != null) {
 					if (!movedCells.contains(new Coords(i, j))) {
 						if(surface[i][j].getLp() == 0){
+							System.out.println("[ DIE ] (" + i + ", " + j + ")");
 							surface[i][j] = null;
 						}else if(surface[i][j].getMp() == 0){
 							newCoords = cellMaturation(new Coords(i, j));
 							//newCoords = moveCell(new Coords(i, j));
 							if (!newCoords.isNullCoords()) {
+								System.out.println("[MATUR] (" + i + ", " + j + ") to " + newCoords);
 								movedCells.add(new Coords(i, j));
 								movedCells.add(newCoords);
 							}
 						}else {
+							surface[i][j].maturate();
 							newCoords = moveCell(new Coords(i, j));
-							if (Values.DEBUG) System.out.println("[Moved] (" + i + ", " + j + ") to " + newCoords);
 							if (!newCoords.isNullCoords()) {
+								System.out.println("[MOVED] (" + i + ", " + j + ") to " + newCoords);
 								movedCells.add(newCoords);
 							}
 						}
@@ -184,20 +189,20 @@ public class Surface {
 	}
 
 	public String toString() {
-		String board = "";
+		StringBuilder board = new StringBuilder();
 		for (int i = 0; i < rows; i++){
-			board = board +  "|  ";
+			board.append("|  ");
 			for (int j = 0; j < columns; j++){
 				if (surface[i][j] != null) {
-					board = board + surface[i][j] + "  |  ";
+					board.append(surface[i][j] + "  |  ");
 				} else {
-					board = board + "~~~" + "  |  ";
+					board.append("~~~" + "  |  ");
 				}
 			}
-			board = board + "\n"; // System.out.println("\n");
+			board.append("\n"); // System.out.println("\n");
 		}
 		
-		return board;
+		return board.toString();
 	}
 	
 

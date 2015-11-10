@@ -23,15 +23,7 @@ public class World {
 	 * @return      if it was possible to create the cell at the given coordinates
 	 */
 	public boolean createCell(Coords coords) {
-		surface.createCell(coords);
-		return false;
-	}
-	
-	public void initWorld() {
-		surface.initBoard();
-	}
-	public void cleanWorld() {
-		surface.cleanBoard();
+		return surface.createCell(coords);
 	}
 	
 	/**
@@ -41,9 +33,17 @@ public class World {
 	 * @return      if it was possible to delete the cell at the given coordinates
 	 */
 	public boolean deleteCell(Coords coords) {
-		surface.deleteCell(coords);
-		return false;
+		return surface.deleteCell(coords);
 	}
+	
+	public void initWorld() {
+		surface.initBoard();
+	}
+	public void cleanWorld() {
+		surface.cleanBoard();
+	}
+	
+	
 	
 	public String toString() {
 		return surface.toString();
