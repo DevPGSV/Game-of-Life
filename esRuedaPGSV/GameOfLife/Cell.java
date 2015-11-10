@@ -4,13 +4,18 @@ public class Cell {
 	private int lp;
 	private int mp;
 	
+	
+	/**
+	 * Cell constructor
+	 * 
+	 * @param lp Life points
+	 * @param mp Maturation points
+	 */
 	public Cell(int lp, int mp){
 		this.lp = lp;
 		this.mp = mp;
 
 	}
-	
-	
 	
 	/**
 	 * Decrease one life.
