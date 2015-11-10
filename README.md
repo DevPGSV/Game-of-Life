@@ -15,3 +15,6 @@ git clone https://github.com/DevPGSV/Game-of-Life.git
 cd Game-of-Life
 setup.bat runJar
 ```
+
+
+JavaDoc available at: [JavaDoc](http://devpgsv.github.io/Game-of-Life/)
