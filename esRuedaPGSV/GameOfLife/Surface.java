@@ -39,6 +39,9 @@ public class Surface {
 		}
 	}
 	
+	/*
+	 * Reset the board. (Creates a new empty one)
+	 */
 	public void cleanBoard() {
 		surface = new Cell[rows][columns];
 	}
