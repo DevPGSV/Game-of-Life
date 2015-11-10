@@ -9,10 +9,8 @@ public class World {
 	
 	/**
 	 * Execute a simulation step
-	 *
 	 */
 	public void evolve(){
-		//System.out.println("Evolve");
 		surface.evolve();
 	}
 	
@@ -36,14 +34,19 @@ public class World {
 		return surface.deleteCell(coords);
 	}
 	
+	/**
+	 * Asks the surface to initialize the board
+	 */
 	public void initWorld() {
 		surface.initBoard();
 	}
+	
+	/**
+	 * Asks the surface to reset (empty) the board
+	 */
 	public void cleanWorld() {
 		surface.cleanBoard();
 	}
-	
-	
 	
 	public String toString() {
 		return surface.toString();
