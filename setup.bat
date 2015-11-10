@@ -10,6 +10,7 @@ if "%1"=="compile" call :compile&goto end
 if "%1"=="runClass" call :runClass&goto end
 if "%1"=="makeJar" call :makeJar&goto end
 if "%1"=="runJar" call :runJar&goto end
+if "%1"=="help" call :help&goto end
 echo Invalid argument
 goto end
 
@@ -61,5 +62,17 @@ goto end
    exit /b 0
 )
 
-:end
+:help
 
+echo Usage: %~nx0 ^<options^>
+echo Options:
+echo   compile          Creates .class from .java files
+echo   runClass         Runs from .class files
+echo   makeJar          Creates a .jar from .class files (creates .class if they dont exist)
+echo   runJar           Run .jar (creates it if it doesnt exists)
+echo   help             Show help
+
+exit /b 0
+
+:end
+exit /b
