@@ -1,7 +1,11 @@
-# Game-of-Life
+# Game of Life
 
-Pablo & Esteban
+Pablo García de los Salmones Valencia & Esteban Rueda Martínez.
+ 
+Game based on Conway's Game of Life.
 
-Día 1: Esteban programó.
-Día 2: Pablo llegó tarde. 
-Día 3: No parece que Pablo vaya a venir. 
+Conway's Game of Life:
+	
+	Info given by Wikipedia.
+	
+	The "game" is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves or, for advanced players, by creating patterns with particular properties.
