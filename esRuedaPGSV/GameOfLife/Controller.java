@@ -20,6 +20,7 @@ public class Controller {
 	/**
 	 * Main loop
 	 */
+	@SuppressWarnings("unused")
 	public void executeSimulation(){
 		boolean keepLoop = true;
 		String command = "";
@@ -27,19 +28,23 @@ public class Controller {
 		while (keepLoop) {
 			System.out.println(this.world);
 			System.out.print("Command: ");
-			command = in.next(); //read input
-			command = command.toLowerCase();
 			
-			/*
-			System.out.println("");
-			command = "step";
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			
+			
+			if (true) { // Used for debugging. Change to false to "simulate" a step every second.
+				command = in.next(); //read input
+				command = command.toLowerCase();
+			} else {
+				System.out.println("");
+				command = "step";
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
-			*/
+			
+			
 			
 			switch(command)
 			{
