@@ -23,14 +23,6 @@ public class Cell {
 	 * @return      if the cell has died
 	 */
 	public void loseLp(){
-		/*
-		boolean dead = false;
-		this.lp= this.lp - 1;
-		if (this.lp == 0){
-			dead = true;
-		}
-		return dead;
-		*/
 		this.lp--;
 	}
 	
