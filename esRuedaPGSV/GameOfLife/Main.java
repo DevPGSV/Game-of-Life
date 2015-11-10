@@ -1,6 +1,5 @@
 package esRuedaPGSV.GameOfLife;
 
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
