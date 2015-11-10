@@ -17,7 +17,6 @@ public class Cell {
 	 *
 	 * @return      if the cell has died
 	 */
-	
 	public void loseLp(){
 		/*
 		boolean dead = false;
@@ -57,11 +56,6 @@ public class Cell {
 		return mp;
 	}
 	
-	/**
-	 * String representation of the cell
-	 *
-	 * @return      a string representing the cell
-	 */
 	public String toString() {
 		return (new Integer(getLp())).toString() + "-" + (new Integer(getMp())).toString();
 	}
