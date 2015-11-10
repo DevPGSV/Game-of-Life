@@ -3,6 +3,10 @@ package esRuedaPGSV.GameOfLife;
 public class World {
 	private Surface surface;
 	
+	/**
+	 * World constructor.
+	 * Creates a surface.
+	 */
 	public World(){
 		this.surface = new Surface(Values.BOARD_ROWS, Values.BOARD_COLS);
 	}
