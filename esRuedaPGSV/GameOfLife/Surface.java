@@ -21,9 +21,7 @@ public class Surface {
 	}
 	
 	
-	public void cleanBoard() {
-		surface = new Cell[rows][columns];
-	}
+	
 	
 	/**
 	 * Initializes the board with cells at random positions.
@@ -39,6 +37,10 @@ public class Surface {
 				}
 			}
 		}
+	}
+	
+	public void cleanBoard() {
+		surface = new Cell[rows][columns];
 	}
 
 	/**
