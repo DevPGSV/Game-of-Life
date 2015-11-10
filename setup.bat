@@ -41,7 +41,7 @@ goto end
         if !ERRORLEVEL!==1 echo Could not compile. Exiting. &EXIT /B 1
     )
     "%jdk%/jar.exe" cmvf "MANIFEST.MF" "Game of Life.jar" -C bin/ .
-    exit /b 5
+    exit /b %ERRORLEVEL%
 )
 
 :runJar
