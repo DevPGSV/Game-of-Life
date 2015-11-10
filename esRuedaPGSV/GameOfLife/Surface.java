@@ -11,6 +11,12 @@ public class Surface {
 	private int rows;
 	private int columns;
 	
+	/**
+	 * Surface constructor
+	 * 
+	 * @param numRows number of rows for the board
+	 * @param numColumns number of columns for the board
+	 */
 	public Surface(int numRows, int numColumns){
 		this.rows = numRows;
 		this.columns = numColumns;
@@ -19,9 +25,6 @@ public class Surface {
 		
 		initBoard();
 	}
-	
-	
-	
 	
 	/**
 	 * Initializes the board with cells at random positions.
@@ -39,7 +42,7 @@ public class Surface {
 		}
 	}
 	
-	/*
+	/**
 	 * Reset the board. (Creates a new empty one)
 	 */
 	public void cleanBoard() {
@@ -82,6 +85,12 @@ public class Surface {
 		return false;
 	}
 	
+	/**
+	 * Search for available positions around some given coordinates
+	 * 
+	 * @param coords coordinates
+	 * @return      a coordinate list with available positions.
+	 */
 	private List<Coords> getAvailablePositions(Coords coords){
 		Coords tempCoords = new Coords(0,0);
 		List<Coords> freeSpots = new ArrayList<Coords>();
@@ -152,7 +161,6 @@ public class Surface {
 		}
 		
 	}
-	
 	
 	/**
 	 * Evolve surface. Try to move all cells.
