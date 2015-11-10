@@ -18,18 +18,6 @@ public class Surface {
 		surface = new Cell[rows][columns];
 		
 		initBoard();
-		
-		// Coords c = new Coords(1, 2);
-		
-		/*Cell cell = new Cell(1,3);
-		boolean dead = cell.loseLp();
-		if (cell.loseLp()) {
-			
-		}
-		
-		System.out.print(cell);
-		
-		*/
 	}
 	
 	
@@ -37,6 +25,9 @@ public class Surface {
 		surface = new Cell[rows][columns];
 	}
 	
+	/**
+	 * Initializes the board with cells at random positions.
+	 */
 	public void initBoard() {
 		cleanBoard();
 		Random rand = new Random();
@@ -110,10 +101,10 @@ public class Surface {
 	}
 	
 	/**
-	 * Try to move a cell to an adjacent position. If it gets moved, it maturates. If not, it loses a life.
+	 * Try to move a cell to an adjacent position. If it can't move, it loses a life.
 	 * 
 	 * @param coords coordinates
-	 * @return      if it was possible to move the cell at the given coordinates
+	 * @return      the coordinates where the cell gets moved.
 	 */
 	public Coords moveCell(Coords coords){
 		List<Coords> freeSpots = getAvailablePositions(coords);
@@ -135,6 +126,12 @@ public class Surface {
 		
 	}
 	
+	/**
+	 * Try to reproduce a cell to an adjacent position. If it can't reproduce, it dies.
+	 * 
+	 * @param coords coordinates
+	 * @return      the coordinates where the new cell appears.
+	 */
 	private Coords cellMaturation(Coords coords){
 		List<Coords> freeSpots = getAvailablePositions(coords);
 
@@ -155,7 +152,6 @@ public class Surface {
 	/**
 	 * Evolve surface. Try to move all cells.
 	 */
-	
 	public void evolve() {
 		HashSet<Coords> movedCells = new HashSet<Coords>();
 		Coords newCoords;
