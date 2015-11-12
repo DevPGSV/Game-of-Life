@@ -166,7 +166,6 @@ public class Surface {
 		List<Coords> freeSpots = getAvailablePositions(coords);
 
 		if (freeSpots.isEmpty()) { // If no available positions
-				surface[coords.getRow()][coords.getColumn()] = null;
 			return new Coords();
 		} else { // If there is at least one available position
 			Random rand = new Random();
