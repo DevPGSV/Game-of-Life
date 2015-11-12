@@ -19,8 +19,6 @@ public class Cell {
 	
 	/**
 	 * Decrease one life.
-	 *
-	 * @return      if the cell has died
 	 */
 	public void loseLp(){
 		this.lp--;
@@ -28,8 +26,6 @@ public class Cell {
 	
 	/**
 	 * Decrease one maturity point
-	 *
-	 * @return      if the cell is mature
 	 */
 	public void maturate(){
 		this.mp--;
