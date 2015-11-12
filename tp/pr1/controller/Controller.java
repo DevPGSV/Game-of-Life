@@ -61,20 +61,21 @@ public class Controller {
 	
 				case "clean":
 					this.world.cleanWorld();
+					System.out.println("cleaning the game...");
 					break;
 	
 				case "create":
 					row = in.nextInt();
 					col = in.nextInt();
 					in.nextLine();
-					world.createCell(new Coords(row, col));
+					System.out.println(world.createCell(new Coords(row-1, col-1)) ? "New cell created at " + new Coords(row, col) : "Couldn't create a cell at " + new Coords(row, col));
 					break;
 	
 				case "delete":
 					row = in.nextInt();
 					col = in.nextInt();
 					in.nextLine();
-					world.deleteCell(new Coords(row, col));
+					System.out.println(world.deleteCell(new Coords(row-1, col-1)) ? "Cell deleted at " + new Coords(row, col) : "Couldn't delete a cell at " + new Coords(row, col)) ;
 					break;
 	
 				case "help":
@@ -83,10 +84,11 @@ public class Controller {
 	
 				case "exit":
 					keepLoop = false;
+					System.out.println("Game over...");
 					break;
 	
 				default: 
-					System.out.println("Invalid Command.");
+					System.out.println("Invalid Command.\nWrite \"help\" to get a list of commands.");
 					break;
 			}
 		}

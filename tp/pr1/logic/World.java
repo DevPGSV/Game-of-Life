@@ -27,22 +27,25 @@ public class World {
 					if (!movedCells.contains(new Coords(i, j))) { // If cell is not one moved to this position in this evolution step
 						
 						if(surface.getCell(new Coords(i, j)).getLp() == 0){ // Kill the cell if its lp is 0
-							System.out.println("[ DIE ] (" + i + ", " + j + ")");
+							System.out.println("Cell at (" + i + ", " + j + ") dies of inactivity");
 							surface.deleteCell(new Coords(i, j));
 							
 						}else if(surface.getCell(new Coords(i, j)).getMp() == 0){ // Complete its maturation if its mp is 0
 							newCoords = surface.cellMaturation(new Coords(i, j));
 							if (!newCoords.isNullCoords()) { // If the cell could reproduce...
-								System.out.println("[MATUR] (" + i + ", " + j + ") to " + newCoords);
+								System.out.println("New cell born at " + newCoords);
 								movedCells.add(new Coords(i, j));
 								movedCells.add(newCoords);
+							} else {
+								surface.deleteCell(new Coords(i, j));
+								System.out.println("Cell at (" + i + ", " + j + ") dies on being unable to reproduce");
 							}
 							
 						}else { // Try to move the cell
 							surface.getCell(new Coords(i, j)).maturate();
 							newCoords = surface.moveCell(new Coords(i, j));
 							if (!newCoords.isNullCoords()) { // If the cell could move...
-								System.out.println("[MOVED] (" + i + ", " + j + ") to " + newCoords);
+								System.out.println("Cell at (" + i + ", " + j + ") moved to " + newCoords);
 								movedCells.add(newCoords);
 							}
 						}
