@@ -1,5 +1,10 @@
 package tp.pr1.logic;
 
+/**
+ * Cell class.
+ * A cell is an object with life points and maduration points.
+ * Both kinds of points
+ */
 public class Cell {
 	private int lp;
 	private int mp;
@@ -49,6 +54,9 @@ public class Cell {
 		return mp;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return (new Integer(getLp())).toString() + "-" + (new Integer(getMp())).toString();
 	}

@@ -1,5 +1,11 @@
 package tp.pr1.utils;
 
+/**
+ * Coords class.
+ * Represents a coordinate object.
+ * Each coordinate has a row and a column.
+ * Coordinates can be considered "null coordinates" (invalid, incorrect, or empty)
+ */
 public class Coords {
 	private int row;
 	private int column;
@@ -52,26 +58,25 @@ public class Coords {
 		this.nullCoords = nullCoords;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return "(" + getRow() + ", " + getColumn() + ")";
 	}
 	
 	
-	public boolean equals(Object coords) {
-		if (! (coords instanceof Coords)) {
-			return false;
-		}
-		return (this.hashCode() == coords.hashCode());
-		/*
-		return (
-				this.getRow() == coords.getRow() &&
-				this.getColumn() == coords.getColumn() &&
-				this.isNullCoords() == coords.isNullCoords()
-				);
-		*/
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	public boolean equals(Object coords) { // Overwrites the default equals method to make sure different instances with the same coordinates are considered equal by java.util.HashSet.contains(Object arg0)
+		return (coords instanceof Coords) && (this.hashCode() == coords.hashCode());
 	}
 	
-	public int hashCode() {
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode() { // Generates a hash code for this instance of the object. Instances with the same coordinates have the same hash. Instances with different coordinates have different hashes. 
 		// 1RRRCCCN
 	    return 1 * 10000000 + getColumn() * 1000000 + getRow() * 1000 + (isNullCoords() ? 1 : 0);
 	}

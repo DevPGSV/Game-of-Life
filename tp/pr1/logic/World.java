@@ -4,6 +4,11 @@ import java.util.HashSet;
 
 import tp.pr1.utils.Coords;
 
+/**
+ * World class.
+ * Contains a surface.
+ * Handles the simulation of the game.
+ */
 public class World {
 	private Surface surface;
 	
@@ -53,11 +58,6 @@ public class World {
 				}
 			}
 		}
-		
-		
-		
-		
-		//surface.evolve();
 	}
 	
 	/**
@@ -94,6 +94,9 @@ public class World {
 		surface.cleanBoard();
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return surface.toString();
 	}

@@ -5,6 +5,11 @@ import java.util.Scanner;
 import tp.pr1.logic.World;
 import tp.pr1.utils.Coords;
 
+/**
+ * Controller class. 
+ * Has the main loop.
+ * Handles the execution of the program.
+ */
 public class Controller {
 	private World world;
 	private Scanner in;
@@ -94,6 +99,10 @@ public class Controller {
 		}
 	}
 	
+	/**
+	 * Gets a help message.
+	 * @return a help message as a String.
+	 */
 	public String getHelp() {
 		return "AVAILABLE COMMANDS: \n" +
 			"    STEP: execute a simulation step. \n" + 

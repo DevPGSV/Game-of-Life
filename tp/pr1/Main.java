@@ -5,6 +5,10 @@ import java.util.Scanner;
 import tp.pr1.controller.Controller;
 import tp.pr1.logic.World;
 
+/**
+ * Main class.
+ * Contains starting function.
+ */
 public class Main {
 
 	/**

@@ -7,6 +7,10 @@ import java.util.Random;
 
 import tp.pr1.utils.Coords;
 
+/**
+ * Surface class.
+ * Contains matrix of cells.
+ */
 public class Surface {
 	private Cell[][] surface;
 	private int rows;
@@ -218,6 +222,9 @@ public class Surface {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		StringBuilder board = new StringBuilder();
 		for (int i = 0; i < rows; i++){
