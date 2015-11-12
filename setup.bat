@@ -7,7 +7,8 @@ setlocal enabledelayedexpansion enableextensions
 for /f "tokens=*" %%A in ('where javac.exe') do (set javacPath=%%A)
 if "%javacPath%"=="" echo javac.exe not found&exit /b 1
 call :basepath jdk "!javacPath!"
-if not exist "%jdk%/javac.exe" echo javac.exe not found&exit /b 1
+if not exist "%jdk%/javac.exe" call :askJdk
+
 
 if "%1"=="compile" call :compile&goto end
 if "%1"=="runClass" call :runClass&goto end
@@ -62,8 +63,16 @@ goto end
 
 :basepath
 (
-   set "%~1=%~dp2"
-   exit /b 0
+    set "%~1=%~dp2"
+    exit /b 0
+)
+
+:askJdk
+(
+    set /p jdk=JDK path: 
+    if exist "!jdk!\bin\javac.exe" set jdk=!jdk!\bin
+    if not exist "!jdk!\javac.exe" echo "javac.exe" could not be found. Please choose a valid JDK path&goto askJdk
+    exit /b
 )
 
 :help
