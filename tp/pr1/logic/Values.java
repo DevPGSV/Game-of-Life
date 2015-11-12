@@ -1,4 +1,4 @@
-package esRuedaPGSV.GameOfLife;
+package tp.pr1.logic;
 
 public class Values {
 	public static final int MAX_LP = 3;

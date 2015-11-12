@@ -1,6 +1,8 @@
-package esRuedaPGSV.GameOfLife;
+package tp.pr1.logic;
 
 import java.util.HashSet;
+
+import tp.pr1.utils.Coords;
 
 public class World {
 	private Surface surface;

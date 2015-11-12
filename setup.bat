@@ -1,4 +1,7 @@
 @echo off
+
+set projectBasePckg=tp\pr1
+
 setlocal enabledelayedexpansion enableextensions
 
 for /f "tokens=*" %%A in ('where javac.exe') do (set javacPath=%%A)
@@ -14,29 +17,30 @@ if "%1"=="help" call :help&goto end
 echo Invalid argument
 goto end
 
-
+::tp\pr1\*.java tp\pr1\controller\*.java tp\pr1\logic\*.java tp\pr1\view\*.java tp\pr1\utils\*.java
 :compile
 (
     if not exist bin mkdir bin
-    "%jdk%/javac.exe" -d bin esRuedaPGSV\GameOfLife\*.java && (echo Compiled successfully) || (echo Error on compilation)
+    "%jdk%/javac.exe" -d bin %projectBasePckg%\*.java && (echo Compiled successfully) || (echo Error on compilation)
     EXIT /B %ERRORLEVEL%
 )
 
 :runClass
 (
-    if not exist "bin\esRuedaPGSV\GameOfLife\Main.class" (
+    if not exist "bin\%projectBasePckg%\Main.class" (
         echo "class files not found. Creating..."
         call :compile
         if not !ERRORLEVEL!==0 echo Could not compile. Exiting. &EXIT /B 1
     )
     pushd bin
-    "%jdk%/java.exe" -cp . esRuedaPGSV.GameOfLife.Main
+    "%jdk%/java.exe" -cp . %projectBasePckg:\=.%.Main
     popd
+    exit /b %ERRORLEVEL%
 )
 
 :makeJar
 (
-    if not exist "bin\esRuedaPGSV\GameOfLife\Main.class" (
+    if not exist "bin\%projectBasePckg%\Main.class" (
         echo "class files not found. Creating..."
         call :compile
         if !ERRORLEVEL!==1 echo Could not compile. Exiting. &EXIT /B 1

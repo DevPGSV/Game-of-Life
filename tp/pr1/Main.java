@@ -1,6 +1,9 @@
-package esRuedaPGSV.GameOfLife;
+package tp.pr1;
 
 import java.util.Scanner;
+
+import tp.pr1.controller.Controller;
+import tp.pr1.logic.World;
 
 public class Main {
 

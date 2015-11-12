@@ -1,4 +1,4 @@
-package esRuedaPGSV.GameOfLife;
+package tp.pr1.logic;
 
 public class Cell {
 	private int lp;

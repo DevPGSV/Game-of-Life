@@ -1,9 +1,11 @@
-package esRuedaPGSV.GameOfLife;
+package tp.pr1.logic;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+
+import tp.pr1.utils.Coords;
 
 public class Surface {
 	private Cell[][] surface;

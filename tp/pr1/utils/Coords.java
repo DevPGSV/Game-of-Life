@@ -1,4 +1,4 @@
-package esRuedaPGSV.GameOfLife;
+package tp.pr1.utils;
 
 public class Coords {
 	private int row;
