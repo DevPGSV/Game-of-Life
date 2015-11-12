@@ -1,7 +1,6 @@
 package esRuedaPGSV.GameOfLife;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -40,6 +39,25 @@ public class Surface {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Checks if there is not a cell at some given coordinates
+	 * @param coords Coordinates to check
+	 * @return if the is not a cell
+	 */
+	public boolean isPositionEmpty(Coords coords) {
+		return (surface[coords.getRow()][coords.getColumn()] == null);
+	}
+	
+	
+	/**
+	 * Gets a cell from some given coordinates
+	 * @param coords Coordinates of the cell
+	 * @return the cell at the specified coordinates
+	 */
+	public Cell getCell(Coords coords) {
+		return surface[coords.getRow()][coords.getColumn()];
 	}
 	
 	/**
@@ -142,7 +160,7 @@ public class Surface {
 	 * @param coords coordinates
 	 * @return      the coordinates where the new cell appears.
 	 */
-	private Coords cellMaturation(Coords coords){
+	public Coords cellMaturation(Coords coords){
 		List<Coords> freeSpots = getAvailablePositions(coords);
 
 		if (freeSpots.isEmpty()) { // If no available positions
@@ -158,8 +176,12 @@ public class Surface {
 		
 	}
 	
+	
+	
+	
 	/**
 	 * Evolve surface. Try to move all cells.
+	 * <b>This function is NOT used!!!</b> (Main implementation moved to world)
 	 */
 	public void evolve() {
 		HashSet<Coords> movedCells = new HashSet<Coords>();

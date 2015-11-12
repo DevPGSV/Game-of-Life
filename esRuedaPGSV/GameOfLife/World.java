@@ -1,5 +1,7 @@
 package esRuedaPGSV.GameOfLife;
 
+import java.util.HashSet;
+
 public class World {
 	private Surface surface;
 	
@@ -15,7 +17,42 @@ public class World {
 	 * Execute a simulation step
 	 */
 	public void evolve(){
-		surface.evolve();
+		HashSet<Coords> movedCells = new HashSet<Coords>();
+		Coords newCoords;
+		for (int i = 0; i < Values.BOARD_ROWS; i++){
+			for (int j = 0; j < Values.BOARD_COLS; j++){ // For every position
+				if (! surface.isPositionEmpty(new Coords(i, j))) { // If there is a cell (if the position is not empty)
+					if (!movedCells.contains(new Coords(i, j))) { // If cell is not one moved to this position in this evolution step
+						
+						if(surface.getCell(new Coords(i, j)).getLp() == 0){ // Kill the cell if its lp is 0
+							System.out.println("[ DIE ] (" + i + ", " + j + ")");
+							surface.deleteCell(new Coords(i, j));
+							
+						}else if(surface.getCell(new Coords(i, j)).getMp() == 0){ // Complete its maturation if its mp is 0
+							newCoords = surface.cellMaturation(new Coords(i, j));
+							if (!newCoords.isNullCoords()) { // If the cell could reproduce...
+								System.out.println("[MATUR] (" + i + ", " + j + ") to " + newCoords);
+								movedCells.add(new Coords(i, j));
+								movedCells.add(newCoords);
+							}
+							
+						}else { // Try to move the cell
+							surface.getCell(new Coords(i, j)).maturate();
+							newCoords = surface.moveCell(new Coords(i, j));
+							if (!newCoords.isNullCoords()) { // If the cell could move...
+								System.out.println("[MOVED] (" + i + ", " + j + ") to " + newCoords);
+								movedCells.add(newCoords);
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		
+		
+		
+		//surface.evolve();
 	}
 	
 	/**
