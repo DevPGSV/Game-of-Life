@@ -33,27 +33,50 @@ public class Coords {
 		this.nullCoords = coords.isNullCoords();
 	}
 	
+	/**
+	 * row getter
+	 * @return the row
+	 */
 	public int getRow(){
 		return row;
 	}
 	
+	/**
+	 * column getter
+	 * @return the column
+	 */
 	public int getColumn(){
 		return column;
 	}
 	
+	/**
+	 * row setter
+	 * @param row new value for the row
+	 */
 	public void setRow(int row){
 		this.row = row;
-		
 	}
 	
+	/**
+	 * column setter
+	 * @param column new value for the column
+	 */
 	public void setColumn(int column){
 		this.column = column;
 	}
 	
+	/**
+	 * nullCoords getter
+	 * @return if the coordinates are not specified
+	 */
 	public boolean isNullCoords() {
 		return this.nullCoords;
 	}
 	
+	/**
+	 * nullCoords setter
+	 * @param nullCoords new value for nullCoords (if the coordinates are specified)
+	 */
 	public void setNullCoords(boolean nullCoords) {
 		this.nullCoords = nullCoords;
 	}
@@ -62,7 +85,7 @@ public class Coords {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "(" + getRow() + ", " + getColumn() + ")";
+		return "(" + (getRow()+1) + ", " + (getColumn()+1) + ")";
 	}
 	
 	
