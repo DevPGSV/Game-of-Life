@@ -100,7 +100,7 @@ public class Controller {
 					break;
 	
 				default: 
-					System.err.println("Invalid Command.\nWrite \"help\" to get a list of commands.");
+					System.err.println("Invalid Command.\nWrite \"help\" to get a list of commands."); 
 					break;
 			}
 		}
