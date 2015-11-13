@@ -18,3 +18,7 @@ setup.bat runJar
 
 
 JavaDoc available at: [JavaDoc](http://devpgsv.github.io/Game-of-Life/)
+
+
+[Semantic Versioning compliant](http://semver.org/)
+
