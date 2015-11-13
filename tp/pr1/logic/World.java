@@ -143,7 +143,8 @@ public class World {
 	 * Creates a new cell at the specified coordinates.
 	 * Overloads: createCell(Coords coords)
 	 * 
-	 * @param coords coordinates
+	 * @param row row coord
+	 * @param col col coord
 	 * @return      if it was possible to create the cell at the given coordinates
 	 */
 	public boolean createCell(int row, int col) {
@@ -164,7 +165,8 @@ public class World {
 	 * Creates a new cell at the specified coordinates.
 	 * Overloads: deleteCell(Coords coords)
 	 * 
-	 * @param coords coordinates
+	 * @param row row coord
+	 * @param col col coord
 	 * @return      if it was possible to delete the cell at the given coordinates
 	 */
 	public boolean deleteCell(int row, int col) {

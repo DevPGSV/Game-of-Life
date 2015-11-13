@@ -93,7 +93,8 @@ public class Surface {
 	
 	/**
 	 * Gets a cell from some given coordinates.
-	 * @param coords Coordinates of the cell
+	 * @param row row coord of the cell
+	 * @param col col coord of the cell
 	 * @return the cell at the specified coordinates
 	 */
 	public Cell getCell(int row, int col) {
@@ -121,6 +122,7 @@ public class Surface {
 	 * Puts a cell at the specified coordinates
 	 * 
 	 * @param coords coordinates
+	 * @param cell cell to place in the specified coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
 	 */
 	public boolean createCell(Coords coords, Cell cell) {
