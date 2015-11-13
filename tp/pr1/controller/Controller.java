@@ -69,17 +69,25 @@ public class Controller {
 					break;
 	
 				case "create":
-					row = in.nextInt();
-					col = in.nextInt();
+					row = in.nextInt() - 1;
+					col = in.nextInt() - 1;
 					in.nextLine();
-					System.out.println(world.createCell(new Coords(row-1, col-1)) ? "New cell created at " + new Coords(row, col) : "Couldn't create a cell at " + new Coords(row, col));
+					if (world.createCell(new Coords(row, col))) {
+						System.out.println("New cell created at " + new Coords(row, col));
+					} else {
+						System.err.println("Couldn't create a cell at " + new Coords(row, col));
+					}
 					break;
 	
 				case "delete":
-					row = in.nextInt();
-					col = in.nextInt();
+					row = in.nextInt() - 1;
+					col = in.nextInt() - 1;
 					in.nextLine();
-					System.out.println(world.deleteCell(new Coords(row-1, col-1)) ? "Cell deleted at " + new Coords(row, col) : "Couldn't delete a cell at " + new Coords(row, col)) ;
+					if (world.deleteCell(new Coords(row, col))) {
+						System.out.println("Cell deleted at " + new Coords(row, col));
+					} else {
+						System.err.println("Couldn't delete cell at " + new Coords(row, col));
+					}
 					break;
 	
 				case "help":
@@ -92,7 +100,7 @@ public class Controller {
 					break;
 	
 				default: 
-					System.out.println("Invalid Command.\nWrite \"help\" to get a list of commands.");
+					System.err.println("Invalid Command.\nWrite \"help\" to get a list of commands.");
 					break;
 			}
 		}
