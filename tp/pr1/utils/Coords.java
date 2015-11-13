@@ -1,10 +1,10 @@
 package tp.pr1.utils;
 
 /**
- * Coords class.
- * Represents a coordinate object.
- * Each coordinate has a row and a column.
- * Coordinates can be considered "null coordinates" (invalid, incorrect, or empty)
+ * <p>Coords class</p>
+ * <p>Represents a coordinate object</p>
+ * <p>Each coordinate has a row and a column</p>
+ * <p>Coordinates can be considered <i>null coordinates</i> (invalid, incorrect, or empty)</p>
  */
 public class Coords {
 	private int row;
@@ -12,8 +12,8 @@ public class Coords {
 	private boolean nullCoords;
 	
 	/**
-	 * Coords default constructor.
-	 * <i>nullCoords = true;</i>
+	 * <p>Coords default constructor</p>
+	 * <p><i>nullCoords = true;</i></p>
 	 */
 	public Coords(){
 		this.row = 0;
@@ -21,12 +21,23 @@ public class Coords {
 		this.nullCoords = true;
 	}
 	
+	/**
+	 * <p>Coords constructor</p>
+	 * <p>Generates object with the specified coordinates</p>
+	 * @param row value for the row
+	 * @param column value for the column
+	 */
 	public Coords(int row, int column){
 		this.row = row;
 		this.column = column;
 		this.nullCoords = false;
 	}
 	
+	/**
+	 * <p>Coords constructor used for "cloning" an instance of Coords</p>
+	 * 
+	 * @param coords instance of Coords from which a clone will be generated
+	 */
 	public Coords(Coords coords){
 		this.row = coords.getRow();
 		this.column = coords.getColumn();
@@ -34,7 +45,7 @@ public class Coords {
 	}
 	
 	/**
-	 * row getter
+	 * <p>row getter</p>
 	 * @return the row
 	 */
 	public int getRow(){
@@ -42,7 +53,7 @@ public class Coords {
 	}
 	
 	/**
-	 * column getter
+	 * <p>column getter</p>
 	 * @return the column
 	 */
 	public int getColumn(){
@@ -50,7 +61,7 @@ public class Coords {
 	}
 	
 	/**
-	 * row setter
+	 * <p>row setter</p>
 	 * @param row new value for the row
 	 */
 	public void setRow(int row){
@@ -58,7 +69,7 @@ public class Coords {
 	}
 	
 	/**
-	 * column setter
+	 * <p>column setter</p>
 	 * @param column new value for the column
 	 */
 	public void setColumn(int column){
@@ -66,7 +77,7 @@ public class Coords {
 	}
 	
 	/**
-	 * nullCoords getter
+	 * <p>nullCoords getter</p>
 	 * @return if the coordinates are not specified
 	 */
 	public boolean isNullCoords() {
@@ -74,7 +85,7 @@ public class Coords {
 	}
 	
 	/**
-	 * nullCoords setter
+	 * <p>nullCoords setter</p>
 	 * @param nullCoords new value for nullCoords (if the coordinates are specified)
 	 */
 	public void setNullCoords(boolean nullCoords) {

@@ -8,27 +8,34 @@ import java.util.Random;
 import tp.pr1.utils.Coords;
 
 /**
- * World class.
- * Contains a surface.
- * Handles the simulation of the game.
+ * <p>World class</p>
+ * <p>Contains a surface</p>
+ * <p>Handles the simulation of the game</p>
  */
 public class World {
 	private Surface surface;
 	
 	/**
-	 * World constructor.
-	 * Creates a surface.
+	 * <p>World default constructor</p>
+	 * <p>Creates a surface</p>
 	 */
 	public World(){
 		this(Values.BOARD_ROWS, Values.BOARD_COLS);
 	}
 	
+	/**
+	 * <p>World constructor</p>
+	 * <p>Creates a surface with the specified dimensions</p>
+	 * 
+	 * @param rows number of rows of the surface to be created
+	 * @param cols number of columns of the surface to be created
+	 */
 	public World(int rows, int cols) {
 		this.surface = new Surface(rows, cols);
 	}
 	
 	/**
-	 * Execute a simulation step
+	 * <p>Execute a simulation step</p>
 	 */
 	public void evolve(){
 		HashSet<Coords> movedCells = new HashSet<Coords>();
@@ -68,9 +75,9 @@ public class World {
 	}
 	
 	/**
-	 * Search for available positions around some given coordinates
+	 * <p>Search for available positions around some given coordinates</p>
 	 * 
-	 * @param coords coordinates
+	 * @param coords coordinates of the cell
 	 * @return      a coordinate list with available positions.
 	 */
 	private List<Coords> getAvailablePositions(Coords coords){
@@ -97,7 +104,8 @@ public class World {
 	}
 	
 	/**
-	 * Try to move a cell to an adjacent position. If it can't move, it loses a life.
+	 * <p>Try to move a cell to an adjacent position</p>
+	 * <p>If it can't move, it loses a life</p>
 	 * 
 	 * @param coords coordinates
 	 * @return      the coordinates where the cell gets moved.
@@ -119,7 +127,8 @@ public class World {
 	}
 	
 	/**
-	 * Try to reproduce a cell to an adjacent position. If it can't reproduce, it dies.
+	 * <p>Try to reproduce a cell to an adjacent position</p>
+	 * <p>If it can't reproduce, it dies.</p>
 	 * 
 	 * @param coords coordinates
 	 * @return      the coordinates where the new cell appears.
@@ -140,8 +149,8 @@ public class World {
 	}
 	
 	/**
-	 * Creates a new cell at the specified coordinates.
-	 * Overloads: createCell(Coords coords)
+	 * <p>Creates a new cell at the specified coordinates</p>
+	 * <p><b>Overloads: <i>createCell(Coords coords)</i></b></p>
 	 * 
 	 * @param row row coord
 	 * @param col col coord
@@ -152,7 +161,7 @@ public class World {
 	}
 	
 	/**
-	 * Creates a new cell at the specified coordinates.
+	 * <p>Creates a new cell at the specified coordinates</p>
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
@@ -162,8 +171,8 @@ public class World {
 	}
 	
 	/**
-	 * Creates a new cell at the specified coordinates.
-	 * Overloads: deleteCell(Coords coords)
+	 * <p>Creates a new cell at the specified coordinates</p>
+	 * <p><b>Overloads: <i>deleteCell(Coords coords)</i></b></p>
 	 * 
 	 * @param row row coord
 	 * @param col col coord
@@ -174,7 +183,7 @@ public class World {
 	}
 	
 	/**
-	 * Creates a new cell at the specified coordinates
+	 * <p>Creates a new cell at the specified coordinates</p>
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to delete the cell at the given coordinates
@@ -184,14 +193,14 @@ public class World {
 	}
 	
 	/**
-	 * Asks the surface to initialize the board
+	 * <p>Asks the surface to initialize the board</p>
 	 */
 	public void initWorld() {
 		surface.initBoard();
 	}
 	
 	/**
-	 * Asks the surface to reset (empty) the board
+	 * <p>Asks the surface to reset (empty) the board</p>
 	 */
 	public void cleanWorld() {
 		surface.cleanBoard();

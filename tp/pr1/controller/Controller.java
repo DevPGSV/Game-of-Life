@@ -6,16 +6,18 @@ import tp.pr1.logic.World;
 import tp.pr1.utils.Coords;
 
 /**
- * Controller class. 
- * Has the main loop.
- * Handles the execution of the program.
+ * <p>Controller class</p> 
+ * <p>Has the main loop</p>
+ * <p>Handles the execution of the program</p>
  */
 public class Controller {
 	private World world;
 	private Scanner in;
 	
+	private static final boolean AUTO_STEP = false; // Used for debugging. Change to true to "simulate" a step every second.
+	
 	/**
-	 * Controller constructor
+	 * <p>Controller constructor</p>
 	 * 
 	 * @param world world to be used by the controller
 	 * @param in input for commands (ie. std input)
@@ -26,9 +28,8 @@ public class Controller {
 	}
 	
 	/**
-	 * Main loop
+	 * <p>Main loop</p>
 	 */
-	@SuppressWarnings("unused")
 	public void executeSimulation(){
 		boolean keepLoop = true;
 		String command = "";
@@ -38,12 +39,10 @@ public class Controller {
 			System.out.print("Command: ");
 			
 			
-			
-			if (true) { // Used for debugging. Change to false to "simulate" a step every second.
+			if (!AUTO_STEP) { 
 				command = in.next(); //read input
-				command = command.toLowerCase();
 			} else {
-				System.out.println("");
+				System.out.println("step");
 				command = "step";
 				try {
 					Thread.sleep(1000);
@@ -53,7 +52,7 @@ public class Controller {
 			}
 			
 			
-			
+			command = command.toLowerCase();
 			switch(command)
 			{
 				case "step": 
@@ -100,7 +99,7 @@ public class Controller {
 	}
 	
 	/**
-	 * Gets a help message.
+	 * <p>Gets a help message</p>
 	 * @return a help message as a String.
 	 */
 	public String getHelp() {

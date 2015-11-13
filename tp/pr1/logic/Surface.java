@@ -4,8 +4,8 @@ import java.util.Random;
 import tp.pr1.utils.Coords;
 
 /**
- * Surface class.
- * Contains matrix of cells.
+ * <p>Surface class</p>
+ * <p>Contains matrix of cells</p>
  */
 public class Surface {
 	private Cell[][] surface;
@@ -13,7 +13,7 @@ public class Surface {
 	private int columns;
 	
 	/**
-	 * Surface constructor
+	 * <p>Surface constructor</p>
 	 * 
 	 * @param numRows number of rows for the board
 	 * @param numColumns number of columns for the board
@@ -28,7 +28,8 @@ public class Surface {
 	}
 	
 	/**
-	 * rows getter
+	 * <p>rows getter</p>
+	 * 
 	 * @return the rows of the surface
 	 */
 	public int getRows() {
@@ -36,7 +37,8 @@ public class Surface {
 	}
 	
 	/**
-	 * columns getter
+	 * <p>columns getter</p>
+	 * 
 	 * @return the columns of the surface
 	 */
 	public int getColumns() {
@@ -44,7 +46,7 @@ public class Surface {
 	}
 	
 	/**
-	 * Initializes the board with cells at random positions.
+	 * <p>Initializes the board with cells at random positions</p>
 	 */
 	public void initBoard() {
 		cleanBoard();
@@ -60,7 +62,8 @@ public class Surface {
 	}
 	
 	/**
-	 * Checks if there is not a cell at some given coordinates
+	 * <p>Checks if there is not a cell at some given coordinates</p>
+	 * 
 	 * @param row Row to check
 	 * @param col Column to check
 	 * @return if the is not a cell
@@ -70,8 +73,8 @@ public class Surface {
 	}
 	
 	/**
-	 * Checks if there is not a cell at some given coordinates.
-	 * Overloads: isPositionEmpty(int row, int col)
+	 * <p>Checks if there is not a cell at some given coordinates</p>
+	 * <p><b>Overloads: <i>isPositionEmpty(int row, int col)</i></b></p>
 	 * 
 	 * @param coords Coordinates to check
 	 * @return if the is not a cell
@@ -81,8 +84,8 @@ public class Surface {
 	}
 	
 	/**
-	 * Gets a cell from some given coordinates.
-	 * Overloads: getCell(int row, int col)
+	 * <p>Gets a cell from some given coordinates</p>
+	 * <p><b>Overloads: <i>getCell(int row, int col)</i></b></p>
 	 * 
 	 * @param coords Coordinates of the cell
 	 * @return the cell at the specified coordinates
@@ -92,7 +95,8 @@ public class Surface {
 	}
 	
 	/**
-	 * Gets a cell from some given coordinates.
+	 * <p>Gets a cell from some given coordinates</p>
+	 * 
 	 * @param row row coord of the cell
 	 * @param col col coord of the cell
 	 * @return the cell at the specified coordinates
@@ -102,14 +106,14 @@ public class Surface {
 	}
 	
 	/**
-	 * Reset the board. (Creates a new empty one)
+	 * <p>Reset the board. (Creates a new empty one)</p>
 	 */
 	public void cleanBoard() {
 		surface = new Cell[rows][columns];
 	}
 
 	/**
-	 * Creates a new cell at the specified coordinates
+	 * <p>Creates a new cell at the specified coordinates</p>
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
@@ -119,7 +123,7 @@ public class Surface {
 	}
 	
 	/**
-	 * Puts a cell at the specified coordinates
+	 * <p>Puts a cell at the specified coordinates</p>
 	 * 
 	 * @param coords coordinates
 	 * @param cell cell to place in the specified coordinates
@@ -137,7 +141,7 @@ public class Surface {
 		return false;
 	}
 	
-	/* *
+	/*-*
 	 * Places a cell at the specified coordinates.
 	 * Doesn't care if the position is already occupied.
 	 * 
@@ -156,7 +160,7 @@ public class Surface {
 	}*/
 	
 	/**
-	 * Deletes a cell at the specified coordinates
+	 * <p>Deletes a cell at the specified coordinates</p>
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to delete the cell at the given coordinates
@@ -174,7 +178,7 @@ public class Surface {
 	}
 	
 	
-	/* *
+	/*-*
 	 * Evolve surface. Try to move all cells.
 	 * <b>This function is NOT used!!!</b> (Main implementation moved to world)
 	 */

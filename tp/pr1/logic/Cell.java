@@ -1,9 +1,8 @@
 package tp.pr1.logic;
 
 /**
- * Cell class.
- * A cell is an object with life points and maduration points.
- * Both kinds of points
+ * <p>Cell class</p>
+ * <p>A cell is an object with life points and maturation points</p>
  */
 public class Cell {
 	private int lp;
@@ -11,7 +10,7 @@ public class Cell {
 	
 	
 	/**
-	 * Cell constructor
+	 * <p>Cell constructor</p>
 	 * 
 	 * @param lp Life points
 	 * @param mp Maturation points
@@ -23,21 +22,21 @@ public class Cell {
 	}
 	
 	/**
-	 * Decrease one life.
+	 * <p>Decrease one life</p>
 	 */
 	public void loseLp(){
 		this.lp--;
 	}
 	
 	/**
-	 * Decrease one maturity point
+	 * <p>Decrease one maturation point</p>
 	 */
 	public void maturate(){
 		this.mp--;
 	}
 	
 	/**
-	 * lp getter
+	 * <p>lp getter</p>
 	 *
 	 * @return      the life points
 	 */
@@ -46,9 +45,9 @@ public class Cell {
 	}
 	
 	/**
-	 * mp getter
+	 * <p>mp getter</p>
 	 *
-	 * @return      the maturity points
+	 * @return      the maturation points
 	 */
 	public int getMp(){
 		return mp;

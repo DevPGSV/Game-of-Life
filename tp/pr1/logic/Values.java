@@ -1,8 +1,8 @@
 package tp.pr1.logic;
 
 /**
- * Values class.
- * Contains several public static final attributes, accessible from other classes.
+ * <p>Values class</p>
+ * <p>Contains several public static final attributes, accessible from other classes</p>
  */
 public class Values {
 	public static final int MAX_LP = 3;

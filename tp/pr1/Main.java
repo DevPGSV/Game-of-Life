@@ -6,15 +6,15 @@ import tp.pr1.controller.Controller;
 import tp.pr1.logic.World;
 
 /**
- * Main class.
- * Contains starting function.
+ * <p>Main class</p>
+ * <p>Contains starting function</p>
  */
 public class Main {
 
 	/**
-	 * Creates a world
-	 * Creates a scanner for std input
-	 * Creates a controller and starts the simulation
+	 * <p>Creates a world</p>
+	 * <p>Creates a scanner for std input</p>
+	 * <p>Creates a controller and starts the simulation</p>
 	 * 
 	 * @param args Arguments ignored
 	 */
