@@ -1,10 +1,6 @@
 package tp.pr1.logic;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
-
 import tp.pr1.utils.Coords;
 
 /**
@@ -32,6 +28,22 @@ public class Surface {
 	}
 	
 	/**
+	 * rows getter
+	 * @return the rows of the surface
+	 */
+	public int getRows() {
+		return this.rows;
+	}
+	
+	/**
+	 * columns getter
+	 * @return the columns of the surface
+	 */
+	public int getColumns() {
+		return this.columns;
+	}
+	
+	/**
 	 * Initializes the board with cells at random positions.
 	 */
 	public void initBoard() {
@@ -49,21 +61,43 @@ public class Surface {
 	
 	/**
 	 * Checks if there is not a cell at some given coordinates
+	 * @param row Row to check
+	 * @param col Column to check
+	 * @return if the is not a cell
+	 */
+	public boolean isPositionEmpty(int row, int col) {
+		return (surface[row][col] == null);
+	}
+	
+	/**
+	 * Checks if there is not a cell at some given coordinates.
+	 * Overloads: isPositionEmpty(int row, int col)
+	 * 
 	 * @param coords Coordinates to check
 	 * @return if the is not a cell
 	 */
 	public boolean isPositionEmpty(Coords coords) {
-		return (surface[coords.getRow()][coords.getColumn()] == null);
+		return isPositionEmpty(coords.getRow(), coords.getColumn());
 	}
 	
-	
 	/**
-	 * Gets a cell from some given coordinates
+	 * Gets a cell from some given coordinates.
+	 * Overloads: getCell(int row, int col)
+	 * 
 	 * @param coords Coordinates of the cell
 	 * @return the cell at the specified coordinates
 	 */
 	public Cell getCell(Coords coords) {
-		return surface[coords.getRow()][coords.getColumn()];
+		return getCell(coords.getRow(), coords.getColumn());
+	}
+	
+	/**
+	 * Gets a cell from some given coordinates.
+	 * @param coords Coordinates of the cell
+	 * @return the cell at the specified coordinates
+	 */
+	public Cell getCell(int row, int col) {
+		return surface[row][col];
 	}
 	
 	/**
@@ -80,10 +114,20 @@ public class Surface {
 	 * @return      if it was possible to create the cell at the given coordinates
 	 */
 	public boolean createCell(Coords coords) {
+		return createCell(coords, new Cell(Values.MAX_LP, Values.MAX_MP));
+	}
+	
+	/**
+	 * Puts a cell at the specified coordinates
+	 * 
+	 * @param coords coordinates
+	 * @return      if it was possible to create the cell at the given coordinates
+	 */
+	public boolean createCell(Coords coords, Cell cell) {
 		if((coords.getRow() >= 0) && (coords.getRow() < this.rows)) {
 			if((coords.getColumn() >= 0) && (coords.getColumn() < this.columns)) {
 				if (surface[coords.getRow()][coords.getColumn()] == null) {
-					surface[coords.getRow()][coords.getColumn()] = new Cell(Values.MAX_LP, Values.MAX_MP);
+					surface[coords.getRow()][coords.getColumn()] = cell;
 					return true;
 				}
 			}
@@ -91,8 +135,26 @@ public class Surface {
 		return false;
 	}
 	
+	/* *
+	 * Places a cell at the specified coordinates.
+	 * Doesn't care if the position is already occupied.
+	 * 
+	 * @param coords coordinates
+	 * @return      if it was possible to create the cell at the given coordinates
+	 */
+	/*
+	public boolean overrideCell(Coords coords, Cell cell) {
+		if((coords.getRow() >= 0) && (coords.getRow() < this.rows)) {
+			if((coords.getColumn() >= 0) && (coords.getColumn() < this.columns)) {
+				surface[coords.getRow()][coords.getColumn()] = cell;
+				return true;
+			}
+		}
+		return false;
+	}*/
+	
 	/**
-	 * Creates a new cell at the specified coordinates
+	 * Deletes a cell at the specified coordinates
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to delete the cell at the given coordinates
@@ -109,85 +171,12 @@ public class Surface {
 		return false;
 	}
 	
-	/**
-	 * Search for available positions around some given coordinates
-	 * 
-	 * @param coords coordinates
-	 * @return      a coordinate list with available positions.
-	 */
-	private List<Coords> getAvailablePositions(Coords coords){
-		Coords tempCoords = new Coords(0,0);
-		List<Coords> freeSpots = new ArrayList<Coords>();
-		//System.out.println("=> " + coords);
-		for (int i = -1; i <= 1; i++){
-			for (int j = -1; j <= 1; j++){
-				tempCoords.setRow(coords.getRow() + i);
-				tempCoords.setColumn(coords.getColumn() + j);
-				if(tempCoords.getRow() != coords.getRow() || (tempCoords.getColumn() != coords.getColumn())){
-					if((tempCoords.getRow() >= 0) && (tempCoords.getRow() < this.rows)) {
-						if((tempCoords.getColumn() >= 0) && (tempCoords.getColumn() < this.columns))
-						{
-							if (surface[tempCoords.getRow()][tempCoords.getColumn()] == null) {
-								freeSpots.add(new Coords(tempCoords)); // Add available position to freeSpots list
-							}
-						}
-					}
-				}
-			}
-		}
-		return freeSpots;
-	}
 	
-	/**
-	 * Try to move a cell to an adjacent position. If it can't move, it loses a life.
-	 * 
-	 * @param coords coordinates
-	 * @return      the coordinates where the cell gets moved.
-	 */
-	public Coords moveCell(Coords coords){
-		List<Coords> freeSpots = getAvailablePositions(coords);
-		
-		if (freeSpots.isEmpty()) { // If no available positions
-			surface[coords.getRow()][coords.getColumn()].loseLp();
-			return new Coords();
-		} else { // If there is at least one available position
-			Random rand = new Random();
-			Coords chosenCoords = freeSpots.get(rand.nextInt(freeSpots.size()));
-			surface[chosenCoords.getRow()][chosenCoords.getColumn()] = surface[coords.getRow()][coords.getColumn()];
-			surface[coords.getRow()][coords.getColumn()] = null;
-			return chosenCoords;
-		}
-		
-	}
-	
-	/**
-	 * Try to reproduce a cell to an adjacent position. If it can't reproduce, it dies.
-	 * 
-	 * @param coords coordinates
-	 * @return      the coordinates where the new cell appears.
-	 */
-	public Coords cellMaturation(Coords coords){
-		List<Coords> freeSpots = getAvailablePositions(coords);
-
-		if (freeSpots.isEmpty()) { // If no available positions
-			return new Coords();
-		} else { // If there is at least one available position
-			Random rand = new Random();
-			Coords chosenCoords = freeSpots.get(rand.nextInt(freeSpots.size()));
-			surface[chosenCoords.getRow()][chosenCoords.getColumn()] = new Cell(Values.MAX_LP, Values.MAX_MP);
-			surface[coords.getRow()][coords.getColumn()] = new Cell(Values.MAX_LP, Values.MAX_MP);
-			return chosenCoords;
-		}
-		
-	}
-	
-	
-	
-	
-	/**
+	/* *
 	 * Evolve surface. Try to move all cells.
 	 * <b>This function is NOT used!!!</b> (Main implementation moved to world)
 	 */
+	/*
 	public void evolve() {
 		HashSet<Coords> movedCells = new HashSet<Coords>();
 		Coords newCoords;
@@ -220,23 +209,40 @@ public class Surface {
 				}
 			}
 		}
-	}
+	}*/
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
 		StringBuilder board = new StringBuilder();
-		for (int i = 0; i < rows; i++){
-			board.append("|  ");
+		
+		
+		board.append(" \\ C   ");
+		for (int j = 0; j < columns; j++){ // Print column numbers
+			board.append((j+1) + "       ");
+		}
+		board.append("\n");
+		
+		
+		board.append("R \\    ");
+		for (int j = 0; j < columns; j++){ // Print "v" under column numbers
+			board.append("v       ");
+		}
+		board.append("\n");
+		
+		
+		// Print board
+		for (int i = 0; i < rows; i++){ 
+			board.append((i+1) + "> |  "); // Print row numbers
 			for (int j = 0; j < columns; j++){
-				if (surface[i][j] != null) {
-					board.append(surface[i][j] + "  |  ");
+				if (!isPositionEmpty(i ,j)) { // If there is a cell
+					board.append(surface[i][j] + "  |  "); // Print the cell
 				} else {
-					board.append("~~~" + "  |  ");
+					board.append("~~~" + "  |  "); // Print "no cell" placeholder
 				}
 			}
-			board.append("\n"); // System.out.println("\n");
+			board.append("\n");
 		}
 		
 		return board.toString();
