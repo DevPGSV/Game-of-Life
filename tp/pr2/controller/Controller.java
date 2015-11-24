@@ -56,7 +56,7 @@ public class Controller {
 			switch(command)
 			{
 				case "step": 
-					this.world.evolve();
+					System.out.println(this.world.evolve());
 					break;
 	
 				case "init": 

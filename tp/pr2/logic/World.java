@@ -37,8 +37,11 @@ public class World {
 	
 	/**
 	 * <p>Execute a simulation step</p>
+	 * 
+	 * @return Any messages about events in the current simulation step.
 	 */
-	public void evolve(){
+	public String evolve(){
+		StringBuilder returnedMessages = new StringBuilder();
 		HashSet<Coords> movedCells = new HashSet<Coords>();
 		List<Coords> boardCoordinates = new ArrayList<Coords>();
 		for (int i = 0; i < Values.BOARD_ROWS; i++)
@@ -53,30 +56,35 @@ public class World {
 				if (!movedCells.contains(currentCoords)) { // If cell is not one moved to this position in this evolution step
 					
 					if(surface.getCell(currentCoords).getLp() == 0){ // Kill the cell if its lp is 0
-						System.out.println("Cell at " + currentCoords + " dies of inactivity");
+						returnedMessages.append("Cell at " + currentCoords + " dies of inactivity\n");
+						//System.out.println("Cell at " + currentCoords + " dies of inactivity");
 						surface.deleteCell(currentCoords);
 						
 					}else if(surface.getCell(currentCoords).getMp() == 0){ // Complete its maturation if its mp is 0
 						newCoords = cellMaturation(currentCoords);
 						if (!newCoords.isNullCoords()) { // If the cell could reproduce...
-							System.out.println("New cell born at " + newCoords);
+							returnedMessages.append("New cell born at " + newCoords + "\n");
+							//System.out.println("New cell born at " + newCoords);
 							movedCells.add(currentCoords);
 							movedCells.add(newCoords);
 						} else {
 							surface.deleteCell(currentCoords);
-							System.out.println("Cell at " + currentCoords + " dies on being unable to reproduce");
+							returnedMessages.append("Cell at " + currentCoords + " dies on being unable to reproduce\n");
+							//System.out.println("Cell at " + currentCoords + " dies on being unable to reproduce");
 						}
 					}else { // Try to move the cell
 						surface.getCell(currentCoords).maturate();
 						newCoords = moveCell(currentCoords);
 						if (!newCoords.isNullCoords()) { // If the cell could move...
-							System.out.println("Cell at " + currentCoords + " moved to " + newCoords);
+							returnedMessages.append("Cell at " + currentCoords + " moved to " + newCoords + "\n");
+							//System.out.println("Cell at " + currentCoords + " moved to " + newCoords);
 							movedCells.add(newCoords);
 						}
 					}
 				}
 			}
 		}
+		return returnedMessages.toString();
 	}
 	
 	/**
