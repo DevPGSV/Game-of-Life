@@ -1,12 +1,15 @@
 package tp.pr2.logic;
 
+import tp.pr2.utils.Coords;
+
 /**
  * <p>Cell class</p>
  * <p>A cell is an object with life points and maturation points</p>
  */
-public class Cell {
+public abstract class Cell {
 	private int lp;
 	private int mp;
+	protected boolean edible;
 	
 	
 	/**
@@ -20,6 +23,23 @@ public class Cell {
 		this.mp = mp;
 
 	}
+	
+	/**
+	 * <p>Executes a move</p>
+	 * 
+	 * @param coords Origin coordinates
+	 * @param surface Surface instance
+	 * @return the destination of the cell (or null if it couldn't move)
+	 */
+	public abstract Coords executeMove(Coords coords, Surface surface);
+	
+	
+	/**
+	 * <p>edible getter</p>
+	 * 
+	 * @return if the cell can be eaten
+	 */
+	public abstract boolean isEdible();
 	
 	/**
 	 * <p>Decrease one life</p>
@@ -51,6 +71,24 @@ public class Cell {
 	 */
 	public int getMp(){
 		return mp;
+	}
+	
+	/**
+	 * <p>Checks if the cell should die (ie. if its life is 0)</p>
+	 * 
+	 * @return if (the cells lp == 0)
+	 */
+	public boolean shouldDie() {
+		return (this.lp == 0);
+	}
+	
+	/**
+	 * <p>Checks if the cell should reproduce (ie. if its mp is 0)</p>
+	 * 
+	 * @return if (the cells mp == 0)
+	 */
+	public boolean shouldReproduce() {
+		return (this.mp == 0);
 	}
 	
 	/* (non-Javadoc)

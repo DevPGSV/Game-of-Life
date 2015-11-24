@@ -28,6 +28,36 @@ public class Surface {
 	}
 	
 	/**
+	 * <p>Asks th ecell to move</p>
+	 * 
+	 * @param coords coordinates of the cell to move
+	 * @return the destination of the cell (or null if it couldn't move)
+	 */
+	public Coords moveCell(Coords coords) {
+		return getCell(coords).executeMove(coords, this);
+	}
+	
+	/**
+	 * <p>Checks if the cell at the specified coordinates should die (ie. if its life is 0)</p>
+	 * 
+	 * @param coords the coordinates of the specified cell
+	 * @return if (the cells lp == 0)
+	 */
+	public boolean shouldDie(Coords coords) {
+		return getCell(coords).shouldDie();
+	}
+	
+	/**
+	 * <p>Checks if the cell at the specified coordinates should reproduce (ie. if its mp is 0)</p>
+	 * 
+	 * @param coords the coordinates of the specified cell
+	 * @return if (the cells mp == 0)
+	 */
+	public boolean shouldReproduce(Coords coords) {
+		return getCell(coords).shouldReproduce();
+	}
+	
+	/**
 	 * <p>rows getter</p>
 	 * 
 	 * @return the rows of the surface
@@ -55,7 +85,7 @@ public class Surface {
 		for (int i = 0; i < rows; i++){
 			for (int j = 0; j < columns; j++){
 				if ((rand.nextInt() % 2) == 0) {
-					surface[i][j] = new Cell(Values.MAX_LP, Values.MAX_MP);
+					surface[i][j] = new SimpleCell(Values.MAX_LP, Values.MAX_MP);
 				}
 			}
 		}
@@ -119,7 +149,7 @@ public class Surface {
 	 * @return      if it was possible to create the cell at the given coordinates
 	 */
 	public boolean createCell(Coords coords) {
-		return createCell(coords, new Cell(Values.MAX_LP, Values.MAX_MP));
+		return createCell(coords, new SimpleCell(Values.MAX_LP, Values.MAX_MP));
 	}
 	
 	/**
@@ -176,46 +206,6 @@ public class Surface {
 		}
 		return false;
 	}
-	
-	
-	/*-*
-	 * Evolve surface. Try to move all cells.
-	 * <b>This function is NOT used!!!</b> (Main implementation moved to world)
-	 */
-	/*
-	public void evolve() {
-		HashSet<Coords> movedCells = new HashSet<Coords>();
-		Coords newCoords;
-		for (int i = 0; i < rows; i++){
-			for (int j = 0; j < columns; j++){ // For every position
-				if (surface[i][j] != null) { // If there is a cell (if the position is not empty)
-					if (!movedCells.contains(new Coords(i, j))) { // If cell is not one moved to this position in this evolution step
-						
-						if(surface[i][j].getLp() == 0){ // Kill the cell if its lp is 0
-							System.out.println("[ DIE ] (" + i + ", " + j + ")");
-							surface[i][j] = null;
-							
-						}else if(surface[i][j].getMp() == 0){ // Complete its maturation if its mp is 0
-							newCoords = cellMaturation(new Coords(i, j));
-							if (!newCoords.isNullCoords()) { // If the cell could reproduce...
-								System.out.println("[MATUR] (" + i + ", " + j + ") to " + newCoords);
-								movedCells.add(new Coords(i, j));
-								movedCells.add(newCoords);
-							}
-							
-						}else { // Try to move the cell
-							surface[i][j].maturate();
-							newCoords = moveCell(new Coords(i, j));
-							if (!newCoords.isNullCoords()) { // If the cell could move...
-								System.out.println("[MOVED] (" + i + ", " + j + ") to " + newCoords);
-								movedCells.add(newCoords);
-							}
-						}
-					}
-				}
-			}
-		}
-	}*/
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
