@@ -14,7 +14,7 @@ public class Controller {
 	private World world;
 	private Scanner in;
 	
-	private static final boolean AUTO_STEP = true; // Used for debugging. Change to true to "simulate" a step every second.
+	private static final boolean AUTO_STEP = false; // Used for debugging. Change to true to "simulate" a step every second.
 	
 	/**
 	 * <p>Controller constructor</p>

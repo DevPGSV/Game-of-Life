@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import tp.pr2.utils.Coords;
+import tp.pr2.utils.Utils;
 
 /**
  * <p>World class</p>
@@ -74,7 +75,7 @@ public class World {
 						}
 					}else { // Try to move the cell
 						surface.getCell(currentCoords).maturate();
-						newCoords = moveCell(currentCoords);
+						newCoords = surface.moveCell(currentCoords);
 						if (!newCoords.isNullCoords()) { // If the cell could move...
 							returnedMessages.append("Cell at " + currentCoords + " moved to " + newCoords + "\n");
 							//System.out.println("Cell at " + currentCoords + " moved to " + newCoords);
@@ -88,35 +89,6 @@ public class World {
 	}
 	
 	/**
-	 * <p>Search for available positions around some given coordinates</p>
-	 * 
-	 * @param coords coordinates of the cell
-	 * @return      a coordinate list with available positions.
-	 */
-	private List<Coords> getAvailablePositions(Coords coords){
-		Coords tempCoords = new Coords(0,0);
-		List<Coords> freeSpots = new ArrayList<Coords>();
-		//System.out.println("=> " + coords);
-		for (int i = -1; i <= 1; i++){
-			for (int j = -1; j <= 1; j++){
-				tempCoords.setRow(coords.getRow() + i);
-				tempCoords.setColumn(coords.getColumn() + j);
-				if(tempCoords.getRow() != coords.getRow() || (tempCoords.getColumn() != coords.getColumn())){
-					if((tempCoords.getRow() >= 0) && (tempCoords.getRow() < surface.getRows())) {
-						if((tempCoords.getColumn() >= 0) && (tempCoords.getColumn() < surface.getColumns()))
-						{
-							if (surface.isPositionEmpty(tempCoords)) {
-								freeSpots.add(new Coords(tempCoords)); // Add available position to freeSpots list
-							}
-						}
-					}
-				}
-			}
-		}
-		return freeSpots;
-	}
-	
-	/**
 	 * <p>Try to move a cell to an adjacent position</p>
 	 * <p>If it can't move, it loses a life</p>
 	 * 
@@ -124,6 +96,17 @@ public class World {
 	 * @return      the coordinates where the cell gets moved.
 	 */
 	public Coords moveCell(Coords coords){
+		Coords newCoords = Utils.getRandomAvailablePosition(coords, this.surface);
+		if (newCoords != null) {
+			surface.createCell(newCoords, surface.getCell(coords)); // Clones cell from coords to chosenCoords
+			surface.deleteCell(coords);
+			return newCoords;
+		} else {
+			surface.getCell(coords).loseLp();
+			return new Coords();
+		}
+				
+		/*
 		List<Coords> freeSpots = getAvailablePositions(coords);
 		
 		if (freeSpots.isEmpty()) { // If no available positions
@@ -137,6 +120,8 @@ public class World {
 			return chosenCoords;
 		}
 		
+		*/
+		
 	}
 	
 	/**
@@ -147,13 +132,14 @@ public class World {
 	 * @return      the coordinates where the new cell appears.
 	 */
 	public Coords cellMaturation(Coords coords){
-		List<Coords> freeSpots = getAvailablePositions(coords);
+		List<Coords> freeSpots = Utils.getAvailablePositions(coords, surface);
 
 		if (freeSpots.isEmpty()) { // If no available positions
 			return new Coords();
 		} else { // If there is at least one available position
 			Random rand = new Random();
 			Coords chosenCoords = freeSpots.get(rand.nextInt(freeSpots.size()));
+			surface.deleteCell(coords);
 			surface.createCell(chosenCoords);
 			surface.createCell(coords);
 			return chosenCoords;

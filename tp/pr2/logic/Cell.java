@@ -11,7 +11,6 @@ public abstract class Cell {
 	private int mp;
 	protected boolean edible;
 	
-	
 	/**
 	 * <p>Cell constructor</p>
 	 * 
@@ -21,7 +20,6 @@ public abstract class Cell {
 	public Cell(int lp, int mp){
 		this.lp = lp;
 		this.mp = mp;
-
 	}
 	
 	/**
@@ -39,7 +37,9 @@ public abstract class Cell {
 	 * 
 	 * @return if the cell can be eaten
 	 */
-	public abstract boolean isEdible();
+	public boolean isEdible(){
+		return this.edible;
+	}
 	
 	/**
 	 * <p>Decrease one life</p>
@@ -94,8 +94,9 @@ public abstract class Cell {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
+	/*
 	public String toString() {
 		return (new Integer(getLp())).toString() + "-" + (new Integer(getMp())).toString();
 	}
-	
+	*/
 }
