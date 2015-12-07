@@ -45,8 +45,8 @@ public class World {
 		StringBuilder returnedMessages = new StringBuilder();
 		HashSet<Coords> movedCells = new HashSet<Coords>();
 		List<Coords> boardCoordinates = new ArrayList<Coords>();
-		for (int i = 0; i < Values.BOARD_ROWS; i++)
-			for (int j = 0; j < Values.BOARD_COLS; j++)
+		for (int i = 0; i < surface.getRows(); i++)
+			for (int j = 0; j < surface.getColumns(); j++)
 				boardCoordinates.add(new Coords(i, j));
 		Collections.shuffle(boardCoordinates);
 		
@@ -76,7 +76,7 @@ public class World {
 					}else { // Try to move the cell
 						surface.getCell(currentCoords).maturate();
 						newCoords = surface.moveCell(currentCoords);
-						if (!newCoords.isNullCoords()) { // If the cell could move...
+						if (newCoords != null) { // If the cell could move...
 							returnedMessages.append("Cell at " + currentCoords + " moved to " + newCoords + "\n");
 							//System.out.println("Cell at " + currentCoords + " moved to " + newCoords);
 							movedCells.add(newCoords);

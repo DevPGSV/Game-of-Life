@@ -16,17 +16,17 @@ public class SimpleCell extends Cell{
 	@Override
 	public Coords executeMove(Coords coords, Surface surface) {
 		Coords newCoords = Utils.getRandomAvailablePosition(coords, surface);
-		if (newCoords != null) {
+		if ((newCoords != null) && (surface.isPositionEmpty(newCoords))) {
 			surface.createCell(newCoords, this); // Clones cell from coords to chosenCoords
 			surface.deleteCell(coords);
 			return newCoords;
 		} else {
 			loseLp();
-			return new Coords();
+			return null;
 		}
 	}
 	
 	public String toString() {
-		return (new Integer(getLp())).toString() + "-" + (new Integer(getMp())).toString();
+		return "{CYAN}" + (new Integer(getLp())).toString() + "-" + (new Integer(getMp())).toString() + "{RESET}";
 	}
 }

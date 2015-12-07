@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import tp.pr2.logic.World;
 import tp.pr2.utils.Coords;
+import tp.pr2.view.printer.Printer;
 
 /**
  * <p>Controller class</p> 
@@ -31,11 +32,12 @@ public class Controller {
 	 * <p>Main loop</p>
 	 */
 	public void executeSimulation(){
+		Printer p = Printer.getInstance();
 		boolean keepLoop = true;
 		String command = "";
 		int row = -1, col = -1;
 		while (keepLoop) {
-			System.out.println(this.world);
+			p.print(this.world);
 			System.out.print("Command: ");
 			
 			
@@ -56,7 +58,7 @@ public class Controller {
 			switch(command)
 			{
 				case "step": 
-					System.out.println(this.world.evolve());
+					p.print(this.world.evolve());
 					break;
 	
 				case "init": 

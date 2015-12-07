@@ -19,6 +19,6 @@ public class ComplexCell extends Cell{
 	}
 	
 	public String toString() {
-		return (new Integer(getLp())).toString() + "+" + (new Integer(getMp())).toString();
+		return "{BLUE}" + (new Integer(getLp())).toString() + "+" + (new Integer(getMp())).toString() + "{RESET}";
 	}
 }

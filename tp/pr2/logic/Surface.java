@@ -81,8 +81,8 @@ public class Surface {
 	public void initBoard() {
 		cleanBoard();
 		Random rand = new Random();
-		surface[1][1] = new SimpleCell(Values.MAX_LP, Values.MAX_MP);
-		surface[2][1] = new ComplexCell(Values.MAX_LP, Values.MAX_MP);
+		surface[0][0] = new SimpleCell(Values.MAX_LP, Values.MAX_MP);
+		surface[1][0] = new ComplexCell(Values.MAX_LP, Values.MAX_MP);
 		/*
 		for (int i = 0; i < rows; i++){
 			for (int j = 0; j < columns; j++){
