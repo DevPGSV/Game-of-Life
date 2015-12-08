@@ -1,15 +1,13 @@
 package tp.pr2.utils;
 
 /**
- * <p>Coords class</p>
- * <p>Represents a coordinate object</p>
- * <p>Each coordinate has a row and a column</p>
- * <p>Coordinates can be considered <i>null coordinates</i> (invalid, incorrect, or empty)</p>
+ * <p>Coords class.</p>
+ * <p>Represents a coordinate object.</p>
+ * <p>Each coordinate has a row and a column.</p>
  */
 public class Coords {
 	private int row;
 	private int column;
-	private boolean nullCoords;
 	
 	/**
 	 * <p>Coords default constructor</p>
@@ -18,7 +16,6 @@ public class Coords {
 	public Coords(){
 		this.row = 0;
 		this.column = 0;
-		this.nullCoords = true;
 	}
 	
 	/**
@@ -30,7 +27,6 @@ public class Coords {
 	public Coords(int row, int column){
 		this.row = row;
 		this.column = column;
-		this.nullCoords = false;
 	}
 	
 	/**
@@ -41,7 +37,6 @@ public class Coords {
 	public Coords(Coords coords){
 		this.row = coords.getRow();
 		this.column = coords.getColumn();
-		this.nullCoords = coords.isNullCoords();
 	}
 	
 	/**
@@ -76,22 +71,6 @@ public class Coords {
 		this.column = column;
 	}
 	
-	/**
-	 * <p>nullCoords getter</p>
-	 * @return if the coordinates are not specified
-	 */
-	public boolean isNullCoords() {
-		return this.nullCoords;
-	}
-	
-	/**
-	 * <p>nullCoords setter</p>
-	 * @param nullCoords new value for nullCoords (if the coordinates are specified)
-	 */
-	public void setNullCoords(boolean nullCoords) {
-		this.nullCoords = nullCoords;
-	}
-	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -111,8 +90,7 @@ public class Coords {
 	 * @see java.lang.Object#hashCode()
 	 */
 	public int hashCode() { // Generates a hash code for this instance of the object. Instances with the same coordinates have the same hash. Instances with different coordinates have different hashes. 
-		// 1RRRCCCN
-	    return 1 * 10000000 + getColumn() * 1000000 + getRow() * 1000 + (isNullCoords() ? 1 : 0);
+	    return 1 * 1000000 + getColumn() * 1000 + getRow(); // 1CCCRRR
 	}
 	
 }

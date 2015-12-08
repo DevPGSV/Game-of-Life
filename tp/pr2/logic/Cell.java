@@ -3,25 +3,20 @@ package tp.pr2.logic;
 import tp.pr2.utils.Coords;
 
 /**
- * <p>Cell class</p>
- * <p>A cell is an object with life points and maturation points</p>
+ * <p>Cell abstract class.</p>
+ * <p>Creature located in a surface.</p>
  */
 public abstract class Cell {
 	
+	/**
+	 * Cell Edibility
+	 */
 	protected boolean edible;
 	
 	/**
-	 * <p>Cell constructor</p>
-	 * 
-	 * @param lp Life points
-	 * @param mp Maturation points
-	 */
-	public Cell(){
-		
-	}
-	
-	/**
 	 * <p>Executes a move</p>
+	 * <p>Cells execute a step in their life cycle</p>
+	 * <p>They might die, move, reproduce, burst, eat, idle, ...</p>
 	 * 
 	 * @param coords Origin coordinates
 	 * @param surface Surface instance
@@ -33,18 +28,10 @@ public abstract class Cell {
 	/**
 	 * <p>edible getter</p>
 	 * 
+	 * @see tp.pr2.logic.Cell#edible
 	 * @return if the cell can be eaten
 	 */
-	public boolean isEdible(){
+	public boolean isEdible(){ // Code to execute is the same for all classes extending this abstract class.
 		return this.edible;
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	/*
-	public String toString() {
-		return (new Integer(getLp())).toString() + "-" + (new Integer(getMp())).toString();
-	}
-	*/
 }

@@ -7,9 +7,9 @@ import java.util.List;
 import tp.pr2.utils.Coords;
 
 /**
- * <p>World class</p>
- * <p>Contains a surface</p>
- * <p>Handles the simulation of the game</p>
+ * <p>World class.</p>
+ * <p>Contains a surface.</p>
+ * <p>Handles the simulation of the game.</p>
  */
 public class World {
 	private Surface surface;
@@ -61,50 +61,10 @@ public class World {
 	}
 	
 	/**
-	 * <p>Try to move a cell to an adjacent position</p>
-	 * <p>If it can't move, it loses a life</p>
-	 * 
-	 * @param coords coordinates
-	 * @return      the coordinates where the cell gets moved.
-	 */
-	/*public Coords moveCell(Coords coords){
-		Coords newCoords = Utils.getRandomAvailablePosition(coords, this.surface);
-		if (newCoords != null) {
-			surface.createCell(newCoords, surface.getCell(coords)); // Clones cell from coords to chosenCoords
-			surface.deleteCell(coords);
-			return newCoords;
-		} else {
-			surface.getCell(coords).loseLp();
-			return new Coords();
-		}
-	}*/
-	
-	/**
-	 * <p>Try to reproduce a cell to an adjacent position</p>
-	 * <p>If it can't reproduce, it dies.</p>
-	 * 
-	 * @param coords coordinates
-	 * @return      the coordinates where the new cell appears.
-	 */
-	/*public Coords cellMaturation(Coords coords){
-		List<Coords> freeSpots = Utils.getAvailablePositions(coords, surface);
-
-		if (freeSpots.isEmpty()) { // If no available positions
-			return new Coords();
-		} else { // If there is at least one available position
-			Random rand = new Random();
-			Coords chosenCoords = freeSpots.get(rand.nextInt(freeSpots.size()));
-			surface.deleteCell(coords);
-			surface.createCell(chosenCoords);
-			surface.createCell(coords);
-			return chosenCoords;
-		}
-	}*/
-	
-	/**
 	 * <p>Creates a new cell at the specified coordinates</p>
 	 * <p><b>Overloads: <i>createCell(Coords coords)</i></b></p>
 	 * 
+	 * @see tp.pr2.logic.World#createCell(Coords)
 	 * @param row row coord
 	 * @param col col coord
 	 * @return      if it was possible to create the cell at the given coordinates
@@ -127,6 +87,7 @@ public class World {
 	 * <p>Creates a new cell at the specified coordinates</p>
 	 * <p><b>Overloads: <i>deleteCell(Coords coords)</i></b></p>
 	 * 
+	 * @see tp.pr2.logic.World#deleteCell(Coords)
 	 * @param row row coord
 	 * @param col col coord
 	 * @return      if it was possible to delete the cell at the given coordinates

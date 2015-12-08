@@ -3,24 +3,53 @@ package tp.pr2.logic;
 import tp.pr2.utils.Coords;
 import tp.pr2.utils.Utils;
 
+/**
+ * <p>ComplexCell class.</p>
+ * <p>Can eat edible cells. Once they have eaten enough, they burst.</p>
+ */
 public class ComplexCell extends Cell{
 	
-	private int ec; // Eat Capacity
+	/**
+	 * <p>Eat Capacity</p>
+	 */
+	private int ec;
 	
+	/**
+	 * <p>ComplexCell constructor</p>
+	 * 
+	 * @param ec initial Eat Capacity
+	 */
 	public ComplexCell(int ec){
 		super();
 		this.ec = ec;
 		this.edible = false;
 	}
 	
+	/**
+	 * <p>Decrease Eat Capacity by 1</p>
+	 * 
+	 * @see tp.pr2.logic.ComplexCell#ec
+	 */
 	public void loseEc() {
 		this.ec--;
 	}
 	
+	/**
+	 * <p>Eat Capacity getter</p>
+	 * 
+	 * @see tp.pr2.logic.ComplexCell#ec
+	 * @return the Eat Capacity
+	 */
 	public int getEc() {
 		return this.ec;
 	}
 	
+	/**
+	 * <p>Checks if the cell should burst (ie. if its ec is 0)</p>
+	 * 
+	 * @see tp.pr2.logic.ComplexCell#ec
+	 * @return if (the cells ec == 0)
+	 */
 	public boolean shouldBurst() {
 		return (this.ec == 0);
 	}
@@ -52,6 +81,9 @@ public class ComplexCell extends Cell{
 			return null;
 }
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return (char)183 + "{BLUE}" + (new Integer(getEc())).toString() + "{RESET}" + (char)183;
 	}

@@ -7,9 +7,9 @@ import tp.pr2.utils.Coords;
 import tp.pr2.view.printer.Printer;
 
 /**
- * <p>Controller class</p> 
- * <p>Has the main loop</p>
- * <p>Handles the execution of the program</p>
+ * <p>Controller class.</p> 
+ * <p>Has the main loop.</p>
+ * <p>Handles the execution of the program.</p>
  */
 public class Controller {
 	private World world;

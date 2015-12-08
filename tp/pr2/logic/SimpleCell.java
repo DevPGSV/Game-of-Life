@@ -3,10 +3,27 @@ package tp.pr2.logic;
 import tp.pr2.utils.Coords;
 import tp.pr2.utils.Utils;
 
+/**
+ * <p>SimpleCell class.</p>
+ * <p>Reproduce after some life cycle steps. Might die if they don't move enough.</p>
+ */
 public class SimpleCell extends Cell{
+	
+	/**
+	 * <p>Life Points</p>
+	 */
 	private int lp;
+	/**
+	 * <p>Maduration Points</p>
+	 */
 	private int mp;
 	
+	/**
+	 * <p>SimpleCell constructor</p>
+	 * 
+	 * @param lp initial Life Points
+	 * @param mp initial Maduration Points
+	 */
 	public SimpleCell(int lp, int mp) {
 		super();
 		this.lp = lp;
@@ -52,6 +69,7 @@ public class SimpleCell extends Cell{
 	
 	/**
 	 * <p>Decrease one life</p>
+	 * @see tp.pr2.logic.SimpleCell#lp
 	 */
 	public void loseLp(){
 		this.lp--;
@@ -59,6 +77,7 @@ public class SimpleCell extends Cell{
 	
 	/**
 	 * <p>Decrease one maturation point</p>
+	 * @see tp.pr2.logic.SimpleCell#mp
 	 */
 	public void maturate(){
 		this.mp--;
@@ -66,8 +85,9 @@ public class SimpleCell extends Cell{
 	
 	/**
 	 * <p>lp getter</p>
-	 *
-	 * @return      the life points
+	 * 
+	 * @see tp.pr2.logic.SimpleCell#lp
+	 * @return the life points
 	 */
 	public int getLp(){
 		return lp;
@@ -76,7 +96,8 @@ public class SimpleCell extends Cell{
 	/**
 	 * <p>mp getter</p>
 	 *
-	 * @return      the maturation points
+	 * @see tp.pr2.logic.SimpleCell#mp
+	 * @return the maturation points
 	 */
 	public int getMp(){
 		return mp;
@@ -85,6 +106,7 @@ public class SimpleCell extends Cell{
 	/**
 	 * <p>Checks if the cell should die (ie. if its life is 0)</p>
 	 * 
+	 * @see tp.pr2.logic.SimpleCell#lp
 	 * @return if (the cells lp == 0)
 	 */
 	public boolean shouldDie() {
@@ -94,6 +116,7 @@ public class SimpleCell extends Cell{
 	/**
 	 * <p>Checks if the cell should reproduce (ie. if its mp is 0)</p>
 	 * 
+	 * @see tp.pr2.logic.SimpleCell#mp
 	 * @return if (the cells mp == 0)
 	 */
 	public boolean shouldReproduce() {

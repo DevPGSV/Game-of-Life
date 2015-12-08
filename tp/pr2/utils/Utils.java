@@ -14,7 +14,8 @@ public class Utils {
 	 * 
 	 * @param coords specified coordinates
 	 * @param surface surface instance
-	 * @return      a coordinate list with positions around the specified coordinates
+	 * @param checkIfOccupied if occupied positions should be skipped
+	 * @return a coordinate list with positions around the specified coordinates
 	 */
 	public static List<Coords> getAvailablePositions(Coords coords, Surface surface, boolean checkIfOccupied){
 		Coords tempCoords = new Coords(0,0);
@@ -37,9 +38,10 @@ public class Utils {
 	/**
 	 * <p>Gets a possible movement for a cell at the specified coordinates</p>
 	 * 
-	 * @param coords 
-	 * @param surface
-	 * @return
+	 * @param coords specified coordinates
+	 * @param surface surface instance
+	 * @param checkIfOccupied if occupied positions should be skipped
+	 * @return a random position from getAvailablePositions()
 	 */
 	public static Coords getRandomAvailablePosition(Coords coords, Surface surface, boolean checkIfOccupied) {
 		List<Coords> positionsAround = Utils.getAvailablePositions(coords, surface, checkIfOccupied);

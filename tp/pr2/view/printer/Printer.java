@@ -1,5 +1,8 @@
 package tp.pr2.view.printer;
 
+/**
+ * <p>Printer singleton.</p>
+ */
 public class Printer {
 	private static Printer instance = null;
 	private boolean useAnsiiCodes = true;
@@ -21,6 +24,10 @@ public class Printer {
 		return this.useAnsiiCodes;
 	}
 	
+	/**
+	 * <p>Prints substituting color patterns with ansii color codes</p>
+	 * @param text text to print
+	 */
 	public void print(String text) {
 		for (Ansii ansii : Ansii.values()) {
 			if (useAnsiiCodes)
