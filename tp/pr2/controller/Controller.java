@@ -2,6 +2,8 @@ package tp.pr2.controller;
 
 import java.util.Scanner;
 
+import tp.pr2.command.Command;
+import tp.pr2.command.CommandParser;
 import tp.pr2.logic.World;
 import tp.pr2.utils.Coords;
 import tp.pr2.view.printer.Printer;
@@ -33,10 +35,10 @@ public class Controller {
 	 */
 	public void executeSimulation(){
 		Printer p = Printer.getInstance();
-		boolean keepLoop = true;
 		String command = "";
+		Command cmd;
 		int row = -1, col = -1;
-		while (keepLoop) {
+		while (!world.isSimulationFinished()) {
 			p.print(this.world);
 			System.out.print("Command: ");
 			
@@ -53,7 +55,14 @@ public class Controller {
 				}
 			}
 			
+			cmd = CommandParser.parseCommand(command.split(" "));
+			if (cmd != null) {
+				cmd.execute(world);
+			} else {
+				System.err.println("Invalid Command.\nWrite \"help\" to get a list of commands."); 
+			}
 			
+			/*
 			command = command.toLowerCase();
 			switch(command)
 			{
@@ -104,15 +113,17 @@ public class Controller {
 				default: 
 					System.err.println("Invalid Command.\nWrite \"help\" to get a list of commands."); 
 					break;
-			}
+			}*/
 		}
 	}
+	
+	
 	
 	/**
 	 * <p>Gets a help message</p>
 	 * @return a help message as a String.
 	 */
-	public String getHelp() {
+	/*public String getHelp() {
 		return "AVAILABLE COMMANDS: \n" +
 			"    STEP: execute a simulation step. \n" + 
 			"    HELP: show this help. \n" +
@@ -122,4 +133,5 @@ public class Controller {
 			"    CREATE R C: create a new cell at position (r,c). \n" +
 			"    DELETE R C: delete the cell at position (r,c). \n";
 	}
+	*/
 }
