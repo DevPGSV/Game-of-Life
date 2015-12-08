@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import tp.pr2.controller.Controller;
 import tp.pr2.logic.World;
-import tp.pr2.view.printer.Printer;
 
 /**
  * <p>Main class</p>
@@ -20,7 +19,7 @@ public class Main {
 	 * @param args Arguments ignored
 	 */
 	public static void main(String[] args) {
-		World world = new World(2, 1);
+		World world = new World(4, 4);
 		Scanner in = new Scanner(System.in);
 		Controller controller = new Controller(world, in);
 		controller.executeSimulation();
