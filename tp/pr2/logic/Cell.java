@@ -7,8 +7,7 @@ import tp.pr2.utils.Coords;
  * <p>A cell is an object with life points and maturation points</p>
  */
 public abstract class Cell {
-	private int lp;
-	private int mp;
+	
 	protected boolean edible;
 	
 	/**
@@ -17,9 +16,8 @@ public abstract class Cell {
 	 * @param lp Life points
 	 * @param mp Maturation points
 	 */
-	public Cell(int lp, int mp){
-		this.lp = lp;
-		this.mp = mp;
+	public Cell(){
+		
 	}
 	
 	/**
@@ -39,56 +37,6 @@ public abstract class Cell {
 	 */
 	public boolean isEdible(){
 		return this.edible;
-	}
-	
-	/**
-	 * <p>Decrease one life</p>
-	 */
-	public void loseLp(){
-		this.lp--;
-	}
-	
-	/**
-	 * <p>Decrease one maturation point</p>
-	 */
-	public void maturate(){
-		this.mp--;
-	}
-	
-	/**
-	 * <p>lp getter</p>
-	 *
-	 * @return      the life points
-	 */
-	public int getLp(){
-		return lp;
-	}
-	
-	/**
-	 * <p>mp getter</p>
-	 *
-	 * @return      the maturation points
-	 */
-	public int getMp(){
-		return mp;
-	}
-	
-	/**
-	 * <p>Checks if the cell should die (ie. if its life is 0)</p>
-	 * 
-	 * @return if (the cells lp == 0)
-	 */
-	public boolean shouldDie() {
-		return (this.lp == 0);
-	}
-	
-	/**
-	 * <p>Checks if the cell should reproduce (ie. if its mp is 0)</p>
-	 * 
-	 * @return if (the cells mp == 0)
-	 */
-	public boolean shouldReproduce() {
-		return (this.mp == 0);
 	}
 	
 	/* (non-Javadoc)

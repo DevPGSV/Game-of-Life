@@ -33,28 +33,13 @@ public class Surface {
 	 * @param coords coordinates of the cell to move
 	 * @return the destination of the cell (or null if it couldn't move)
 	 */
-	public Coords moveCell(Coords coords) {
+	public Coords runCell(Coords coords) {
 		return getCell(coords).executeMove(coords, this);
 	}
 	
-	/**
-	 * <p>Checks if the cell at the specified coordinates should die (ie. if its life is 0)</p>
-	 * 
-	 * @param coords the coordinates of the specified cell
-	 * @return if (the cells lp == 0)
-	 */
-	public boolean shouldDie(Coords coords) {
-		return getCell(coords).shouldDie();
-	}
-	
-	/**
-	 * <p>Checks if the cell at the specified coordinates should reproduce (ie. if its mp is 0)</p>
-	 * 
-	 * @param coords the coordinates of the specified cell
-	 * @return if (the cells mp == 0)
-	 */
-	public boolean shouldReproduce(Coords coords) {
-		return getCell(coords).shouldReproduce();
+	public void moveCell(Coords origin, Coords destination) {
+		createCell(destination, getCell(origin)); // Clones cell from coords to chosenCoords
+		deleteCell(origin);
 	}
 	
 	/**
@@ -78,20 +63,24 @@ public class Surface {
 	/**
 	 * <p>Initializes the board with cells at random positions</p>
 	 */
-	public void initBoard() {
+	public void initBoard(int percentage) {
 		cleanBoard();
 		Random rand = new Random();
-		surface[0][0] = new SimpleCell(Values.MAX_LP, Values.MAX_MP);
-		surface[1][0] = new ComplexCell(Values.MAX_LP, Values.MAX_MP);
-		/*
+		//surface[0][0] = new SimpleCell(Values.MAX_LP, Values.MAX_MP);
+		//surface[1][0] = new ComplexCell(Values.MAX_EAT);
+		
 		for (int i = 0; i < rows; i++){
 			for (int j = 0; j < columns; j++){
-				if ((rand.nextInt() % 2) == 0) {
-					surface[i][j] = new SimpleCell(Values.MAX_LP, Values.MAX_MP);
+				if (rand.nextInt(101) <= percentage) {
+					surface[i][j] = (rand.nextInt(2) == 0 ? new SimpleCell(Values.MAX_LP, Values.MAX_MP) : new ComplexCell(Values.MAX_EAT));
 				}
 			}
 		}
-		*/
+		
+	}
+	
+	public void initBoard() {
+		initBoard(50);
 	}
 	
 	/**
@@ -217,14 +206,17 @@ public class Surface {
 		StringBuilder board = new StringBuilder();
 		
 		
-		board.append(" \\ C   ");
+		board.append(" \\ C    ");
 		for (int j = 0; j < columns; j++){ // Print column numbers
-			board.append((j+1) + "       ");
+			if (j + 1 >= 10) 
+				board.append((j+1) + "      ");
+			else
+				board.append((j+1) + "       ");
 		}
 		board.append("\n");
 		
 		
-		board.append("R \\    ");
+		board.append("R \\     ");
 		for (int j = 0; j < columns; j++){ // Print "v" under column numbers
 			board.append("v       ");
 		}
@@ -233,7 +225,11 @@ public class Surface {
 		
 		// Print board
 		for (int i = 0; i < rows; i++){ 
-			board.append((i+1) + "> |  "); // Print row numbers
+			if (i + 1 >= 10) 
+				board.append((i+1) + "> |  "); // Print row numbers
+			else
+				board.append((i+1) + " > |  "); // Print row numbers
+			
 			for (int j = 0; j < columns; j++){
 				if (!isPositionEmpty(i ,j)) { // If there is a cell
 					board.append(surface[i][j] + "  |  "); // Print the cell

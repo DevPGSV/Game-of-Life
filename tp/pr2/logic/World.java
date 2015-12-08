@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
-
 import tp.pr2.utils.Coords;
-import tp.pr2.utils.Utils;
 
 /**
  * <p>World class</p>
@@ -55,33 +52,8 @@ public class World {
 			currentCoords = boardCoordinates.get(currentCoordsI);
 			if (! surface.isPositionEmpty(currentCoords)) { // If there is a cell (if the position is not empty)
 				if (!movedCells.contains(currentCoords)) { // If cell is not one moved to this position in this evolution step
-					
-					if(surface.getCell(currentCoords).getLp() == 0){ // Kill the cell if its lp is 0
-						returnedMessages.append("Cell at " + currentCoords + " dies of inactivity\n");
-						//System.out.println("Cell at " + currentCoords + " dies of inactivity");
-						surface.deleteCell(currentCoords);
-						
-					}else if(surface.getCell(currentCoords).getMp() == 0){ // Complete its maturation if its mp is 0
-						newCoords = cellMaturation(currentCoords);
-						if (!newCoords.isNullCoords()) { // If the cell could reproduce...
-							returnedMessages.append("New cell born at " + newCoords + "\n");
-							//System.out.println("New cell born at " + newCoords);
-							movedCells.add(currentCoords);
-							movedCells.add(newCoords);
-						} else {
-							surface.deleteCell(currentCoords);
-							returnedMessages.append("Cell at " + currentCoords + " dies on being unable to reproduce\n");
-							//System.out.println("Cell at " + currentCoords + " dies on being unable to reproduce");
-						}
-					}else { // Try to move the cell
-						surface.getCell(currentCoords).maturate();
-						newCoords = surface.moveCell(currentCoords);
-						if (newCoords != null) { // If the cell could move...
-							returnedMessages.append("Cell at " + currentCoords + " moved to " + newCoords + "\n");
-							//System.out.println("Cell at " + currentCoords + " moved to " + newCoords);
-							movedCells.add(newCoords);
-						}
-					}
+					newCoords = surface.runCell(currentCoords);
+					if (newCoords != null) movedCells.add(newCoords);
 				}
 			}
 		}
@@ -95,7 +67,7 @@ public class World {
 	 * @param coords coordinates
 	 * @return      the coordinates where the cell gets moved.
 	 */
-	public Coords moveCell(Coords coords){
+	/*public Coords moveCell(Coords coords){
 		Coords newCoords = Utils.getRandomAvailablePosition(coords, this.surface);
 		if (newCoords != null) {
 			surface.createCell(newCoords, surface.getCell(coords)); // Clones cell from coords to chosenCoords
@@ -105,24 +77,7 @@ public class World {
 			surface.getCell(coords).loseLp();
 			return new Coords();
 		}
-				
-		/*
-		List<Coords> freeSpots = getAvailablePositions(coords);
-		
-		if (freeSpots.isEmpty()) { // If no available positions
-			surface.getCell(coords).loseLp();
-			return new Coords();
-		} else { // If there is at least one available position
-			Random rand = new Random();
-			Coords chosenCoords = freeSpots.get(rand.nextInt(freeSpots.size()));
-			surface.createCell(chosenCoords, surface.getCell(coords)); // Clones cell from coords to chosenCoords
-			surface.deleteCell(coords);
-			return chosenCoords;
-		}
-		
-		*/
-		
-	}
+	}*/
 	
 	/**
 	 * <p>Try to reproduce a cell to an adjacent position</p>
@@ -131,7 +86,7 @@ public class World {
 	 * @param coords coordinates
 	 * @return      the coordinates where the new cell appears.
 	 */
-	public Coords cellMaturation(Coords coords){
+	/*public Coords cellMaturation(Coords coords){
 		List<Coords> freeSpots = Utils.getAvailablePositions(coords, surface);
 
 		if (freeSpots.isEmpty()) { // If no available positions
@@ -144,8 +99,7 @@ public class World {
 			surface.createCell(coords);
 			return chosenCoords;
 		}
-		
-	}
+	}*/
 	
 	/**
 	 * <p>Creates a new cell at the specified coordinates</p>
