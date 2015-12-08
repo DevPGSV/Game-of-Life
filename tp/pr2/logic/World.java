@@ -13,13 +13,14 @@ import tp.pr2.utils.Coords;
  */
 public class World {
 	private Surface surface;
-	
+	private boolean simulationFinished;
 	/**
 	 * <p>World default constructor</p>
 	 * <p>Creates a surface</p>
 	 */
 	public World(){
 		this(Values.BOARD_ROWS, Values.BOARD_COLS);
+		this.simulationFinished = false;
 	}
 	
 	/**
@@ -31,6 +32,14 @@ public class World {
 	 */
 	public World(int rows, int cols) {
 		this.surface = new Surface(rows, cols);
+	}
+	
+	public boolean isSimulationFinished() {
+		return this.simulationFinished;
+	}
+	
+	public void setSimulationFinished() {
+		this.simulationFinished = true;
 	}
 	
 	/**
