@@ -2,3 +2,8 @@ tp.pr1
 tp.pr1.controller
 tp.pr1.logic
 tp.pr1.utils
+tp.pr2
+tp.pr2.controller
+tp.pr2.logic
+tp.pr2.utils
+tp.pr2.view.printer
