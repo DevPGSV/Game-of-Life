@@ -5,7 +5,15 @@ import java.util.List;
 
 public class CommandParser {
 	
-	private static List<Command> availableCommands = Arrays.asList(new HelpCommand());
+	private static List<Command> availableCommands = Arrays.asList(
+			new CleanCommand(),
+			new CreateCommand(),
+			new DeleteCommand(),
+			new ExitCommand(),
+			new HelpCommand(),
+			new InitCommand(),
+			new StepCommand()
+		);
 	
 	public static String helpTextCommands() {
 		StringBuilder helpText = new StringBuilder();
