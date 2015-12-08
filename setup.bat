@@ -1,6 +1,6 @@
 @echo off
 
-set projectBasePckg=tp\pr1
+set projectBasePckg=tp\pr2
 
 setlocal enabledelayedexpansion enableextensions
 
