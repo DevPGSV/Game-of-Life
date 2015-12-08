@@ -1,7 +1,6 @@
 package tp.pr2;
 
 import java.util.Scanner;
-
 import tp.pr2.controller.Controller;
 import tp.pr2.logic.World;
 
