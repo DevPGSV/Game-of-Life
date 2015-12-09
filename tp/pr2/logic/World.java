@@ -34,6 +34,10 @@ public class World {
 		this.surface = new Surface(rows, cols);
 	}
 	
+	public void createNewDimensionedSurface(int rows, int cols) {
+		surface = new Surface(rows, cols);
+	}
+	
 	public boolean isSimulationFinished() {
 		return this.simulationFinished;
 	}
@@ -71,19 +75,6 @@ public class World {
 	
 	/**
 	 * <p>Creates a new cell at the specified coordinates</p>
-	 * <p><b>Overloads: <i>createCell(Coords coords)</i></b></p>
-	 * 
-	 * @see tp.pr2.logic.World#createCell(Coords)
-	 * @param row row coord
-	 * @param col col coord
-	 * @return      if it was possible to create the cell at the given coordinates
-	 */
-	public boolean createCell(int row, int col) {
-		return createCell(new Coords(row, col));
-	}
-	
-	/**
-	 * <p>Creates a new cell at the specified coordinates</p>
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
@@ -94,6 +85,17 @@ public class World {
 	
 	/**
 	 * <p>Creates a new cell at the specified coordinates</p>
+	 * 
+	 * @param coords coordinates
+	 * @param cell cell to place in the specified coordinates
+	 * @return      if it was possible to create the cell at the given coordinates
+	 */
+	public boolean createCell(Coords coords, Cell cell) {
+		return surface.createCell(coords, cell);
+	}
+	
+	/**
+	 * <p>Deletes a new cell at the specified coordinates</p>
 	 * <p><b>Overloads: <i>deleteCell(Coords coords)</i></b></p>
 	 * 
 	 * @see tp.pr2.logic.World#deleteCell(Coords)

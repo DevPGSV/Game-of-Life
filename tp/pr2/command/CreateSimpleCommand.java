@@ -1,0 +1,33 @@
+package tp.pr2.command;
+
+import tp.pr2.logic.SimpleCell;
+import tp.pr2.logic.Values;
+import tp.pr2.logic.World;
+
+public class CreateSimpleCommand extends CommandWithCoords{
+
+	@Override
+	public void execute(World world) {
+		if (world.createCell(this.coords, new SimpleCell(Values.MAX_LP, Values.MAX_MP))) {
+			System.out.println("New simple cell created at " + this.coords);
+		} else {
+			System.err.println("Couldn't create a cell at " + this.coords);
+		}
+	}
+	
+	@Override
+	public CommandWithCoords createInstance() {
+		return new CreateSimpleCommand();
+	}
+
+	@Override
+	public String helpText() {
+		return "{BOLD}" +  this.toString().toUpperCase() + " R C{RESET}	create a new simple cell at position (r,c)";
+	}
+
+	@Override
+	public String toString() {
+		return "createsimple";
+	}
+	
+}

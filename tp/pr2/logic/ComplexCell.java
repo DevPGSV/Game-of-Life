@@ -69,6 +69,7 @@ public class ComplexCell extends Cell{
 				if (shouldBurst()) {
 					System.out.println(this.getClass().getSimpleName() + " at " + coords + " moved to " + newCoords + " eating " + surface.getCell(newCoords).getClass().getSimpleName() + " and bursting");
 					surface.deleteCell(newCoords);
+					surface.deleteCell(coords);
 				} else {
 					System.out.println(this.getClass().getSimpleName() + " at " + coords + " moved to " + newCoords + " eating " + surface.getCell(newCoords).getClass().getSimpleName());
 					surface.deleteCell(newCoords);

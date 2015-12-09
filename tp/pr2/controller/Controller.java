@@ -5,7 +5,6 @@ import java.util.Scanner;
 import tp.pr2.command.Command;
 import tp.pr2.command.CommandParser;
 import tp.pr2.logic.World;
-import tp.pr2.utils.Coords;
 import tp.pr2.view.printer.Printer;
 
 /**
@@ -44,7 +43,7 @@ public class Controller {
 			
 			
 			if (!AUTO_STEP) { 
-				command = in.next(); //read input
+				command = in.nextLine(); //read input
 			} else {
 				System.out.println("step");
 				command = "step";

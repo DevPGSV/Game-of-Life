@@ -2,7 +2,7 @@ package tp.pr2.command;
 
 import tp.pr2.logic.World;
 
-public class ExitCommand extends Command{
+public class ExitCommand extends CommandWithoutCoords{
 
 	@Override
 	public void execute(World world) {
@@ -10,19 +10,18 @@ public class ExitCommand extends Command{
 	}
 
 	@Override
-	public Command parse(String[] commandString) {
-		if ((commandString.length == 1) && (commandString[0].equalsIgnoreCase("exit"))) return new ExitCommand();
-		return null;
-	}
-
-	@Override
 	public String helpText() {
-		return "close the game";
+		return "{BOLD}" +  this.toString().toUpperCase() + " {RESET}		close the game";
 	}
 
 	@Override
 	public String toString() {
 		return "exit";
+	}
+
+	@Override
+	public CommandWithoutCoords createInstance() {
+		return new ExitCommand();
 	}
 	
 }

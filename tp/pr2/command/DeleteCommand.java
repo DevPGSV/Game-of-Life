@@ -2,27 +2,29 @@ package tp.pr2.command;
 
 import tp.pr2.logic.World;
 
-public class DeleteCommand extends Command{
+public class DeleteCommand extends CommandWithCoords{
 
 	@Override
 	public void execute(World world) {
-		
+		if (world.deleteCell(this.coords)) {
+			System.out.println("Cell deleted at " + this.coords);
+		} else {
+			System.err.println("Couldn't delete cell at " + this.coords);
+		}
 	}
-
+	
 	@Override
-	public Command parse(String[] commandString) {
-		if ((commandString.length == -1) && (commandString[0].equalsIgnoreCase("delete"))) return new DeleteCommand(); //!
-		return null;
+	public CommandWithCoords createInstance() {
+		return new DeleteCommand();
 	}
 
 	@Override
 	public String helpText() {
-		return "delete the cell at position (r,c)";
+		return "{BOLD}" +  this.toString().toUpperCase() + " R C{RESET}		delete the cell at position (r,c)";
 	}
 
 	@Override
 	public String toString() {
-		return "delete r c";
+		return "delete";
 	}
-	
 }
