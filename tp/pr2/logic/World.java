@@ -34,14 +34,28 @@ public class World {
 		this.surface = new Surface(rows, cols);
 	}
 	
+	/**
+	 * <p>Creates a surface with the specified dimensions</p>
+	 * 
+	 * @param rows number of rows of the surface to be created
+	 * @param cols number of columns of the surface to be created
+	 */
 	public void createNewDimensionedSurface(int rows, int cols) {
 		surface = new Surface(rows, cols);
 	}
 	
+	/**
+	 * <p>Checks if the simulation is finished</p>
+	 * 
+	 * @return if the simulation is finished
+	 */
 	public boolean isSimulationFinished() {
 		return this.simulationFinished;
 	}
 	
+	/**
+	 * <p>Sets the simulation as finished</p> 
+	 */
 	public void setSimulationFinished() {
 		this.simulationFinished = true;
 	}

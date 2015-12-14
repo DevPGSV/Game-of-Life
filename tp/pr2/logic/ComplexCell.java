@@ -2,6 +2,7 @@ package tp.pr2.logic;
 
 import tp.pr2.utils.Coords;
 import tp.pr2.utils.Utils;
+import tp.pr2.view.printer.PrintSituation;
 
 /**
  * <p>ComplexCell class.</p>
@@ -63,15 +64,15 @@ public class ComplexCell extends Cell{
 		if (newCoords != null) {
 			if (surface.isPositionEmpty(newCoords)) {
 				surface.moveCell(coords, newCoords);
-				System.out.println(this.getClass().getSimpleName() + " at " + coords + " moved to " + newCoords);
+				PrintSituation.cellMoves(this.getClass().getSimpleName(), coords, newCoords);
 			} else if (surface.getCell(newCoords).isEdible()){
 				loseEc();
 				if (shouldBurst()) {
-					System.out.println(this.getClass().getSimpleName() + " at " + coords + " moved to " + newCoords + " eating " + surface.getCell(newCoords).getClass().getSimpleName() + " and bursting");
+					PrintSituation.eat(this.getClass().getSimpleName(), coords, surface.getCell(newCoords).getClass().getSimpleName(), newCoords, true);
 					surface.deleteCell(newCoords);
 					surface.deleteCell(coords);
 				} else {
-					System.out.println(this.getClass().getSimpleName() + " at " + coords + " moved to " + newCoords + " eating " + surface.getCell(newCoords).getClass().getSimpleName());
+					PrintSituation.eat(this.getClass().getSimpleName(), coords, surface.getCell(newCoords).getClass().getSimpleName(), newCoords, false);
 					surface.deleteCell(newCoords);
 					surface.moveCell(coords, newCoords);
 				}

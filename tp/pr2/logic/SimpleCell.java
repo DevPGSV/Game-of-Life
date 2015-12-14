@@ -2,6 +2,7 @@ package tp.pr2.logic;
 
 import tp.pr2.utils.Coords;
 import tp.pr2.utils.Utils;
+import tp.pr2.view.printer.PrintSituation;
 
 /**
  * <p>SimpleCell class.</p>
@@ -37,8 +38,7 @@ public class SimpleCell extends Cell{
 	@Override
 	public Coords executeMove(Coords coords, Surface surface) {
 		if (shouldDie()) { // Kill the cell if its lp is 0
-			System.out.println(this.getClass().getSimpleName() + " at " + coords + " dies of inactivity");
-			//new Action(this).atCoordinates(coords).dies("inactivity").create();
+			PrintSituation.cellDiesOfInactivity(this.getClass().getSimpleName(), coords);
 			surface.deleteCell(coords);
 			return null;
 		} else if (shouldReproduce()) { // Complete its maturation if its mp is 0
@@ -46,11 +46,11 @@ public class SimpleCell extends Cell{
 			if (newCoords != null) {
 				surface.deleteCell(coords); surface.createCell(coords);
 				surface.createCell(newCoords);
-				System.out.println(this.getClass().getSimpleName() + " at " + coords + " divided creating new cells at " + coords + " and " + newCoords);
+				PrintSituation.cellReproduces(this.getClass().getSimpleName(), coords, newCoords);
 				return newCoords;
 			} else {
 				surface.deleteCell(coords);
-				System.out.println(this.getClass().getSimpleName() + " at " + coords + " dies on being unable to reproduce");
+				PrintSituation.cellDiesOfUnableToReproduce(this.getClass().getSimpleName(), coords);
 				return null;
 			}
 		} else { // Try to move the cell
@@ -58,7 +58,7 @@ public class SimpleCell extends Cell{
 			Coords newCoords = Utils.getRandomAvailablePosition(coords, surface, true);
 			if (newCoords != null) {
 				surface.moveCell(coords, newCoords);
-				System.out.println(this.getClass().getSimpleName() + " at " + coords + " moved to " + newCoords);
+				PrintSituation.cellMoves(this.getClass().getSimpleName(), coords, newCoords);
 				return newCoords;
 			} else {
 				loseLp();

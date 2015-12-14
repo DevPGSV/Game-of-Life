@@ -8,6 +8,11 @@ public abstract class CommandWithCoords extends Command{
 	
 	protected Coords coords;
 	
+	/**
+	 * <p>Returns an instance of this command</p>
+	 * 
+	 * @return an instance of this command
+	 */
 	public abstract CommandWithCoords createInstance();
 	
 	@Override

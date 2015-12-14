@@ -88,7 +88,7 @@ public class Surface {
 	/**
 	 * <p>Initializes the board with cells at random positions</p>
 	 * <p><b>Overloads: <i>initBoard(int percentage)</i></b></p>
-	 * calls <i>initBoard</i> with a percentage of 50
+	 * <p>calls <i>initBoard</i> with a percentage of 50</p>
 	 * @see tp.pr2.logic.Surface#initBoard(int)
 	 */
 	public void initBoard() {

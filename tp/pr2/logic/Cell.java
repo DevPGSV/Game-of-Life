@@ -9,7 +9,7 @@ import tp.pr2.utils.Coords;
 public abstract class Cell {
 	
 	/**
-	 * Cell Edibility
+	 * <p>Cell Edibility</p>
 	 */
 	protected boolean edible;
 	

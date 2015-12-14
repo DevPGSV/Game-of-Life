@@ -2,6 +2,11 @@ package tp.pr2.command;
 
 public abstract class CommandWithoutCoords extends Command{
 	
+	/**
+	 * <p>Returns an instance of this command</p>
+	 * 
+	 * @return an instance of this command
+	 */
 	public abstract CommandWithoutCoords createInstance();
 	
 	@Override

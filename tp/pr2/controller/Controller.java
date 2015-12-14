@@ -36,7 +36,6 @@ public class Controller {
 		Printer p = Printer.getInstance();
 		String command = "";
 		Command cmd;
-		int row = -1, col = -1;
 		while (!world.isSimulationFinished()) {
 			p.print(this.world);
 			System.out.print("Command: ");
@@ -115,22 +114,4 @@ public class Controller {
 			}*/
 		}
 	}
-	
-	
-	
-	/**
-	 * <p>Gets a help message</p>
-	 * @return a help message as a String.
-	 */
-	/*public String getHelp() {
-		return "AVAILABLE COMMANDS: \n" +
-			"    STEP: execute a simulation step. \n" + 
-			"    HELP: show this help. \n" +
-			"    EXIT: close the game. \n" +
-			"    INIT: restart the game. \n" +
-			"    CLEAN: delete all the cells. \n" +
-			"    CREATE R C: create a new cell at position (r,c). \n" +
-			"    DELETE R C: delete the cell at position (r,c). \n";
-	}
-	*/
 }
