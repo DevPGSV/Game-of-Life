@@ -1,6 +1,7 @@
 package tp.pr2.logic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import tp.pr2.utils.Coords;
@@ -10,7 +11,7 @@ import tp.pr2.utils.Coords;
  * <p>Contains a surface.</p>
  * <p>Handles the simulation of the game.</p>
  */
-public class World implements WorldType {
+public class FairWorld implements WorldType{
 	
 	private Surface surface;
 	private boolean simulationFinished;
@@ -18,8 +19,9 @@ public class World implements WorldType {
 	 * <p>World default constructor</p>
 	 * <p>Creates a surface</p>
 	 */
-	public World(){
+	public FairWorld(){
 		this(Values.BOARD_ROWS, Values.BOARD_COLS);
+		this.simulationFinished = false;
 	}
 	
 	/**
@@ -29,9 +31,8 @@ public class World implements WorldType {
 	 * @param rows number of rows of the surface to be created
 	 * @param cols number of columns of the surface to be created
 	 */
-	public World(int rows, int cols) {
-		createNewDimensionedSurface(rows, cols);
-		this.simulationFinished = false;
+	public FairWorld(int rows, int cols) {
+		this.surface = new Surface(rows, cols);
 	}
 	
 	/**
@@ -41,8 +42,7 @@ public class World implements WorldType {
 	 * @param cols number of columns of the surface to be created
 	 */
 	public void createNewDimensionedSurface(int rows, int cols) {
-		if ((rows < 0) || (cols < 0)) this.surface = new Surface(Values.BOARD_ROWS, Values.BOARD_COLS);
-		else this.surface = new Surface(rows, cols);
+		surface = new Surface(rows, cols);
 	}
 	
 	/**
@@ -73,6 +73,7 @@ public class World implements WorldType {
 		for (int i = 0; i < surface.getRows(); i++)
 			for (int j = 0; j < surface.getColumns(); j++)
 				boardCoordinates.add(new Coords(i, j));
+		Collections.shuffle(boardCoordinates);
 		
 		Coords newCoords, currentCoords;
 		for (int currentCoordsI = 0; currentCoordsI < boardCoordinates.size(); currentCoordsI++) { // For each (randomized) position in the board
@@ -112,7 +113,7 @@ public class World implements WorldType {
 	 * <p>Deletes a new cell at the specified coordinates</p>
 	 * <p><b>Overloads: <i>deleteCell(Coords coords)</i></b></p>
 	 * 
-	 * @see tp.pr2.logic.World#deleteCell(Coords)
+	 * @see tp.pr2.logic.FairWorld#deleteCell(Coords)
 	 * @param row row coord
 	 * @param col col coord
 	 * @return      if it was possible to delete the cell at the given coordinates
