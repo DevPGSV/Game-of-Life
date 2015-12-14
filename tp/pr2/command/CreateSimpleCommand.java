@@ -22,7 +22,7 @@ public class CreateSimpleCommand extends CommandWithCoords{
 
 	@Override
 	public String helpText() {
-		return "{BOLD}" +  this.toString().toUpperCase() + " R C{RESET}	create a new simple cell at position (r,c)";
+		return "{BOLD}" +  this.toString().toUpperCase() + " C R{RESET}	create a new simple cell at position (c, r)";
 	}
 
 	@Override

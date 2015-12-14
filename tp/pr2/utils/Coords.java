@@ -75,7 +75,7 @@ public class Coords {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "(" + (getRow()+1) + ", " + (getColumn()+1) + ")";
+		return "(" + (getColumn()+1) + ", " + (getRow()+1) + ")";
 	}
 	
 	

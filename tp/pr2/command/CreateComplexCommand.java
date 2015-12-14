@@ -22,7 +22,7 @@ public class CreateComplexCommand extends CommandWithCoords{
 
 	@Override
 	public String helpText() {
-		return "{BOLD}" +  this.toString().toUpperCase() + " R C{RESET}	create a new complex cell at position (r,c)";
+		return "{BOLD}" +  this.toString().toUpperCase() + " C R{RESET}	create a new complex cell at position (c, r)";
 	}
 
 	@Override

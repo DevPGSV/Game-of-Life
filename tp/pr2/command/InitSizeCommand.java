@@ -16,7 +16,7 @@ public class InitSizeCommand extends CommandWithCoords{
 
 	@Override
 	public String helpText() {
-		return "{BOLD}" +  this.toString().toUpperCase() + " R C{RESET}		restart the game with size RxC";
+		return "{BOLD}" +  this.toString().toUpperCase() + " C R{RESET}		restart the game with size CxR";
 	}
 
 	@Override
