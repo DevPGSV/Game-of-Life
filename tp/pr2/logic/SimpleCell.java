@@ -2,7 +2,7 @@ package tp.pr2.logic;
 
 import tp.pr2.utils.Coords;
 import tp.pr2.utils.Utils;
-import tp.pr2.view.printer.PrintSituation;
+import tp.pr2.view.PrintSituation;
 
 /**
  * <p>SimpleCell class.</p>

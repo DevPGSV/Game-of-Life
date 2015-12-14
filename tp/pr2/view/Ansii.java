@@ -1,4 +1,4 @@
-package tp.pr2.view.printer;
+package tp.pr2.view;
 
 public enum Ansii {
 	RESET		("\u001B[0m"),

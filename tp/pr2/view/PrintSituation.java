@@ -1,4 +1,4 @@
-package tp.pr2.view.printer;
+package tp.pr2.view;
 
 import tp.pr2.utils.Coords;
 

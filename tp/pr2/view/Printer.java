@@ -1,4 +1,4 @@
-package tp.pr2.view.printer;
+package tp.pr2.view;
 
 /**
  * <p>Printer singleton.</p>
@@ -12,7 +12,7 @@ public class Printer {
 	 */
 	private Printer() {
 		if( System.getProperty("os.name").startsWith("Windows") ) {
-			useAnsiiCodes = false;
+			//useAnsiiCodes = false;
 		}
 	}
 	

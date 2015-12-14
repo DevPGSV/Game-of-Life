@@ -5,7 +5,7 @@ import java.util.Scanner;
 import tp.pr2.command.Command;
 import tp.pr2.command.CommandParser;
 import tp.pr2.logic.World;
-import tp.pr2.view.printer.Printer;
+import tp.pr2.view.Printer;
 
 /**
  * <p>Controller class.</p> 
