@@ -12,7 +12,7 @@ public class Printer {
 	 */
 	private Printer() {
 		if( System.getProperty("os.name").startsWith("Windows") ) {
-			//useAnsiiCodes = false;
+			useAnsiiCodes = false;
 		}
 	}
 	
