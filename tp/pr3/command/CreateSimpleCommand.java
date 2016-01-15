@@ -1,5 +1,6 @@
 package tp.pr3.command;
 
+import tp.pr3.controller.Controller;
 import tp.pr3.logic.SimpleCell;
 import tp.pr3.logic.Values;
 import tp.pr3.logic.World;
@@ -7,7 +8,7 @@ import tp.pr3.logic.World;
 public class CreateSimpleCommand extends CommandWithCoords{
 
 	@Override
-	public void execute(World world) {
+	public void execute(World world, Controller controller) {
 		if (world.createCell(this.coords, new SimpleCell(Values.MAX_LP, Values.MAX_MP))) {
 			System.out.println("New simple cell created at " + this.coords);
 		} else {

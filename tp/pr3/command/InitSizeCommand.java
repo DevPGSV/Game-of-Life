@@ -1,5 +1,6 @@
 package tp.pr3.command;
 
+import tp.pr3.controller.Controller;
 import tp.pr3.logic.World;
 
 public class InitSizeCommand extends CommandWithCoords{
@@ -10,7 +11,7 @@ public class InitSizeCommand extends CommandWithCoords{
 	}
 
 	@Override
-	public void execute(World world) {
+	public void execute(World world, Controller controller) {
 		world.createNewDimensionedSurface(this.coords.getRow() + 1, this.coords.getColumn() + 1);
 	}
 

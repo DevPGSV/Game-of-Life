@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import tp.pr3.utils.Coords;
-import tp.pr3.utils.SingleRandom;
 
 /**
  * <p>World class.</p>
@@ -13,8 +12,8 @@ import tp.pr3.utils.SingleRandom;
  */
 public abstract class World implements WorldType {
 	
-	private Surface surface;
-	private boolean simulationFinished;
+	protected Surface surface;
+	
 	/**
 	 * <p>World default constructor</p>
 	 * <p>Creates a surface</p>
@@ -32,7 +31,6 @@ public abstract class World implements WorldType {
 	 */
 	public World(int rows, int cols) {
 		createNewDimensionedSurface(rows, cols);
-		this.simulationFinished = false;
 	}
 	
 	/**
@@ -46,21 +44,7 @@ public abstract class World implements WorldType {
 		else this.surface = new Surface(rows, cols);
 	}
 	
-	/**
-	 * <p>Checks if the simulation is finished</p>
-	 * 
-	 * @return if the simulation is finished
-	 */
-	public boolean isSimulationFinished() {
-		return this.simulationFinished;
-	}
 	
-	/**
-	 * <p>Sets the simulation as finished</p> 
-	 */
-	public void setSimulationFinished() {
-		this.simulationFinished = true;
-	}
 	
 	/**
 	 * <p>Execute a simulation step</p>
@@ -137,26 +121,8 @@ public abstract class World implements WorldType {
 	 * 
 	 * @param percentage approximate percentage of cells
 	 */
-	public void initWorld(int percentage) {
-		surface.cleanBoard();
-		
-		for (int i = 0; i < surface.getRows(); i++){
-			for (int j = 0; j < surface.getColumns(); j++){
-				if (SingleRandom.getInstance().getRandom().nextInt(101) <= percentage) {
-					surface.createCell(new Coords(i,  j), (SingleRandom.getInstance().getRandom().nextInt(2) == 0 ? new SimpleCell(Values.MAX_LP, Values.MAX_MP) : new ComplexCell(Values.MAX_EAT)));
-					//surface[i][j] = (rand.nextInt(2) == 0 ? new SimpleCell(Values.MAX_LP, Values.MAX_MP) : new ComplexCell(Values.MAX_EAT));
-				}
-			}
-		}
-		
-	}
+	public abstract void initWorld(int numberSimpleCells);
 	
-	/**
-	 * <p>Initializes the world with cells at random positions</p>
-	 * <p><b>Overloads: <i>initWorld(int percentage)</i></b></p>
-	 * <p>calls <i>initWorld</i> with a percentage of 50</p>
-	 * @see tp.pr3.logic.World#initWorld(int)
-	 */
 	public void initWorld() {
 		initWorld(surface.getRows() * surface.getColumns() / 4);
 	}

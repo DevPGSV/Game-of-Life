@@ -1,5 +1,6 @@
 package tp.pr3.command;
 
+import tp.pr3.controller.Controller;
 import tp.pr3.logic.World;
 
 public abstract class Command {
@@ -8,7 +9,7 @@ public abstract class Command {
 	 * 
 	 * @param world World in which the command is executed
 	 */
-	public abstract void execute(World world);
+	public abstract void execute(World world, Controller controller);
 	
 	/**
 	 * <p>Analyzes grammatically the command</p>
