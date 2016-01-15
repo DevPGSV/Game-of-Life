@@ -3,6 +3,8 @@ package tp.pr3.logic;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
+import tp.pr3.exceptions.InvalidCoordsException;
 import tp.pr3.utils.Coords;
 
 /**
@@ -50,8 +52,9 @@ public abstract class World implements WorldType {
 	 * <p>Execute a simulation step</p>
 	 * 
 	 * @return any messages about events in the current simulation step.
+	 * @throws InvalidCoordsException 
 	 */
-	public String evolve(){
+	public String evolve() throws InvalidCoordsException{
 		StringBuilder returnedMessages = new StringBuilder();
 		HashSet<Coords> movedCells = new HashSet<Coords>();
 		List<Coords> boardCoordinates = new ArrayList<Coords>();
@@ -77,8 +80,9 @@ public abstract class World implements WorldType {
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
+	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords) {
+	public boolean createCell(Coords coords) throws InvalidCoordsException {
 		return surface.createCell(coords);
 	}
 	
@@ -88,8 +92,9 @@ public abstract class World implements WorldType {
 	 * @param coords coordinates
 	 * @param cell cell to place in the specified coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
+	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords, Cell cell) {
+	public boolean createCell(Coords coords, Cell cell) throws InvalidCoordsException {
 		return surface.createCell(coords, cell);
 	}
 	
@@ -120,10 +125,11 @@ public abstract class World implements WorldType {
 	 * <p>Initializes the board with cells at random positions</p>
 	 * 
 	 * @param percentage approximate percentage of cells
+	 * @throws InvalidCoordsException 
 	 */
-	public abstract void initWorld(int numberSimpleCells);
+	public abstract void initWorld(int numberSimpleCells) throws InvalidCoordsException;
 	
-	public void initWorld() {
+	public void initWorld() throws InvalidCoordsException {
 		initWorld(surface.getRows() * surface.getColumns() / 4);
 	}
 	
@@ -139,6 +145,15 @@ public abstract class World implements WorldType {
 	 */
 	public String toString() {
 		return surface.toString();
+	}
+	
+	
+	public int getRows() {
+		return surface.getRows();
+	}
+	
+	public int getCols() {
+		return surface.getColumns();
 	}
 	
 }

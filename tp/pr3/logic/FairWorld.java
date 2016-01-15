@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+
+import tp.pr3.exceptions.InvalidCoordsException;
 import tp.pr3.utils.Coords;
 
 /**
@@ -65,8 +67,9 @@ public class FairWorld implements WorldType{
 	 * <p>Execute a simulation step</p>
 	 * 
 	 * @return any messages about events in the current simulation step.
+	 * @throws InvalidCoordsException 
 	 */
-	public String evolve(){
+	public String evolve() throws InvalidCoordsException{
 		StringBuilder returnedMessages = new StringBuilder();
 		HashSet<Coords> movedCells = new HashSet<Coords>();
 		List<Coords> boardCoordinates = new ArrayList<Coords>();
@@ -93,8 +96,9 @@ public class FairWorld implements WorldType{
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
+	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords) {
+	public boolean createCell(Coords coords) throws InvalidCoordsException {
 		return surface.createCell(coords);
 	}
 	
@@ -104,8 +108,9 @@ public class FairWorld implements WorldType{
 	 * @param coords coordinates
 	 * @param cell cell to place in the specified coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
+	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords, Cell cell) {
+	public boolean createCell(Coords coords, Cell cell) throws InvalidCoordsException {
 		return surface.createCell(coords, cell);
 	}
 	

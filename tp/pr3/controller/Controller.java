@@ -1,9 +1,11 @@
 package tp.pr3.controller;
 
 import java.util.Scanner;
-
 import tp.pr3.command.Command;
 import tp.pr3.command.CommandParser;
+import tp.pr3.exceptions.InvalidCommandException;
+import tp.pr3.exceptions.InvalidCoordsException;
+import tp.pr3.logic.Cell;
 import tp.pr3.logic.World;
 import tp.pr3.utils.Coords;
 import tp.pr3.view.Printer;
@@ -56,12 +58,17 @@ public class Controller {
 				}
 			}
 			
-			cmd = CommandParser.parseCommand(command.split(" "));
-			if (cmd != null) {
+			try {
+				cmd = CommandParser.parseCommand(command.split(" "));
 				cmd.execute(world, this);
-			} else {
-				System.err.println("Invalid Command.\nWrite \"help\" to get a list of commands."); 
+			} catch (InvalidCommandException e) {
+				System.err.println(e.getMessage() + "\nWrite \"help\" to get a list of commands.");
+				//e.printStackTrace();
+			} catch (InvalidCoordsException e) {
+				System.err.println(e.getMessage());
 			}
+			
+			//System.err.println("Invalid Command."); 
 		}
 	}
 	
@@ -94,11 +101,16 @@ public class Controller {
 		this.simulationFinished = true;
 	}
 	
-	public void initWorld() {
+	public void initWorld() throws InvalidCoordsException {
 		world.initWorld();
 	}
 	
-	public void step() {
+	public void step() throws InvalidCoordsException {
 		Printer.getInstance().print(world.evolve());
+	}
+	
+	public void createCell(Coords coords, Cell cell) throws InvalidCoordsException {
+		world.createCell(coords, cell);
+		System.out.println("New simple cell created at " + coords);
 	}
 }

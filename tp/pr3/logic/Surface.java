@@ -1,5 +1,6 @@
 package tp.pr3.logic;
 
+import tp.pr3.exceptions.InvalidCoordsException;
 import tp.pr3.utils.Coords;
 
 /**
@@ -29,8 +30,9 @@ public class Surface {
 	 * 
 	 * @param coords coordinates of the cell to run
 	 * @return the destination of the cell (or null if it couldn't move)
+	 * @throws InvalidCoordsException 
 	 */
-	public Coords runCell(Coords coords) {
+	public Coords runCell(Coords coords) throws InvalidCoordsException {
 		return getCell(coords).executeMove(coords, this);
 	}
 	
@@ -39,8 +41,9 @@ public class Surface {
 	 * 
 	 * @param origin initial position
 	 * @param destination final position
+	 * @throws InvalidCoordsException 
 	 */
-	public void moveCell(Coords origin, Coords destination) {
+	public void moveCell(Coords origin, Coords destination) throws InvalidCoordsException {
 		createCell(destination, getCell(origin)); // Clones cell from coords to chosenCoords
 		deleteCell(origin);
 	}
@@ -123,8 +126,9 @@ public class Surface {
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
+	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords) {
+	public boolean createCell(Coords coords) throws InvalidCoordsException {
 		return createCell(coords, new SimpleCell(Values.MAX_LP, Values.MAX_MP));
 	}
 	
@@ -134,15 +138,16 @@ public class Surface {
 	 * @param coords coordinates
 	 * @param cell cell to place in the specified coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
+	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords, Cell cell) {
-		if((coords.getRow() >= 0) && (coords.getRow() < this.rows)) {
-			if((coords.getColumn() >= 0) && (coords.getColumn() < this.columns)) {
-				if (surface[coords.getRow()][coords.getColumn()] == null) {
-					surface[coords.getRow()][coords.getColumn()] = cell;
-					return true;
-				}
-			}
+	public boolean createCell(Coords coords, Cell cell) throws InvalidCoordsException {
+		if((coords.getRow() < 0) || (coords.getRow() >= this.rows) || (coords.getColumn() < 0) || (coords.getColumn() <= this.columns)) {
+			throw new InvalidCoordsException();
+		}
+		
+		if (surface[coords.getRow()][coords.getColumn()] == null) {
+			surface[coords.getRow()][coords.getColumn()] = cell;
+			return true;
 		}
 		return false;
 	}

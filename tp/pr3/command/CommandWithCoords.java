@@ -1,5 +1,6 @@
 package tp.pr3.command;
 
+import tp.pr3.exceptions.InvalidCoordsException;
 import tp.pr3.utils.Coords;
 
 
@@ -16,13 +17,13 @@ public abstract class CommandWithCoords extends Command{
 	public abstract CommandWithCoords createInstance();
 	
 	@Override
-	public Command parse(String[] commandString) {
+	public Command parse(String[] commandString) throws InvalidCoordsException {
 		if ((commandString.length != 3)) return null;
 		Coords coords = null;
 		try {
 			coords = new Coords(Integer.parseInt(commandString[2]) - 1, Integer.parseInt(commandString[1]) - 1);
 		} catch (NumberFormatException e) {
-			coords = null;
+			throw new InvalidCoordsException("Invalid coordinates.");
 		}
 		
 		if (commandString[0].equalsIgnoreCase(this.toString()) && coords != null) {

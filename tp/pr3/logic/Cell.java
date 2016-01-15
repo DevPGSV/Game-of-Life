@@ -1,5 +1,6 @@
 package tp.pr3.logic;
 
+import tp.pr3.exceptions.InvalidCoordsException;
 import tp.pr3.utils.Coords;
 
 /**
@@ -21,8 +22,9 @@ public abstract class Cell {
 	 * @param coords Origin coordinates
 	 * @param surface Surface instance
 	 * @return the destination of the cell (or null if it couldn't move)
+	 * @throws InvalidCoordsException 
 	 */
-	public abstract Coords executeMove(Coords coords, Surface surface);
+	public abstract Coords executeMove(Coords coords, Surface surface) throws InvalidCoordsException;
 	
 	
 	/**

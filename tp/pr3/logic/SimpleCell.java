@@ -1,5 +1,6 @@
 package tp.pr3.logic;
 
+import tp.pr3.exceptions.InvalidCoordsException;
 import tp.pr3.utils.Coords;
 import tp.pr3.utils.Utils;
 import tp.pr3.view.PrintSituation;
@@ -36,7 +37,7 @@ public class SimpleCell extends Cell{
 	 * @see tp.pr2.logic.Cell#executeMove(tp.pr2.utils.Coords, tp.pr2.logic.Surface)
 	 */
 	@Override
-	public Coords executeMove(Coords coords, Surface surface) {
+	public Coords executeMove(Coords coords, Surface surface) throws InvalidCoordsException {
 		if (shouldDie()) { // Kill the cell if its lp is 0
 			PrintSituation.cellDiesOfInactivity(this.getClass().getSimpleName(), coords);
 			surface.deleteCell(coords);

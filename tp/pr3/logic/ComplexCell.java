@@ -1,5 +1,6 @@
 package tp.pr3.logic;
 
+import tp.pr3.exceptions.InvalidCoordsException;
 import tp.pr3.utils.Coords;
 import tp.pr3.utils.Utils;
 import tp.pr3.view.PrintSituation;
@@ -59,7 +60,7 @@ public class ComplexCell extends Cell{
 	 * @see tp.pr2.logic.Cell#executeMove(tp.pr2.utils.Coords, tp.pr2.logic.Surface)
 	 */
 	@Override
-	public Coords executeMove(Coords coords, Surface surface) {
+	public Coords executeMove(Coords coords, Surface surface) throws InvalidCoordsException {
 		Coords newCoords = Utils.getRandomAvailablePosition(coords, surface, false);
 		if (newCoords != null) {
 			if (surface.isPositionEmpty(newCoords)) {

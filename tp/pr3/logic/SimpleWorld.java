@@ -3,6 +3,8 @@ package tp.pr3.logic;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import tp.pr3.exceptions.InvalidCoordsException;
 import tp.pr3.utils.Coords;
 
 public class SimpleWorld extends World{
@@ -11,7 +13,7 @@ public class SimpleWorld extends World{
 		super(rows, cols);
 	}
 	
-	public void initWorld(int numberSimpleCells)  {
+	public void initWorld(int numberSimpleCells) throws InvalidCoordsException  {
 		this.surface.cleanBoard();
 		List<Coords> boardCoordinates = new ArrayList<Coords>();
 		for (int i = 0; i < surface.getRows(); i++)

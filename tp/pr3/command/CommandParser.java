@@ -3,6 +3,9 @@ package tp.pr3.command;
 import java.util.Arrays;
 import java.util.List;
 
+import tp.pr3.exceptions.InvalidCommandException;
+import tp.pr3.exceptions.InvalidCoordsException;
+
 public class CommandParser {
 	
 	private static List<Command> availableCommands = Arrays.asList(
@@ -36,13 +39,15 @@ public class CommandParser {
 	 * 
 	 * @param commandString the command as an array of words
 	 * @return an object representing the command, or null if the command doesn't exist
+	 * @throws InvalidCommandException 
+	 * @throws InvalidCoordsException 
 	 */
-	public static Command parseCommand(String[] commandString) {
+	public static Command parseCommand(String[] commandString) throws InvalidCommandException, InvalidCoordsException {
 		Command cObject;
 		for(Command command : availableCommands) {
 			cObject = command.parse(commandString);
 			if (cObject != null) return cObject;
 		}
-		return null;
+		throw new InvalidCommandException("Invalid Command.");
 	}
 }
