@@ -2,8 +2,6 @@ package tp.pr3.utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 import tp.pr3.logic.Surface;
 
 public class Utils {
@@ -49,8 +47,7 @@ public class Utils {
 		if (positionsAround.isEmpty()) { // If no available positions
 			return null;
 		} else { // If there is at least one available position
-			Random rand = new Random();
-			return positionsAround.get(rand.nextInt(positionsAround.size()));
+			return positionsAround.get(SingleRandom.getInstance().getRandom().nextInt(positionsAround.size()));
 		}
 	}
 }

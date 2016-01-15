@@ -5,6 +5,7 @@ import java.util.Scanner;
 import tp.pr3.controller.Controller;
 import tp.pr3.logic.SimpleWorld;
 import tp.pr3.logic.World;
+import tp.pr3.utils.SingleRandom;
 
 /**
  * <p>Main class</p>
@@ -20,6 +21,10 @@ public class Main {
 	 * @param args Arguments ignored
 	 */
 	public static void main(String[] args) {
+		long rndSeed = 54545515;
+		SingleRandom.getInstance().getRandom().setSeed(rndSeed);
+		
+		
 		World world = new SimpleWorld(4, 4);
 		Scanner in = new Scanner(System.in);
 		Controller controller = new Controller(world, in);

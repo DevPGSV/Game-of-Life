@@ -3,9 +3,8 @@ package tp.pr3.logic;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
-
 import tp.pr3.utils.Coords;
+import tp.pr3.utils.SingleRandom;
 
 /**
  * <p>World class.</p>
@@ -140,12 +139,11 @@ public abstract class World implements WorldType {
 	 */
 	public void initWorld(int percentage) {
 		surface.cleanBoard();
-		Random rand = new Random();
 		
 		for (int i = 0; i < surface.getRows(); i++){
 			for (int j = 0; j < surface.getColumns(); j++){
-				if (rand.nextInt(101) <= percentage) {
-					surface.createCell(new Coords(i,  j), (rand.nextInt(2) == 0 ? new SimpleCell(Values.MAX_LP, Values.MAX_MP) : new ComplexCell(Values.MAX_EAT)));
+				if (SingleRandom.getInstance().getRandom().nextInt(101) <= percentage) {
+					surface.createCell(new Coords(i,  j), (SingleRandom.getInstance().getRandom().nextInt(2) == 0 ? new SimpleCell(Values.MAX_LP, Values.MAX_MP) : new ComplexCell(Values.MAX_EAT)));
 					//surface[i][j] = (rand.nextInt(2) == 0 ? new SimpleCell(Values.MAX_LP, Values.MAX_MP) : new ComplexCell(Values.MAX_EAT));
 				}
 			}

@@ -60,58 +60,6 @@ public class Controller {
 				System.err.println("Invalid Command.\nWrite \"help\" to get a list of commands."); 
 			}
 			
-			/*
-			command = command.toLowerCase();
-			switch(command)
-			{
-				case "step": 
-					p.print(this.world.evolve());
-					break;
-	
-				case "init": 
-					this.world.initWorld();
-					break;
-	
-				case "clean":
-					this.world.cleanWorld();
-					System.out.println("cleaning the game...");
-					break;
-	
-				case "create":
-					row = in.nextInt() - 1;
-					col = in.nextInt() - 1;
-					in.nextLine();
-					if (world.createCell(new Coords(row, col))) {
-						System.out.println("New cell created at " + new Coords(row, col));
-					} else {
-						System.err.println("Couldn't create a cell at " + new Coords(row, col));
-					}
-					break;
-	
-				case "delete":
-					row = in.nextInt() - 1;
-					col = in.nextInt() - 1;
-					in.nextLine();
-					if (world.deleteCell(new Coords(row, col))) {
-						System.out.println("Cell deleted at " + new Coords(row, col));
-					} else {
-						System.err.println("Couldn't delete cell at " + new Coords(row, col));
-					}
-					break;
-	
-				case "help":
-					System.out.println(getHelp());
-					break;
-	
-				case "exit":
-					keepLoop = false;
-					System.out.println("Game over...");
-					break;
-	
-				default: 
-					System.err.println("Invalid Command.\nWrite \"help\" to get a list of commands."); 
-					break;
-			}*/
 		}
 	}
 }
