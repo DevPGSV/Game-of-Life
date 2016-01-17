@@ -1,6 +1,8 @@
 package tp.pr3.exceptions;
 
+@SuppressWarnings("serial")
 public class FileFormatException extends Exception {
+	
 	public FileFormatException () {
 		super();
     }
@@ -14,6 +16,6 @@ public class FileFormatException extends Exception {
     }
 
     public FileFormatException (String message, Throwable cause) {
-        super (message, cause);
+    	super (message + ((cause.getMessage() != null) ? "\n" + cause.getMessage() : ""), cause);
     }
 }
