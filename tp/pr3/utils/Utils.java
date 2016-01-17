@@ -1,10 +1,20 @@
 package tp.pr3.utils;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import tp.pr3.logic.Surface;
+import java.util.Random;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import tp.pr3.exceptions.NoFileSelectedException;
+import tp.pr3.logic.surface.Surface;
+import tp.pr3.utils.gol.GameOfLifeFileView;
 
 public class Utils {
+	private static List<String> extensions = Arrays.asList("gol", "gameoflife");
 	
 	
 	/**
@@ -47,7 +57,75 @@ public class Utils {
 		if (positionsAround.isEmpty()) { // If no available positions
 			return null;
 		} else { // If there is at least one available position
-			return positionsAround.get(SingleRandom.getInstance().getRandom().nextInt(positionsAround.size()));
+			Random rand = new Random();
+			return positionsAround.get(rand.nextInt(positionsAround.size()));
 		}
+	}
+	
+	public static List<Coords> getAllPositions(Surface surface){
+		List<Coords> positionsList = new ArrayList<Coords>();
+		
+		for (int i = 0; i < surface.getRows(); i++){
+			for (int j = 0; j < surface.getColumns(); j++){
+				positionsList.add(new Coords(i, j));
+			}
+		}
+		
+		return positionsList;
+	}
+	
+	public static File askFileOpen() throws NoFileSelectedException {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+	    fileChooser.setFileFilter(
+    		new FileNameExtensionFilter(
+		        "Game of Life save files",
+		        "gol", "gameoflife"
+	        )
+		);
+	    fileChooser.setAcceptAllFileFilterUsed(false);
+	    fileChooser.setFileView(new GameOfLifeFileView());
+	    int returnVal = fileChooser.showOpenDialog(null);
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+	    	return fileChooser.getSelectedFile();
+	    }
+	    throw new NoFileSelectedException("");
+	}
+	
+	public static File askFileSave() throws NoFileSelectedException {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+	    fileChooser.setFileFilter(
+    		new FileNameExtensionFilter(
+		        "Game of Life save files (.gol)",
+		        "gol", "gameoflife"
+	        )
+		);
+	    fileChooser.setAcceptAllFileFilterUsed(false);
+	    fileChooser.setFileView(new GameOfLifeFileView());
+	    int returnVal = fileChooser.showSaveDialog(null);
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+	    	return fileChooser.getSelectedFile();
+	    }
+	    throw new NoFileSelectedException("");
+	}
+	
+	public static File checkGolExtension(File file) {
+		if (!checkIfCorrectExtension(file.getAbsolutePath())) {
+    		return new File(file.getAbsolutePath() + ".gol");
+    	}
+		return file;
+	}
+	
+	public static boolean checkIfCorrectExtension(String fileName) {
+        int i = fileName.lastIndexOf('.');
+        if (i > 0 &&  i < fileName.length() - 1) {
+        	if (extensions.contains(fileName.substring(i+1).toLowerCase())) {
+        		return true;
+        	}
+        }
+        return false;
 	}
 }
