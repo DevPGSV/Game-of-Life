@@ -1,12 +1,24 @@
 package tp.pr3.controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.Scanner;
+
 import tp.pr3.command.Command;
 import tp.pr3.command.CommandParser;
-import tp.pr3.exceptions.InvalidCommandException;
-import tp.pr3.exceptions.InvalidCoordsException;
-import tp.pr3.logic.Cell;
-import tp.pr3.logic.World;
+import tp.pr3.exceptions.ErrorOnLoadException;
+import tp.pr3.exceptions.ErrorOnSaveException;
+import tp.pr3.exceptions.FileFormatException;
+import tp.pr3.exceptions.NoFileSelectedException;
+import tp.pr3.exceptions.ParseCommandException;
+import tp.pr3.exceptions.UnknownCommandException;
+import tp.pr3.exceptions.UnknownWorldTypeException;
+import tp.pr3.logic.cell.Cell;
+import tp.pr3.logic.world.World;
 import tp.pr3.utils.Coords;
 import tp.pr3.view.Printer;
 
@@ -61,28 +73,27 @@ public class Controller {
 			try {
 				cmd = CommandParser.parseCommand(command.split(" "));
 				cmd.execute(world, this);
-			} catch (InvalidCommandException e) {
-				System.err.println(e.getMessage() + "\nWrite \"help\" to get a list of commands.");
-				//e.printStackTrace();
-			} catch (InvalidCoordsException e) {
-				System.err.println(e.getMessage());
+			} catch (ParseCommandException | UnknownCommandException | UnknownWorldTypeException | NumberFormatException | FileFormatException | IOException | ErrorOnSaveException | NoFileSelectedException | ErrorOnLoadException e) {
+				System.err.println(e.getMessage());	
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			
-			//System.err.println("Invalid Command."); 
 		}
 	}
 	
-	public void cleanWorld() {
-		System.out.println("cleaning the game...");
+	
+	
+	public void clean() {
+		System.out.println("Cleaning the game...");
 		world.cleanWorld();
 	}
 	
-	public void deleteCell(Coords coords) {
-		if (world.deleteCell(coords)) {
-			System.out.println("Cell deleted at " + coords);
-		} else {
-			System.err.println("Couldn't delete cell at " + coords);
-		}
+	public void step() {
+		Printer.getInstance().print(world.evolve());
+	}
+	
+	public void init() {
+		world.initWorld();
 	}
 	
 	/**
@@ -101,16 +112,36 @@ public class Controller {
 		this.simulationFinished = true;
 	}
 	
-	public void initWorld() throws InvalidCoordsException {
-		world.initWorld();
+	public void delete(Coords coords) {
+		if (world.deleteCell(coords)) {
+			System.out.println("Cell deleted at " + coords);
+		} else {
+			System.err.println("Couldn't delete cell at " + coords);
+		}
 	}
 	
-	public void step() throws InvalidCoordsException {
-		Printer.getInstance().print(world.evolve());
+	public void setWorld(World world) {
+		this.world = world;
 	}
 	
-	public void createCell(Coords coords, Cell cell) throws InvalidCoordsException {
+	public void createCell(Coords coords, Cell cell) {
 		world.createCell(coords, cell);
-		System.out.println("New simple cell created at " + coords);
+	}
+	
+	public void load(File file) throws ErrorOnLoadException{
+		try {
+			world = World.load(new Scanner(file));
+		} catch (Exception e) {
+			throw new ErrorOnLoadException("Unknown error parsing file", e);
+		}
+	}
+	
+	public void save(File file) throws ErrorOnSaveException {
+		try (Writer fileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"))) {
+			world.save(fileWriter);
+		} catch (Exception e) {
+			throw new ErrorOnSaveException(e);
+		}
 	}
 }
+
