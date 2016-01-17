@@ -1,4 +1,4 @@
-package tp.pr3.logic;
+package tp.pr3.utils;
 
 /**
  * <p>Values class.</p>
