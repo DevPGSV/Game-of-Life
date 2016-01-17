@@ -1,14 +1,23 @@
-package tp.pr3.logic;
+package tp.pr3.logic.surface;
 
-import tp.pr3.exceptions.InvalidCoordsException;
+
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Random;
+import java.util.Scanner;
+import tp.pr3.exceptions.FileFormatException;
+import tp.pr3.logic.cell.Cell;
+import tp.pr3.logic.cell.ComplexCell;
+import tp.pr3.logic.cell.SimpleCell;
 import tp.pr3.utils.Coords;
+import tp.pr3.utils.Values;
 
 /**
  * <p>Surface class.</p>
  * <p>Contains matrix of cells.</p>
  */
 public class Surface {
-	private Cell[][] surface;
+	private Cell[][] board;
 	private int rows;
 	private int columns;
 	
@@ -22,7 +31,9 @@ public class Surface {
 		this.rows = numRows;
 		this.columns = numColumns;
 		
-		surface = new Cell[rows][columns];
+		board = new Cell[rows][columns];
+		
+		//initBoard();
 	}
 	
 	/**
@@ -30,9 +41,8 @@ public class Surface {
 	 * 
 	 * @param coords coordinates of the cell to run
 	 * @return the destination of the cell (or null if it couldn't move)
-	 * @throws InvalidCoordsException 
 	 */
-	public Coords runCell(Coords coords) throws InvalidCoordsException {
+	public Coords runCell(Coords coords) {
 		return getCell(coords).executeMove(coords, this);
 	}
 	
@@ -41,9 +51,8 @@ public class Surface {
 	 * 
 	 * @param origin initial position
 	 * @param destination final position
-	 * @throws InvalidCoordsException 
 	 */
-	public void moveCell(Coords origin, Coords destination) throws InvalidCoordsException {
+	public void moveCell(Coords origin, Coords destination) {
 		createCell(destination, getCell(origin)); // Clones cell from coords to chosenCoords
 		deleteCell(origin);
 	}
@@ -66,7 +75,34 @@ public class Surface {
 		return this.columns;
 	}
 	
+	/**
+	 * <p>Initializes the board with cells at random positions</p>
+	 * 
+	 * @param percentage approximate percentage of cells
+	 */
+	public void initBoard(int percentage) {
+		cleanBoard();
+		Random rand = new Random();
+		
+		for (int i = 0; i < rows; i++){
+			for (int j = 0; j < columns; j++){
+				if (rand.nextInt(101) <= percentage) {
+					board[i][j] = (rand.nextInt(2) == 0 ? new SimpleCell(Values.MAX_LP, Values.MAX_MP) : new ComplexCell(Values.MAX_EAT));
+				}
+			}
+		}
+		
+	}
 	
+	/**
+	 * <p>Initializes the board with cells at random positions</p>
+	 * <p><b>Overloads: <i>initBoard(int percentage)</i></b></p>
+	 * <p>calls <i>initBoard</i> with a percentage of 50</p>
+	 * @see tp.pr2.logic.Surface#initBoard(int)
+	 */
+	public void initBoard() {
+		initBoard(50);
+	}
 	
 	/**
 	 * <p>Checks if there is not a cell at some given coordinates</p>
@@ -76,7 +112,7 @@ public class Surface {
 	 * @return if the is not a cell
 	 */
 	public boolean isPositionEmpty(int row, int col) {
-		return (surface[row][col] == null);
+		return (board[row][col] == null);
 	}
 	
 	/**
@@ -111,14 +147,14 @@ public class Surface {
 	 * @return the cell at the specified coordinates
 	 */
 	public Cell getCell(int row, int col) {
-		return surface[row][col];
+		return board[row][col];
 	}
 	
 	/**
 	 * <p>Reset the board. (Creates a new empty one)</p>
 	 */
 	public void cleanBoard() {
-		surface = new Cell[rows][columns];
+		board = new Cell[rows][columns];
 	}
 
 	/**
@@ -126,9 +162,8 @@ public class Surface {
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
-	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords) throws InvalidCoordsException {
+	public boolean createCell(Coords coords) {
 		return createCell(coords, new SimpleCell(Values.MAX_LP, Values.MAX_MP));
 	}
 	
@@ -138,16 +173,15 @@ public class Surface {
 	 * @param coords coordinates
 	 * @param cell cell to place in the specified coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
-	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords, Cell cell) throws InvalidCoordsException {
-		if((coords.getRow() < 0) || (coords.getRow() >= this.rows) || (coords.getColumn() < 0) || (coords.getColumn() <= this.columns)) {
-			throw new InvalidCoordsException();
-		}
-		
-		if (surface[coords.getRow()][coords.getColumn()] == null) {
-			surface[coords.getRow()][coords.getColumn()] = cell;
-			return true;
+	public boolean createCell(Coords coords, Cell cell) {
+		if((coords.getRow() >= 0) && (coords.getRow() < this.rows)) {
+			if((coords.getColumn() >= 0) && (coords.getColumn() < this.columns)) {
+				if (board[coords.getRow()][coords.getColumn()] == null) {
+					board[coords.getRow()][coords.getColumn()] = cell;
+					return true;
+				}
+			}
 		}
 		return false;
 	}
@@ -161,8 +195,8 @@ public class Surface {
 	public boolean deleteCell(Coords coords) {
 		if((coords.getRow() >= 0) && (coords.getRow() < this.rows)) {
 			if((coords.getColumn() >= 0) && (coords.getColumn() < this.columns)) {
-				if (surface[coords.getRow()][coords.getColumn()] != null) {
-					surface[coords.getRow()][coords.getColumn()] = null;
+				if (board[coords.getRow()][coords.getColumn()] != null) {
+					board[coords.getRow()][coords.getColumn()] = null;
 					return true;
 				}
 			}
@@ -174,44 +208,83 @@ public class Surface {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		StringBuilder board = new StringBuilder();
+		StringBuilder stringBoard = new StringBuilder();
 		
 		
-		board.append(" \\ C    ");
+		stringBoard.append(" \\ C    ");
 		for (int j = 0; j < columns; j++){ // Print column numbers
 			if (j + 1 >= 10) 
-				board.append((j+1) + "      ");
+				stringBoard.append((j+1) + "      ");
 			else
-				board.append((j+1) + "       ");
+				stringBoard.append((j+1) + "       ");
 		}
-		board.append("\n");
+		stringBoard.append("\n");
 		
 		
-		board.append("R \\     ");
+		stringBoard.append("R \\     ");
 		for (int j = 0; j < columns; j++){ // Print "v" under column numbers
-			board.append("v       ");
+			stringBoard.append("v       ");
 		}
-		board.append("\n");
+		stringBoard.append("\n");
 		
 		
 		// Print board
 		for (int i = 0; i < rows; i++){ 
 			if (i + 1 >= 10) 
-				board.append((i+1) + "> |  "); // Print row numbers
+				stringBoard.append((i+1) + "> |  "); // Print row numbers
 			else
-				board.append((i+1) + " > |  "); // Print row numbers
+				stringBoard.append((i+1) + " > |  "); // Print row numbers
 			
 			for (int j = 0; j < columns; j++){
 				if (!isPositionEmpty(i ,j)) { // If there is a cell
-					board.append(surface[i][j] + "  |  "); // Print the cell
+					stringBoard.append(board[i][j] + "  |  "); // Print the cell
 				} else {
-					board.append("~~~" + "  |  "); // Print "no cell" placeholder
+					stringBoard.append("~~~" + "  |  "); // Print "no cell" placeholder
 				}
 			}
-			board.append("\n");
+			stringBoard.append("\n");
 		}
 		
-		return board.toString();
+		return stringBoard.toString();
+	}
+	
+	public static Surface load(Scanner fileReader) throws NumberFormatException, IOException, FileFormatException {
+		Surface surface;
+		int rows = fileReader.nextInt(); fileReader.nextLine();
+		int cols = fileReader.nextInt(); fileReader.nextLine();
+		
+		surface = new Surface(rows, cols);
+		
+		while (fileReader.hasNext()) {
+			rows = fileReader.nextInt();
+			cols = fileReader.nextInt();
+			surface.board[rows][cols] = loadCell(fileReader);
+		}
+		
+		return surface;
+	}
+	
+	public void save(Writer fileWriter) throws IOException {
+		for (int i = 0; i < rows; i++){ 
+			for (int j = 0; j < columns; j++){
+				if (!isPositionEmpty(i ,j)) {
+					fileWriter.write(i + " " + j + " ");
+					board[i][j].save(fileWriter);
+					fileWriter.write(System.lineSeparator());
+				}
+			}
+		}
+	}
+	
+	public static Cell loadCell(Scanner fileReader) throws FileFormatException {
+		String cellType = fileReader.next();
+		if (cellType.equals("simple")) {
+			return (Cell)SimpleCell.load(fileReader);
+		} else if (cellType.equals("complex")){
+			return (Cell)ComplexCell.load(fileReader);
+		} else {
+			throw new FileFormatException("Unknown cell type: " + cellType);
+		}
 	}
 	
 
