@@ -1,12 +1,14 @@
-package tp.pr3.logic;
+package tp.pr3.logic.world;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-import tp.pr3.exceptions.InvalidCoordsException;
+import tp.pr3.logic.cell.Cell;
+import tp.pr3.logic.surface.Surface;
 import tp.pr3.utils.Coords;
+import tp.pr3.utils.Values;
 
 /**
  * <p>World class.</p>
@@ -67,9 +69,8 @@ public class FairWorld implements WorldType{
 	 * <p>Execute a simulation step</p>
 	 * 
 	 * @return any messages about events in the current simulation step.
-	 * @throws InvalidCoordsException 
 	 */
-	public String evolve() throws InvalidCoordsException{
+	public String evolve(){
 		StringBuilder returnedMessages = new StringBuilder();
 		HashSet<Coords> movedCells = new HashSet<Coords>();
 		List<Coords> boardCoordinates = new ArrayList<Coords>();
@@ -96,9 +97,8 @@ public class FairWorld implements WorldType{
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
-	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords) throws InvalidCoordsException {
+	public boolean createCell(Coords coords) {
 		return surface.createCell(coords);
 	}
 	
@@ -108,9 +108,8 @@ public class FairWorld implements WorldType{
 	 * @param coords coordinates
 	 * @param cell cell to place in the specified coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
-	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords, Cell cell) throws InvalidCoordsException {
+	public boolean createCell(Coords coords, Cell cell) {
 		return surface.createCell(coords, cell);
 	}
 	
@@ -141,7 +140,7 @@ public class FairWorld implements WorldType{
 	 * <p>Asks the surface to initialize the board</p>
 	 */
 	public void initWorld() {
-		//surface.initBoard();
+		surface.initBoard();
 	}
 	
 	/**

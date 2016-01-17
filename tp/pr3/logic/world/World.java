@@ -1,11 +1,17 @@
-package tp.pr3.logic;
+package tp.pr3.logic.world;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Scanner;
 
-import tp.pr3.exceptions.InvalidCoordsException;
+import tp.pr3.exceptions.FileFormatException;
+import tp.pr3.logic.cell.Cell;
+import tp.pr3.logic.surface.Surface;
 import tp.pr3.utils.Coords;
+import tp.pr3.utils.Values;
 
 /**
  * <p>World class.</p>
@@ -35,6 +41,10 @@ public abstract class World implements WorldType {
 		createNewDimensionedSurface(rows, cols);
 	}
 	
+	public World(Surface surface) {
+		this.surface = surface;
+	}
+	
 	/**
 	 * <p>Creates a surface with the specified dimensions</p>
 	 * 
@@ -46,15 +56,12 @@ public abstract class World implements WorldType {
 		else this.surface = new Surface(rows, cols);
 	}
 	
-	
-	
 	/**
 	 * <p>Execute a simulation step</p>
 	 * 
 	 * @return any messages about events in the current simulation step.
-	 * @throws InvalidCoordsException 
 	 */
-	public String evolve() throws InvalidCoordsException{
+	public String evolve(){
 		StringBuilder returnedMessages = new StringBuilder();
 		HashSet<Coords> movedCells = new HashSet<Coords>();
 		List<Coords> boardCoordinates = new ArrayList<Coords>();
@@ -80,9 +87,8 @@ public abstract class World implements WorldType {
 	 * 
 	 * @param coords coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
-	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords) throws InvalidCoordsException {
+	public boolean createCell(Coords coords) {
 		return surface.createCell(coords);
 	}
 	
@@ -92,9 +98,8 @@ public abstract class World implements WorldType {
 	 * @param coords coordinates
 	 * @param cell cell to place in the specified coordinates
 	 * @return      if it was possible to create the cell at the given coordinates
-	 * @throws InvalidCoordsException 
 	 */
-	public boolean createCell(Coords coords, Cell cell) throws InvalidCoordsException {
+	public boolean createCell(Coords coords, Cell cell) {
 		return surface.createCell(coords, cell);
 	}
 	
@@ -122,16 +127,9 @@ public abstract class World implements WorldType {
 	}
 	
 	/**
-	 * <p>Initializes the board with cells at random positions</p>
-	 * 
-	 * @param percentage approximate percentage of cells
-	 * @throws InvalidCoordsException 
+	 * <p>Asks the surface to initialize the board</p>
 	 */
-	public abstract void initWorld(int numberSimpleCells) throws InvalidCoordsException;
-	
-	public void initWorld() throws InvalidCoordsException {
-		initWorld(surface.getRows() * surface.getColumns() / 4);
-	}
+	public abstract void initWorld();
 	
 	/**
 	 * <p>Asks the surface to reset (empty) the board</p>
@@ -147,12 +145,38 @@ public abstract class World implements WorldType {
 		return surface.toString();
 	}
 	
+	public abstract String getWorldTypeAsString();
+	
+	public static World load(Scanner fileReader) throws FileFormatException, NumberFormatException, IOException {
+		World world;
+		
+		String worldType = fileReader.nextLine();
+		//int rows = fileReader.nextInt(); fileReader.nextLine();
+		//int cols = fileReader.nextInt(); fileReader.nextLine();
+		
+		if (worldType.equals("simple")) {
+			world = new SimpleWorld(Surface.load(fileReader));
+		} else if (worldType.equals("complex")){
+			world = new ComplexWorld(Surface.load(fileReader));
+		} else {
+			throw new FileFormatException("Unknown world type: " + worldType);
+		}
+		
+		return world;
+	}
+	
+	public void save(Writer fileWriter) throws IOException {
+		fileWriter.write(getWorldTypeAsString() + System.lineSeparator());
+		fileWriter.write(surface.getRows() + System.lineSeparator());
+		fileWriter.write(surface.getColumns() + System.lineSeparator());
+		surface.save(fileWriter);
+	}
 	
 	public int getRows() {
 		return surface.getRows();
 	}
 	
-	public int getCols() {
+	public int getColumns() {
 		return surface.getColumns();
 	}
 	
