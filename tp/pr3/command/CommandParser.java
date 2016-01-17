@@ -10,8 +10,7 @@ public class CommandParser {
 	
 	private static List<Command> availableCommands = Arrays.asList(
 		new CleanCommand(),
-		new CreateComplexCommand(),
-		new CreateSimpleCommand(),
+		new CreateCommand(),
 		new DeleteCommand(),
 		new ExitCommand(),
 		new HelpCommand(),
