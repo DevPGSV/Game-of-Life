@@ -5,7 +5,7 @@ package tp.pr3.view;
  */
 public class Printer {
 	private static Printer instance = null;
-	private boolean useAnsiiCodes = false;
+	private boolean useAnsiiCodes = true;
 	
 	/**
 	 * <p>Private Printer constructor</p>
