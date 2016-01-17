@@ -1,8 +1,6 @@
 package tp.pr3.logic.world;
 
-import java.util.Collections;
 import java.util.List;
-
 import tp.pr3.logic.cell.ComplexCell;
 import tp.pr3.logic.cell.SimpleCell;
 import tp.pr3.logic.surface.Surface;
@@ -46,8 +44,7 @@ public class ComplexWorld extends World{
 	@Override
 	public void initWorld() {
 		surface.cleanBoard();
-		List<Coords> positionsList = Utils.getAllPositions(surface);
-		Collections.shuffle(positionsList);
+		List<Coords> positionsList = Utils.getAllPositionsShuffled(surface);
 		
 		for (int i = 0; i < this.numberSimpleCells; i++) {
 			surface.createCell(positionsList.get(i), new SimpleCell(Values.MAX_LP, Values.MAX_MP));

@@ -4,11 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import tp.pr3.exceptions.NoFileSelectedException;
 import tp.pr3.logic.surface.Surface;
 import tp.pr3.utils.gol.GameOfLifeFileView;
@@ -57,8 +54,7 @@ public class Utils {
 		if (positionsAround.isEmpty()) { // If no available positions
 			return null;
 		} else { // If there is at least one available position
-			Random rand = new Random();
-			return positionsAround.get(rand.nextInt(positionsAround.size()));
+			return positionsAround.get(SingleRandom.getInstance().getRandom().nextInt(positionsAround.size()));
 		}
 	}
 	
@@ -70,7 +66,19 @@ public class Utils {
 				positionsList.add(new Coords(i, j));
 			}
 		}
-		
+		return positionsList;
+	}
+	
+	public static List<Coords> getAllPositionsShuffled(Surface surface){
+		List<Coords> positionsList = getAllPositions(surface);
+		Coords tmpCoords;
+		int randomPos;
+		for (int i = 0; i < positionsList.size(); i++) {
+			randomPos = SingleRandom.getInstance().getRandom().nextInt(positionsList.size());
+			tmpCoords = positionsList.get(randomPos);
+			positionsList.set(randomPos, positionsList.get(i));
+			positionsList.set(i, tmpCoords);
+		}
 		return positionsList;
 	}
 	
