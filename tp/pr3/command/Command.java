@@ -3,10 +3,12 @@ package tp.pr3.command;
 import java.io.IOException;
 
 import tp.pr3.controller.Controller;
+import tp.pr3.exceptions.ErrorOnCreateCellException;
 import tp.pr3.exceptions.ErrorOnLoadException;
 import tp.pr3.exceptions.ErrorOnSaveException;
 import tp.pr3.exceptions.FileFormatException;
 import tp.pr3.exceptions.InitialisationException;
+import tp.pr3.exceptions.InvalidCoordsException;
 import tp.pr3.exceptions.NoFileSelectedException;
 import tp.pr3.exceptions.UnknownWorldTypeException;
 import tp.pr3.logic.world.World;
@@ -23,8 +25,10 @@ public abstract class Command {
 	 * @throws ErrorOnSaveException 
 	 * @throws NoFileSelectedException 
 	 * @throws ErrorOnLoadException 
+	 * @throws ErrorOnCreateCellException 
+	 * @throws InvalidCoordsException 
 	 */
-	public abstract void execute(World world, Controller controller) throws UnknownWorldTypeException, NumberFormatException, FileFormatException, IOException, ErrorOnSaveException, NoFileSelectedException, ErrorOnLoadException;
+	public abstract void execute(World world, Controller controller) throws UnknownWorldTypeException, NumberFormatException, FileFormatException, IOException, ErrorOnSaveException, NoFileSelectedException, ErrorOnLoadException, ErrorOnCreateCellException, InvalidCoordsException;
 	
 	/**
 	 * <p>Analyzes grammatically the command</p>

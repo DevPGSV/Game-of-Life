@@ -10,9 +10,11 @@ import java.util.Scanner;
 
 import tp.pr3.command.Command;
 import tp.pr3.command.CommandParser;
+import tp.pr3.exceptions.ErrorOnCreateCellException;
 import tp.pr3.exceptions.ErrorOnLoadException;
 import tp.pr3.exceptions.ErrorOnSaveException;
 import tp.pr3.exceptions.FileFormatException;
+import tp.pr3.exceptions.InvalidCoordsException;
 import tp.pr3.exceptions.NoFileSelectedException;
 import tp.pr3.exceptions.ParseCommandException;
 import tp.pr3.exceptions.UnknownCommandException;
@@ -73,7 +75,7 @@ public class Controller {
 			try {
 				cmd = CommandParser.parseCommand(command.split(" "));
 				cmd.execute(world, this);
-			} catch (ParseCommandException | UnknownCommandException | UnknownWorldTypeException | NumberFormatException | FileFormatException | IOException | ErrorOnSaveException | NoFileSelectedException | ErrorOnLoadException e) {
+			} catch (ParseCommandException | UnknownCommandException | UnknownWorldTypeException | NumberFormatException | FileFormatException | IOException | ErrorOnSaveException | NoFileSelectedException | ErrorOnLoadException | ErrorOnCreateCellException | InvalidCoordsException e) {
 				System.err.println(e.getMessage());	
 			} catch (Exception e) {
 				e.printStackTrace();

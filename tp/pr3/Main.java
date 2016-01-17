@@ -1,11 +1,9 @@
 package tp.pr3;
 
 import java.util.Scanner;
-
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
-
 import tp.pr3.controller.Controller;
 import tp.pr3.logic.world.SimpleWorld;
 import tp.pr3.logic.world.World;
