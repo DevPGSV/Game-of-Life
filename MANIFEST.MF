@@ -1,3 +1,2 @@
 Manifest-Version: 1.0
-Main-Class: tp.pr2.Main
-
+Main-Class: tp.pr3.Main
