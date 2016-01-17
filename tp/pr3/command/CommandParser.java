@@ -16,7 +16,6 @@ public class CommandParser {
 		new HelpCommand(),
 		new InitCommand(),
 		new StepCommand(),
-		new CreateCommand(),
 		new PlayCommand(),
 		new LoadCommand(),
 		new SaveCommand(),
