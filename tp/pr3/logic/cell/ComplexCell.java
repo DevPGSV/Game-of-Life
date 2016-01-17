@@ -1,6 +1,10 @@
-package tp.pr3.logic;
+package tp.pr3.logic.cell;
 
-import tp.pr3.exceptions.InvalidCoordsException;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Scanner;
+
+import tp.pr3.logic.surface.Surface;
 import tp.pr3.utils.Coords;
 import tp.pr3.utils.Utils;
 import tp.pr3.view.PrintSituation;
@@ -9,7 +13,7 @@ import tp.pr3.view.PrintSituation;
  * <p>ComplexCell class.</p>
  * <p>Can eat edible cells. Once they have eaten enough, they burst.</p>
  */
-public class ComplexCell extends Cell{
+public class ComplexCell implements Cell{
 	
 	/**
 	 * <p>Eat Capacity</p>
@@ -24,7 +28,6 @@ public class ComplexCell extends Cell{
 	public ComplexCell(int ec){
 		super();
 		this.ec = ec;
-		this.edible = false;
 	}
 	
 	/**
@@ -60,7 +63,7 @@ public class ComplexCell extends Cell{
 	 * @see tp.pr2.logic.Cell#executeMove(tp.pr2.utils.Coords, tp.pr2.logic.Surface)
 	 */
 	@Override
-	public Coords executeMove(Coords coords, Surface surface) throws InvalidCoordsException {
+	public Coords executeMove(Coords coords, Surface surface) {
 		Coords newCoords = Utils.getRandomAvailablePosition(coords, surface, false);
 		if (newCoords != null) {
 			if (surface.isPositionEmpty(newCoords)) {
@@ -89,5 +92,21 @@ public class ComplexCell extends Cell{
 	 */
 	public String toString() {
 		return (char)183 + "{BLUE}" + (new Integer(getEc())).toString() + "{RESET}" + (char)183;
+	}
+
+	
+	@Override
+	public boolean isEdible() {
+		return false;
+	}
+
+	@Override
+	public void save(Writer fileWriter) throws IOException {
+		fileWriter.write("complex " + (new Integer(getEc())).toString());
+	}
+	
+	public static ComplexCell load(Scanner fileReader) {
+		int ec = fileReader.nextInt(); fileReader.nextLine();
+		return new ComplexCell(ec);
 	}
 }

@@ -1,6 +1,10 @@
-package tp.pr3.logic;
+package tp.pr3.logic.cell;
 
-import tp.pr3.exceptions.InvalidCoordsException;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Scanner;
+
+import tp.pr3.logic.surface.Surface;
 import tp.pr3.utils.Coords;
 import tp.pr3.utils.Utils;
 import tp.pr3.view.PrintSituation;
@@ -9,7 +13,7 @@ import tp.pr3.view.PrintSituation;
  * <p>SimpleCell class.</p>
  * <p>Reproduce after some life cycle steps. Might die if they don't move enough.</p>
  */
-public class SimpleCell extends Cell{
+public class SimpleCell implements Cell{
 	
 	/**
 	 * <p>Life Points</p>
@@ -30,14 +34,13 @@ public class SimpleCell extends Cell{
 		super();
 		this.lp = lp;
 		this.mp = mp;
-		this.edible = true;
 	}
 
 	/* (non-Javadoc)
 	 * @see tp.pr2.logic.Cell#executeMove(tp.pr2.utils.Coords, tp.pr2.logic.Surface)
 	 */
 	@Override
-	public Coords executeMove(Coords coords, Surface surface) throws InvalidCoordsException {
+	public Coords executeMove(Coords coords, Surface surface) {
 		if (shouldDie()) { // Kill the cell if its lp is 0
 			PrintSituation.cellDiesOfInactivity(this.getClass().getSimpleName(), coords);
 			surface.deleteCell(coords);
@@ -129,5 +132,21 @@ public class SimpleCell extends Cell{
 	 */
 	public String toString() {
 		return "{CYAN}" + (new Integer(getLp())).toString() + "-" + (new Integer(getMp())).toString() + "{RESET}";
+	}
+
+	@Override
+	public boolean isEdible() {
+		return true;
+	}
+
+	@Override
+	public void save(Writer fileWriter) throws IOException {
+		fileWriter.write("simple " + (new Integer(getLp())).toString() + " " + (new Integer(getMp())).toString());
+	}
+	
+	public static SimpleCell load(Scanner fileReader) {
+		int lp = fileReader.nextInt();
+		int mp = fileReader.nextInt();
+		return new SimpleCell(lp, mp);
 	}
 }
