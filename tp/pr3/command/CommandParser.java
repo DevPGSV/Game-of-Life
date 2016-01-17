@@ -20,7 +20,8 @@ public class CommandParser {
 		new CreateCommand(),
 		new PlayCommand(),
 		new LoadCommand(),
-		new SaveCommand()
+		new SaveCommand(),
+		new SeedCommand()
 	);
 	
 	/**
