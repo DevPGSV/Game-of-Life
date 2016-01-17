@@ -48,8 +48,6 @@ public class Main {
 		}
 		
 		
-		
-		
 		World world = new SimpleWorld();
 		Scanner in = new Scanner(System.in);
 		Controller controller = new Controller(world, in);

@@ -13,7 +13,7 @@ public class HelpCommand extends CommandWithoutCoords{
 
 	@Override
 	public String helpText() {
-		return "{BOLD}" +  this.toString().toUpperCase() + " {RESET}		gets a help message";
+		return "{BOLD}{PURPLE}" +  this.toString().toUpperCase() + " {RESET}		gets a help message";
 	}
 
 	@Override

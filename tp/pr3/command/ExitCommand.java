@@ -12,7 +12,7 @@ public class ExitCommand extends CommandWithoutCoords{
 
 	@Override
 	public String helpText() {
-		return "{BOLD}" +  this.toString().toUpperCase() + " {RESET}		close the game";
+		return "{BOLD}{PURPLE}" +  this.toString().toUpperCase() + " {RESET}		close the game";
 	}
 
 	@Override

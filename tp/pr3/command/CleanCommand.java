@@ -12,7 +12,7 @@ public class CleanCommand extends CommandWithoutCoords{
 	
 	@Override
 	public String helpText() {
-		return "{BOLD}" +  this.toString().toUpperCase() + " {RESET}		delete all the cells";
+		return "{BOLD}{PURPLE}" +  this.toString().toUpperCase() + " {RESET}		delete all the cells";
 	}
 
 	@Override

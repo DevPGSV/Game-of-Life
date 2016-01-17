@@ -76,7 +76,7 @@ public class Controller {
 				cmd = CommandParser.parseCommand(command.split(" "));
 				cmd.execute(world, this);
 			} catch (ParseCommandException | UnknownCommandException | UnknownWorldTypeException | NumberFormatException | FileFormatException | IOException | ErrorOnSaveException | NoFileSelectedException | ErrorOnLoadException | ErrorOnCreateCellException | InvalidCoordsException e) {
-				System.err.println(e.getMessage());	
+				p.printErr(e.getMessage());	
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

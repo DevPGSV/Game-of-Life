@@ -46,7 +46,7 @@ public class SaveCommand extends Command{
 
 	@Override
 	public String helpText() {
-		return "";
+		return "{BOLD}{PURPLE}" +  this.toString().toUpperCase() + " <file> {RESET}		saves game to file";
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class Printer {
 	 */
 	private Printer() {
 		if( System.getProperty("os.name").startsWith("Windows") ) {
-			useAnsiiCodes = false;
+			//useAnsiiCodes = false;
 		}
 	}
 	
@@ -37,12 +37,7 @@ public class Printer {
 		return this.useAnsiiCodes;
 	}
 	
-	/**
-	 * <p>Prints substituting color patterns with ansii color codes</p>
-	 * 
-	 * @param text text to print
-	 */
-	public void print(String text) {
+	public String patternReplace(String text) {
 		for (Ansii ansii : Ansii.values()) {
 			if (useAnsiiCodes)
 				text = text.replaceAll(
@@ -55,7 +50,29 @@ public class Printer {
 						""
 					);
 		}
-		System.out.print(text);
+		return text;
+	}
+	
+	/**
+	 * <p>Prints to stdout substituting color patterns with ansii color codes</p>
+	 * 
+	 * @param text text to print
+	 */
+	public void print(String text) {
+		System.out.print(patternReplace(text));
+	}
+	
+	/**
+	 * <p>Prints to stderr substituting color patterns with ansii color codes</p>
+	 * 
+	 * @param text text to print
+	 */
+	public void printErr(String text) {
+		text = "{LIGHT}{RED}" + text.replaceAll(
+				java.util.regex.Pattern.quote("{RESET}"),
+				"{LIGHT}{RED}"
+			) + "{RESET}\n";
+		System.err.print(patternReplace(text));
 	}
 	
 	/**

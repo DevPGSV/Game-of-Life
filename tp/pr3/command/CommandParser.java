@@ -19,7 +19,8 @@ public class CommandParser {
 		new PlayCommand(),
 		new LoadCommand(),
 		new SaveCommand(),
-		new SeedCommand()
+		new SeedCommand(),
+		new ColorCommand()
 	);
 	
 	/**

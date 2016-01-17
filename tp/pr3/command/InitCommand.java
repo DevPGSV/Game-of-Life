@@ -12,7 +12,7 @@ public class InitCommand extends CommandWithoutCoords{
 
 	@Override
 	public String helpText() {
-		return "{BOLD}" +  this.toString().toUpperCase() + " {RESET}		restart the game";
+		return "{BOLD}{PURPLE}" +  this.toString().toUpperCase() + " {RESET}		restart the game";
 	}
 
 	@Override

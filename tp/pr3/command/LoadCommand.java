@@ -46,7 +46,7 @@ public class LoadCommand extends Command{
 
 	@Override
 	public String helpText() {
-		return "";
+		return "{BOLD}{PURPLE}" +  this.toString().toUpperCase() + " <file> {RESET}		loads game from file";
 	}
 
 	@Override

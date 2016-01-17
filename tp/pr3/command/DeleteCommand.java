@@ -19,7 +19,7 @@ public class DeleteCommand extends CommandWithCoords{
 
 	@Override
 	public String helpText() {
-		return "{BOLD}" +  this.toString().toUpperCase() + " C R{RESET}		delete the cell at position (c, r)";
+		return "{BOLD}{PURPLE}" +  this.toString().toUpperCase() + " C R{RESET}		delete the cell at position (c, r)";
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class StepCommand extends CommandWithoutCoords{
 
 	@Override
 	public String helpText() {
-		return "{BOLD}" +  this.toString().toUpperCase() + " {RESET}		execute a simulation step";
+		return "{BOLD}{PURPLE}" +  this.toString().toUpperCase() + " {RESET}		execute a simulation step";
 	}
 
 	@Override

@@ -30,8 +30,8 @@ public class PlayCommand extends Command{
 					throw new InitialisationException("Can not create " + Integer.parseInt(commandString[4]) + " cells on a " +  Integer.parseInt(commandString[2]) + "x" + Integer.parseInt(commandString[3]) + " board");
 				return new PlayCommand(
 						new SimpleWorld(
-								Integer.parseInt(commandString[2]), // rows
-								Integer.parseInt(commandString[3]), // cols
+								Integer.parseInt(commandString[3]), // rows
+								Integer.parseInt(commandString[2]), // cols
 								Integer.parseInt(commandString[4])) // numberSimpleCells
 				);
 			} else if (commandString[1].equalsIgnoreCase("complex")) {
@@ -39,8 +39,8 @@ public class PlayCommand extends Command{
 					throw new InitialisationException("Can not create " + (Integer.parseInt(commandString[5]) + Integer.parseInt(commandString[4])) + " cells on a " +  Integer.parseInt(commandString[2]) + "x" + Integer.parseInt(commandString[3]) + " board");
 				return new PlayCommand(
 						new ComplexWorld(
-								Integer.parseInt(commandString[2]), // rows
-								Integer.parseInt(commandString[3]), // cols
+								Integer.parseInt(commandString[3]), // rows
+								Integer.parseInt(commandString[2]), // cols
 								Integer.parseInt(commandString[4]), // numberSimpleCells
 								Integer.parseInt(commandString[5])) // numberComplexCells
 				);
@@ -53,7 +53,8 @@ public class PlayCommand extends Command{
 
 	@Override
 	public String helpText() {
-		return "";
+		return "{BOLD}{PURPLE}" +  this.toString().toUpperCase() + " simple  C R ns {RESET} creates a new CxR simple game with ns simple cells\n"
+				+ "   {BOLD}{PURPLE}" +  this.toString().toUpperCase() + " complex C R ns nc {RESET} creates a new CxR complex game with ns simple cells and nc complex cells";
 	}
 
 	@Override
