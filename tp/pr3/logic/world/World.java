@@ -180,4 +180,8 @@ public abstract class World implements WorldType {
 		return surface.getColumns();
 	}
 	
+	public boolean checkIfValidCoords(Coords coords) {
+		return surface.checkIfValidCoords(coords);
+	}
+	
 }

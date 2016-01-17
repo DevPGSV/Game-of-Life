@@ -287,6 +287,15 @@ public class Surface {
 		}
 	}
 	
+	public boolean checkIfValidCoords(Coords coords) {
+		if((coords.getRow() >= 0) && (coords.getRow() < this.rows)) {
+			if((coords.getColumn() >= 0) && (coords.getColumn() < this.columns)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 
 }
 
