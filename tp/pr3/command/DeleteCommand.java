@@ -1,13 +1,13 @@
 package tp.pr3.command;
 
 import tp.pr3.controller.Controller;
-import tp.pr3.logic.World;
+import tp.pr3.logic.world.World;
 
 public class DeleteCommand extends CommandWithCoords{
 
 	@Override
 	public void execute(World world, Controller controller) {
-		controller.deleteCell(this.coords);
+		controller.delete(this.coords);
 	}
 	
 	@Override

@@ -1,7 +1,7 @@
 package tp.pr3.command;
 
 import tp.pr3.controller.Controller;
-import tp.pr3.logic.World;
+import tp.pr3.logic.world.World;
 import tp.pr3.view.Printer;
 
 public class HelpCommand extends CommandWithoutCoords{

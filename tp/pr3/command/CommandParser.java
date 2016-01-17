@@ -3,8 +3,8 @@ package tp.pr3.command;
 import java.util.Arrays;
 import java.util.List;
 
-import tp.pr3.exceptions.InvalidCommandException;
-import tp.pr3.exceptions.InvalidCoordsException;
+import tp.pr3.exceptions.ParseCommandException;
+import tp.pr3.exceptions.UnknownCommandException;
 
 public class CommandParser {
 	
@@ -16,8 +16,11 @@ public class CommandParser {
 		new ExitCommand(),
 		new HelpCommand(),
 		new InitCommand(),
-		new InitSizeCommand(),
-		new StepCommand()
+		new StepCommand(),
+		new CreateCommand(),
+		new PlayCommand(),
+		new LoadCommand(),
+		new SaveCommand()
 	);
 	
 	/**
@@ -39,15 +42,19 @@ public class CommandParser {
 	 * 
 	 * @param commandString the command as an array of words
 	 * @return an object representing the command, or null if the command doesn't exist
-	 * @throws InvalidCommandException 
-	 * @throws InvalidCoordsException 
+	 * @throws ParseCommandException 
+	 * @throws UnknownCommandException 
 	 */
-	public static Command parseCommand(String[] commandString) throws InvalidCommandException, InvalidCoordsException {
+	public static Command parseCommand(String[] commandString) throws ParseCommandException, UnknownCommandException {
 		Command cObject;
-		for(Command command : availableCommands) {
-			cObject = command.parse(commandString);
-			if (cObject != null) return cObject;
+		try {
+			for(Command command : availableCommands) {
+				cObject = command.parse(commandString);
+				if (cObject != null) return cObject;
+			}
+		} catch (Exception e) {
+			throw new ParseCommandException("Error while parsing command", e);
 		}
-		throw new InvalidCommandException("Invalid Command.");
+		throw new UnknownCommandException("Unknown command: " + commandString[0]);
 	}
 }
