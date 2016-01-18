@@ -38,12 +38,12 @@ public class CommandParser {
 	}
 	
 	/**
-	 * <p>Return an object representing the command, or null if the command doesn't exist</p>
+	 * <p>Return an object representing the command, throwing an exception if something goes wrong.</p>
 	 * 
 	 * @param commandString the command as an array of words
 	 * @return an object representing the command, or null if the command doesn't exist
-	 * @throws ParseCommandException 
-	 * @throws UnknownCommandException 
+	 * @throws ParseCommandException Thrown when there is an error parsing a command
+	 * @throws UnknownCommandException Thrown when the user writes an invalid command
 	 */
 	public static Command parseCommand(String[] commandString) throws ParseCommandException, UnknownCommandException {
 		Command cObject;

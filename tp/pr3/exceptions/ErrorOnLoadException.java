@@ -1,5 +1,8 @@
 package tp.pr3.exceptions;
 
+/**
+ * Thrown when there is an error loading a file
+ */
 @SuppressWarnings("serial")
 public class ErrorOnLoadException extends Exception {
 	

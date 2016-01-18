@@ -1,9 +1,7 @@
 package tp.pr3.logic.surface;
 
-
 import java.io.IOException;
 import java.io.Writer;
-import java.util.Random;
 import java.util.Scanner;
 import tp.pr3.exceptions.FileFormatException;
 import tp.pr3.logic.cell.Cell;
@@ -75,12 +73,12 @@ public class Surface {
 		return this.columns;
 	}
 	
-	/**
+	/*
 	 * <p>Initializes the board with cells at random positions</p>
 	 * 
 	 * @param percentage approximate percentage of cells
 	 */
-	public void initBoard(int percentage) {
+	/*public void initBoard(int percentage) {
 		cleanBoard();
 		Random rand = new Random();
 		
@@ -92,17 +90,17 @@ public class Surface {
 			}
 		}
 		
-	}
+	}*/
 	
-	/**
+	/*
 	 * <p>Initializes the board with cells at random positions</p>
 	 * <p><b>Overloads: <i>initBoard(int percentage)</i></b></p>
 	 * <p>calls <i>initBoard</i> with a percentage of 50</p>
 	 * @see tp.pr2.logic.Surface#initBoard(int)
 	 */
-	public void initBoard() {
+	/*public void initBoard() {
 		initBoard(50);
-	}
+	}*/
 	
 	/**
 	 * <p>Checks if there is not a cell at some given coordinates</p>
@@ -248,6 +246,14 @@ public class Surface {
 		return stringBoard.toString();
 	}
 	
+	/**
+	 * Load surface from file
+	 * @param fileReader input file
+	 * @return the surface object
+	 * @throws NumberFormatException When an invalid String is converted to int
+	 * @throws IOException When there is an IOException
+	 * @throws FileFormatException Thrown when there is an error parsing a game a file
+	 */
 	public static Surface load(Scanner fileReader) throws NumberFormatException, IOException, FileFormatException {
 		Surface surface;
 		int rows = fileReader.nextInt(); fileReader.nextLine();
@@ -264,6 +270,11 @@ public class Surface {
 		return surface;
 	}
 	
+	/**
+	 * Save the surface to a file
+	 * @param fileWriter the output file
+	 * @throws IOException When there is an IOException
+	 */
 	public void save(Writer fileWriter) throws IOException {
 		for (int i = 0; i < rows; i++){ 
 			for (int j = 0; j < columns; j++){
@@ -276,6 +287,12 @@ public class Surface {
 		}
 	}
 	
+	/**
+	 * Load a cell, depending of its type
+	 * @param fileReader input file
+	 * @return the loaded cell
+	 * @throws FileFormatException Thrown when there is an error parsing a game a file
+	 */
 	public static Cell loadCell(Scanner fileReader) throws FileFormatException {
 		String cellType = fileReader.next();
 		if (cellType.equals("simple")) {
@@ -287,6 +304,11 @@ public class Surface {
 		}
 	}
 	
+	/**
+	 * Check if some coordinates are valid
+	 * @param coords input coordinates
+	 * @return if the coordinates are valid
+	 */
 	public boolean checkIfValidCoords(Coords coords) {
 		if((coords.getRow() >= 0) && (coords.getRow() < this.rows)) {
 			if((coords.getColumn() >= 0) && (coords.getColumn() < this.columns)) {

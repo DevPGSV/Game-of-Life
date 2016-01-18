@@ -15,8 +15,15 @@ public class SaveCommand extends Command{
 	
 	private File file;
 	
+	/**
+	 *  <p>Save Command public contructor</p>
+	 */
 	public SaveCommand(){}
 	
+	/**
+	 * <p>Save Command private contructor</p>
+	 * @param file output file
+	 */
 	private SaveCommand(File file) {
 		this.file = file;
 	}

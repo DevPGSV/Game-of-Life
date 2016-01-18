@@ -1,5 +1,8 @@
 package tp.pr3.exceptions;
 
+/**
+ * Thrown when there is an error parsing a command
+ */
 @SuppressWarnings("serial")
 public class ParseCommandException extends Exception {
 	

@@ -1,5 +1,8 @@
 package tp.pr3.exceptions;
 
+/**
+ * Thrown when the user tries to create a new game with more cells than positions.
+ */
 @SuppressWarnings("serial")
 public class InitialisationException extends Exception {
 	

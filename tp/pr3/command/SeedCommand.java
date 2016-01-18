@@ -13,8 +13,15 @@ public class SeedCommand extends Command{
 	
 	private Long seed;
 	
+	/**
+	 *  <p>Load Command public contructor</p>
+	 */
 	public SeedCommand(){}
 	
+	/**
+	 *  <p>Seed Command private contructor</p>
+	 * @param seed the new seed to use
+	 */
 	private SeedCommand(Long seed) {
 		this.seed = seed;
 	}

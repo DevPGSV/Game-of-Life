@@ -1,5 +1,8 @@
 package tp.pr3.exceptions;
 
+/**
+ * Thrown when the user writes an invalid command
+ */
 @SuppressWarnings("serial")
 public class UnknownCommandException extends Exception {
 	

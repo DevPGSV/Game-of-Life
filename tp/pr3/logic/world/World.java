@@ -107,7 +107,7 @@ public abstract class World implements WorldType {
 	 * <p>Deletes a new cell at the specified coordinates</p>
 	 * <p><b>Overloads: <i>deleteCell(Coords coords)</i></b></p>
 	 * 
-	 * @see tp.pr2.logic.World#deleteCell(Coords)
+	 * @see tp.pr3.logic.world.World#deleteCell(Coords)
 	 * @param row row coord
 	 * @param col col coord
 	 * @return      if it was possible to delete the cell at the given coordinates
@@ -145,8 +145,20 @@ public abstract class World implements WorldType {
 		return surface.toString();
 	}
 	
+	/**
+	 * World type getter
+	 * @return the world type as a string
+	 */
 	public abstract String getWorldTypeAsString();
 	
+	/**
+	 * Load the world from a file
+	 * @param fileReader input file
+	 * @return the orld object
+	 * @throws FileFormatException Thrown when there is an error parsing a game a file
+	 * @throws NumberFormatException String to int conversion error
+	 * @throws IOException IOException
+	 */
 	public static World load(Scanner fileReader) throws FileFormatException, NumberFormatException, IOException {
 		World world;
 		
@@ -165,6 +177,11 @@ public abstract class World implements WorldType {
 		return world;
 	}
 	
+	/**
+	 * Save the world to a file
+	 * @param fileWriter the output file
+	 * @throws IOException IOException
+	 */
 	public void save(Writer fileWriter) throws IOException {
 		fileWriter.write(getWorldTypeAsString() + System.lineSeparator());
 		fileWriter.write(surface.getRows() + System.lineSeparator());
@@ -172,14 +189,27 @@ public abstract class World implements WorldType {
 		surface.save(fileWriter);
 	}
 	
+	/**
+	 * row getter
+	 * @return rows
+	 */
 	public int getRows() {
 		return surface.getRows();
 	}
 	
+	/**
+	 * column getter
+	 * @return cols
+	 */
 	public int getColumns() {
 		return surface.getColumns();
 	}
 	
+	/**
+	 * Check if some coordinates are valid
+	 * @param coords input coordinates
+	 * @return if the coordinates are valid
+	 */
 	public boolean checkIfValidCoords(Coords coords) {
 		return surface.checkIfValidCoords(coords);
 	}

@@ -11,8 +11,15 @@ public class PlayCommand extends Command{
 	
 	private World world;
 	
+	/**
+	 *  <p>Play Command public contructor</p>
+	 */
 	public PlayCommand(){}
 	
+	/**
+	 *  <p>Play Command private contructor</p>
+	 * @param world new world to use in the new game
+	 */
 	private PlayCommand(World world) {
 		this.world = world;
 	}
@@ -20,6 +27,7 @@ public class PlayCommand extends Command{
 	@Override
 	public void execute(World world, Controller controller) {
 		controller.setWorld(this.world);
+		controller.init();
 	}
 
 	@Override

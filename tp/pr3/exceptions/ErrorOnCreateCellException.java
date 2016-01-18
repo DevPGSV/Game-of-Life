@@ -1,5 +1,8 @@
 package tp.pr3.exceptions;
 
+/**
+ * Thrown when there is an error creating the cell
+ */
 @SuppressWarnings("serial")
 public class ErrorOnCreateCellException extends Exception {
 	

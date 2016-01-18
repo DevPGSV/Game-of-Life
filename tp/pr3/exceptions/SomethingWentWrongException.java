@@ -1,5 +1,8 @@
 package tp.pr3.exceptions;
 
+/**
+ * Not thrown
+ */
 @SuppressWarnings("serial")
 public class SomethingWentWrongException extends Exception {
 	

@@ -12,7 +12,7 @@ public class Printer {
 	 */
 	private Printer() {
 		if( System.getProperty("os.name").startsWith("Windows") ) {
-			//useAnsiiCodes = false;
+			useAnsiiCodes = false;
 		}
 	}
 	
@@ -37,6 +37,11 @@ public class Printer {
 		return this.useAnsiiCodes;
 	}
 	
+	/**
+	 * Replaces {colors} with ansii codes
+	 * @param text original text
+	 * @return text with colors replaced
+	 */
 	public String patternReplace(String text) {
 		for (Ansii ansii : Ansii.values()) {
 			if (useAnsiiCodes)

@@ -1,5 +1,8 @@
 package tp.pr3.exceptions;
 
+/**
+ * Thrown when the user doesn't select a file (saving/loading)
+ */
 @SuppressWarnings("serial")
 public class NoFileSelectedException extends Exception {
 	

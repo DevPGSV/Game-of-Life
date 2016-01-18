@@ -1,5 +1,8 @@
 package tp.pr3.exceptions;
 
+/**
+ * Thrown when an unknown world type is found.
+ */
 @SuppressWarnings("serial")
 public class UnknownWorldTypeException extends Exception {
 	

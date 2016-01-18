@@ -1,5 +1,8 @@
 package tp.pr3.exceptions;
 
+/**
+ * Thrown when there is an error saving a file
+ */
 @SuppressWarnings("serial")
 public class ErrorOnSaveException extends Exception {
 	

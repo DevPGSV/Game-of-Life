@@ -58,6 +58,11 @@ public class Utils {
 		}
 	}
 	
+	/**
+	 * Gets a list of all positions in the surface
+	 * @param surface the surface
+	 * @return list of coords
+	 */
 	public static List<Coords> getAllPositions(Surface surface){
 		List<Coords> positionsList = new ArrayList<Coords>();
 		
@@ -69,6 +74,11 @@ public class Utils {
 		return positionsList;
 	}
 	
+	/**
+	 * Gets a shuffled list of all positions in the surface
+	 * @param surface the surface
+	 * @return shuffled list of coords
+	 */
 	public static List<Coords> getAllPositionsShuffled(Surface surface){
 		List<Coords> positionsList = getAllPositions(surface);
 		Coords tmpCoords;
@@ -82,6 +92,11 @@ public class Utils {
 		return positionsList;
 	}
 	
+	/**
+	 * Ask for a file to open
+	 * @return selected file
+	 * @throws NoFileSelectedException Thrown when the user doesn't select a file (saving/loading)
+	 */
 	public static File askFileOpen() throws NoFileSelectedException {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
@@ -101,6 +116,11 @@ public class Utils {
 	    throw new NoFileSelectedException("");
 	}
 	
+	/**
+	 * Ask for a file to save
+	 * @return selected file
+	 * @throws NoFileSelectedException Thrown when the user doesn't select a file (saving/loading)
+	 */
 	public static File askFileSave() throws NoFileSelectedException {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
@@ -120,6 +140,11 @@ public class Utils {
 	    throw new NoFileSelectedException("");
 	}
 	
+	/**
+	 * Checks if the extension is valid, adds the extension if not
+	 * @param file original file
+	 * @return the definitive file
+	 */
 	public static File checkGolExtension(File file) {
 		if (!checkIfCorrectExtension(file.getAbsolutePath())) {
     		return new File(file.getAbsolutePath() + ".gol");
@@ -127,6 +152,11 @@ public class Utils {
 		return file;
 	}
 	
+	/**
+	 * Checks if the extension is valid
+	 * @param fileName original file
+	 * @return if the extension is valid
+	 */
 	public static boolean checkIfCorrectExtension(String fileName) {
         int i = fileName.lastIndexOf('.');
         if (i > 0 &&  i < fileName.length() - 1) {

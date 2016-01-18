@@ -15,8 +15,15 @@ public class LoadCommand extends Command{
 	
 	private File file;
 	
+	/**
+	 * <p>Load Command public contructor</p>
+	 */
 	public LoadCommand(){}
 	
+	/**
+	 * <p>Load Command private contructor</p>
+	 * @param file the ".gol" file to use to load the game
+	 */
 	private LoadCommand(File file) {
 		this.file = file;
 	}

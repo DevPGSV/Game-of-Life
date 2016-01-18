@@ -33,7 +33,7 @@ public class ComplexCell implements Cell{
 	/**
 	 * <p>Decrease Eat Capacity by 1</p>
 	 * 
-	 * @see tp.pr2.logic.ComplexCell#ec
+	 * @see tp.pr3.logic.cell.ComplexCell#ec
 	 */
 	public void loseEc() {
 		this.ec--;
@@ -42,7 +42,7 @@ public class ComplexCell implements Cell{
 	/**
 	 * <p>Eat Capacity getter</p>
 	 * 
-	 * @see tp.pr2.logic.ComplexCell#ec
+	 * @see tp.pr3.logic.cell.ComplexCell#ec
 	 * @return the Eat Capacity
 	 */
 	public int getEc() {
@@ -52,7 +52,7 @@ public class ComplexCell implements Cell{
 	/**
 	 * <p>Checks if the cell should burst (ie. if its ec is 0)</p>
 	 * 
-	 * @see tp.pr2.logic.ComplexCell#ec
+	 * @see tp.pr3.logic.cell.ComplexCell#ec
 	 * @return if (the cells ec == 0)
 	 */
 	public boolean shouldBurst() {
@@ -60,7 +60,7 @@ public class ComplexCell implements Cell{
 	}
 
 	/* (non-Javadoc)
-	 * @see tp.pr2.logic.Cell#executeMove(tp.pr2.utils.Coords, tp.pr2.logic.Surface)
+	 * @see tp.pr2.logic.cell.Cell#executeMove(tp.pr2.utils.Coords, tp.pr2.logic.Surface)
 	 */
 	@Override
 	public Coords executeMove(Coords coords, Surface surface) {
@@ -93,7 +93,6 @@ public class ComplexCell implements Cell{
 	public String toString() {
 		return (char)183 + "{BLUE}" + (new Integer(getEc())).toString() + "{RESET}" + (char)183;
 	}
-
 	
 	@Override
 	public boolean isEdible() {
@@ -105,6 +104,11 @@ public class ComplexCell implements Cell{
 		fileWriter.write("complex " + (new Integer(getEc())).toString());
 	}
 	
+	/**
+	 * Load a complex cell from a file
+	 * @param fileReader scanner to use as input to read a serialized complex cell
+	 * @return the complex cell object
+	 */
 	public static ComplexCell load(Scanner fileReader) {
 		int ec = fileReader.nextInt(); fileReader.nextLine();
 		return new ComplexCell(ec);

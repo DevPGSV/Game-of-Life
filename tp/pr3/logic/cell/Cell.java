@@ -32,11 +32,9 @@ public interface Cell {
 	/**
 	 * <p>edible getter</p>
 	 * 
-	 * @see tp.pr2.logic.Cell#edible
 	 * @return if the cell can be eaten
 	 */
 	public boolean isEdible();
 	
-	//public void load(File file, Surface surface);
 	public void save(Writer fileWriter) throws IOException;
 }

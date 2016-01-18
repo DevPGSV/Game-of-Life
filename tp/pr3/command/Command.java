@@ -18,15 +18,16 @@ public abstract class Command {
 	 * <p>Executes a command</p>
 	 * 
 	 * @param world World in which the command is executed
-	 * @throws UnknownWorldTypeException 
-	 * @throws IOException 
-	 * @throws FileFormatException 
-	 * @throws NumberFormatException 
-	 * @throws ErrorOnSaveException 
-	 * @throws NoFileSelectedException 
-	 * @throws ErrorOnLoadException 
-	 * @throws ErrorOnCreateCellException 
-	 * @throws InvalidCoordsException 
+	 * @param controller an instance of the controller
+	 * @throws UnknownWorldTypeException Thrown when an unknown world type is found.
+	 * @throws IOException If there is an IOException
+	 * @throws FileFormatException If the file is not correctly formated
+	 * @throws NumberFormatException If it can't convert string to int
+	 * @throws ErrorOnSaveException If it can't save the game
+	 * @throws NoFileSelectedException If no file is selected
+	 * @throws ErrorOnLoadException If it can't load the game
+	 * @throws ErrorOnCreateCellException If it can't create a cell
+	 * @throws InvalidCoordsException If the coordinates are invalid
 	 */
 	public abstract void execute(World world, Controller controller) throws UnknownWorldTypeException, NumberFormatException, FileFormatException, IOException, ErrorOnSaveException, NoFileSelectedException, ErrorOnLoadException, ErrorOnCreateCellException, InvalidCoordsException;
 	
@@ -35,8 +36,8 @@ public abstract class Command {
 	 * 
 	 * @param commandString the command as an array of words
 	 * @return An object representing the command, or null if the command doesn't match
-	 * @throws UnknownWorldTypeException 
-	 * @throws InitialisationException 
+	 * @throws UnknownWorldTypeException Thrown when an unknown world type is found.
+	 * @throws InitialisationException Thrown when the user tries to create a new game with more cells than positions.
 	 */
 	public abstract Command parse(String[] commandString) throws UnknownWorldTypeException, InitialisationException;
 	

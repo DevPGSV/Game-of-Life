@@ -117,7 +117,7 @@ public class FairWorld implements WorldType{
 	 * <p>Deletes a new cell at the specified coordinates</p>
 	 * <p><b>Overloads: <i>deleteCell(Coords coords)</i></b></p>
 	 * 
-	 * @see tp.pr2.logic.FairWorld#deleteCell(Coords)
+	 * @see tp.pr3.logic.world.FairWorld#deleteCell(Coords)
 	 * @param row row coord
 	 * @param col col coord
 	 * @return      if it was possible to delete the cell at the given coordinates
@@ -140,7 +140,7 @@ public class FairWorld implements WorldType{
 	 * <p>Asks the surface to initialize the board</p>
 	 */
 	public void initWorld() {
-		surface.initBoard();
+		//surface.initBoard();
 	}
 	
 	/**

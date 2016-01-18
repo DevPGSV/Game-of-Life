@@ -22,6 +22,10 @@ public enum Ansii {
 		this.code = code;
 	}
 	
+	/**
+	 * code getter
+	 * @return the code
+	 */
 	public String getAnsii() {
 		if (this == Ansii.RESET) {
 			return resetCode;
@@ -29,6 +33,10 @@ public enum Ansii {
 		return code;
 	}
 	
+	/**
+	 * resetCode setter
+	 * @param str new value for resetCode
+	 */
 	public void setDefaultResetCode(String str) {
 		Ansii.resetCode = str;
 	}

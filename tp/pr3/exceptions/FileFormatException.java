@@ -1,5 +1,8 @@
 package tp.pr3.exceptions;
 
+/**
+ * Thrown when there is an error parsing a game a file
+ */
 @SuppressWarnings("serial")
 public class FileFormatException extends Exception {
 	

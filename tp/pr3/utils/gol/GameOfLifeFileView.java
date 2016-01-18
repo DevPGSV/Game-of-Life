@@ -16,20 +16,24 @@ import tp.pr3.utils.Utils;
 
 public class GameOfLifeFileView extends FileView {
 	
-	
-    
-    public String getName(File file) {
-        return null; //let the L&F FileView figure this out
-    }
+    /* (non-Javadoc)
+     * @see javax.swing.filechooser.FileView#getName(java.io.File)
+     */
+    public String getName(File file) {return null;}
 
-    public String getDescription(File file) {
-        return null; //let the L&F FileView figure this out
-    }
+    /* (non-Javadoc)
+     * @see javax.swing.filechooser.FileView#getDescription(java.io.File)
+     */
+    public String getDescription(File file) {return null;}
 
-    public Boolean isTraversable(File file) {
-        return null; //let the L&F FileView figure this out
-    }
+    /* (non-Javadoc)
+     * @see javax.swing.filechooser.FileView#isTraversable(java.io.File)
+     */
+    public Boolean isTraversable(File file) {return null;}
 
+    /* (non-Javadoc)
+     * @see javax.swing.filechooser.FileView#getTypeDescription(java.io.File)
+     */
     public String getTypeDescription(File file) {
         if (Utils.checkIfCorrectExtension(file.getAbsolutePath())) {
         	return "'Game of life' file";
@@ -38,6 +42,9 @@ public class GameOfLifeFileView extends FileView {
         }
     }
     
+    /* (non-Javadoc)
+     * @see javax.swing.filechooser.FileView#getIcon(java.io.File)
+     */
     public Icon getIcon(File file) {
     	if (Utils.checkIfCorrectExtension(file.getAbsolutePath())) {
     		String text = "";

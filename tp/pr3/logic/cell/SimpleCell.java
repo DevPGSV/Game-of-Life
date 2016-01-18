@@ -37,7 +37,7 @@ public class SimpleCell implements Cell{
 	}
 
 	/* (non-Javadoc)
-	 * @see tp.pr2.logic.Cell#executeMove(tp.pr2.utils.Coords, tp.pr2.logic.Surface)
+	 * @see tp.pr2.logic.cell.Cell#executeMove(tp.pr2.utils.Coords, tp.pr2.logic.Surface)
 	 */
 	@Override
 	public Coords executeMove(Coords coords, Surface surface) {
@@ -144,6 +144,11 @@ public class SimpleCell implements Cell{
 		fileWriter.write("simple " + (new Integer(getLp())).toString() + " " + (new Integer(getMp())).toString());
 	}
 	
+	/**
+	 * Load a simple cell from a file
+	 * @param fileReader scanner to use as input to read a serialized simple cell
+	 * @return the simple cell object
+	 */
 	public static SimpleCell load(Scanner fileReader) {
 		int lp = fileReader.nextInt();
 		int mp = fileReader.nextInt();

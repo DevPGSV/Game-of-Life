@@ -10,12 +10,22 @@ import tp.pr3.logic.world.World;
 import tp.pr3.view.Ansii;
 import tp.pr3.view.Printer;
 
+/**
+ * <p>Color Command class</p>
+ */
 public class ColorCommand extends Command{
 	
 	private String color;
 	
+	/**
+	 * <p>Color Command, public Contructor</p>
+	 */
 	public ColorCommand(){}
 	
+	/**
+	 * <p>Color Command, private constructor</p>
+	 * @param color Formated string with colors
+	 */
 	private ColorCommand(String color) {
 		this.color = color;
 	}

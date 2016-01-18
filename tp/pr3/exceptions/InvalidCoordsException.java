@@ -1,5 +1,8 @@
 package tp.pr3.exceptions;
 
+/**
+ * Thrown when the user inputs invalid coordinates.
+ */
 @SuppressWarnings("serial")
 public class InvalidCoordsException extends Exception {
 	
