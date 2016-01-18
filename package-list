@@ -1,6 +1,10 @@
-tp.pr2
-tp.pr2.command
-tp.pr2.controller
-tp.pr2.logic
-tp.pr2.utils
-tp.pr2.view.printer
+tp.pr3
+tp.pr3.command
+tp.pr3.controller
+tp.pr3.exceptions
+tp.pr3.logic.cell
+tp.pr3.logic.surface
+tp.pr3.logic.world
+tp.pr3.utils
+tp.pr3.utils.gol
+tp.pr3.view
