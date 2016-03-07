@@ -38,7 +38,7 @@ public class Printer {
 	}
 	
 	/**
-	 * Replaces {colors} with ansii codes
+	 * <p>Replaces {colors} with ansii codes</p>
 	 * @param text original text
 	 * @return text with colors replaced
 	 */
